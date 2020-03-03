@@ -3,17 +3,17 @@ package model;
 import java.util.Date;
 
 public class Generate {
-    private String dni;
+    private String id;
     private int nFact;
     private Date date;
     public Generate(){}
 
-    public String getDni() {
-        return dni;
+    public String getId() {
+        return id;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getnFact() {
