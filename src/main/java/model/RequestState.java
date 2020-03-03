@@ -1,7 +1,11 @@
 package model;
 
 public enum RequestState {
-    approved,
-    rejected,
-    waiting
+    approved("approved"),
+    rejected("rejected"),
+    waiting("waiting");
+    public final String state;
+    RequestState(String state){
+        this.state=state;
+    }
 }
