@@ -9,6 +9,9 @@ public class Volunteer {
     private String phoneVolunteer;
     private Date birthDateVolunteer;
     private String typeServiceVolunteer;
+    private String email;
+    private String user;
+    private String pwd;
     public Volunteer(){}
 
     public String getNameVolunteer() {
@@ -57,5 +60,21 @@ public class Volunteer {
 
     public void setTypeServiceVolunteer(String typeServiceVolunteer) {
         this.typeServiceVolunteer = typeServiceVolunteer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
