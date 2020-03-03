@@ -27,7 +27,9 @@ public class BeneficiaryDao {
         try{
             jdbcTemplate.update(
                     "INSERT INTO Nadador VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getBirthDate(),beneficiary.getSocialWorker(),beneficiary.getUsser(),beneficiary.getPassword());
+                    beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(),
+                    beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),
+                    beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUsser(), beneficiary.getPassword());
 
         }
         catch(DuplicateKeyException e) {
