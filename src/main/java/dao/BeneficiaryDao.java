@@ -48,7 +48,11 @@ public class BeneficiaryDao {
 
     public void updateBeneficiary(Beneficiary beneficiary) {
         try{
-            jdbcTemplate.update("UPDATE Beneficiary SET name = ?, surname = ?, homeAddress = ?, phoneNumber = ?, bankAccount = ?, birthDate = ?,socialWorker = ?, usser = ?, password = ?,WHERE dni=?",beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getBirthDate(),beneficiary.getSocialWorker(),beneficiary.getUsser(),beneficiary.getPassword(),beneficiary.getDni());
+            jdbcTemplate.update("UPDATE Beneficiary SET name = ?, surname = ?, homeAddress = ?, phoneNumber = ?," +
+                    "bankAccount = ?, birthDate = ?,socialWorker = ?, usser = ?, password = ?,WHERE dni=?",
+                    beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),
+                    beneficiary.getBankAccount(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
+                    beneficiary.getUsser(), beneficiary.getPassword(), beneficiary.getDni());
         }
         catch (DataAccessException e){
         }
