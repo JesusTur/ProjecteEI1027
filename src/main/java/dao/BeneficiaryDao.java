@@ -29,7 +29,7 @@ public class BeneficiaryDao {
                     "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(),
                     beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),
-                    beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUsser(), beneficiary.getPassword());
+                    beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword());
 
         }
         catch(DuplicateKeyException e) {
@@ -51,7 +51,7 @@ public class BeneficiaryDao {
                     "bankAccount = ?, birthDate = ?,socialWorker = ?, user = ?, password = ?,WHERE dni=?",
                     beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),
                     beneficiary.getBankAccount(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
-                    beneficiary.getUsser(), beneficiary.getPassword(), beneficiary.getDni());
+                    beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDni());
         }
         catch (DataAccessException e){
         }
