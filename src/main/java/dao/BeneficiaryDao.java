@@ -26,14 +26,13 @@ public class BeneficiaryDao {
     public void addBeneficiary(Beneficiary beneficiary) {
         try{
             jdbcTemplate.update(
-                    "INSERT INTO Nadador VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(),
                     beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),
                     beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUsser(), beneficiary.getPassword());
 
         }
         catch(DuplicateKeyException e) {
-
         }
     }
 
@@ -49,7 +48,7 @@ public class BeneficiaryDao {
     public void updateBeneficiary(Beneficiary beneficiary) {
         try{
             jdbcTemplate.update("UPDATE Beneficiary SET name = ?, surname = ?, homeAddress = ?, phoneNumber = ?," +
-                    "bankAccount = ?, birthDate = ?,socialWorker = ?, usser = ?, password = ?,WHERE dni=?",
+                    "bankAccount = ?, birthDate = ?,socialWorker = ?, user = ?, password = ?,WHERE dni=?",
                     beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),
                     beneficiary.getBankAccount(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
                     beneficiary.getUsser(), beneficiary.getPassword(), beneficiary.getDni());
@@ -59,6 +58,25 @@ public class BeneficiaryDao {
     }
 
 
+    public List<Beneficiary> getBeneficiaries() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Beneficiary",
+                    new BeneficiaryRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Beneficiary>();
+        }
+    }
+
+
+    public Beneficiary getBeneficiary(String nomBeneficary) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE name = ?", new BeneficiaryRowMapper(),nomBeneficary);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
 
 }
