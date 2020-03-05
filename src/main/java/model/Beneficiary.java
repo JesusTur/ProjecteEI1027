@@ -11,7 +11,7 @@ public class Beneficiary {
     private String bankAccount;
     private Date birthDate;
     private String socialWorker;
-    private String usser;
+    private String user;
     private String password;
     public Beneficiary(){}
 
@@ -79,12 +79,12 @@ public class Beneficiary {
         this.socialWorker = socialWorker;
     }
 
-    public String getUsser() {
-        return usser;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsser(String usser) {
-        this.usser = usser;
+    public void setUser(String usser) {
+        this.user = user;
     }
 
     public String getPassword() {

@@ -1,4 +1,6 @@
 package dao;
+
+import model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -20,4 +22,35 @@ public class ContractDao {
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+    public void addContract(Contract contract) {
+        try{
+            jdbcTemplate.update(
+                    "INSERT INTO Nadador VALUES(?, ?, ?, ?, ?)",
+                    contract.getTypeOfService(), contract.getPrice(), contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
+
+        }
+        catch(DuplicateKeyException e) {
+        }
+    }
+
+
+    public void updateContract(Contract contract) {
+        try{
+            jdbcTemplate.update("UPDATE Contract SET price = ?, startDate = ?, finalDate = ?, quantity = ?",contract.getPrice(),contract.getStartDate(),contract.getFinalDate(),contract.getQuantity());
+        }
+        catch (DataAccessException e){
+        }
+    }
+
+    public List<Contract> getContracts() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Contract",
+                    new ContractRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
+        }
+    }
+
 }
