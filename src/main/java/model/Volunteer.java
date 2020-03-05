@@ -3,55 +3,82 @@ package model;
 import java.util.Date;
 
 public class Volunteer {
-    private String nameVolunteer;
-    private String surnameVolunteer;
-    private String dniVolunteer;
-    private String phoneVolunteer;
-    private Date birthDateVolunteer;
+    private String name;
+    private String surname;
+    private String dni;
+    private String phoneNumber;
+    private Date birthDate;
+    private Date applicationDate;
+    private Date acceptationDate;
+    private Boolean accepted;
     private String typeServiceVolunteer;
     private String email;
     private String user;
     private String pwd;
     public Volunteer(){}
 
-    public String getNameVolunteer() {
-        return nameVolunteer;
+    public String getName() {
+        return name;
     }
 
-    public void setNameVolunteer(String nameVolunteer) {
-        this.nameVolunteer = nameVolunteer;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSurnameVolunteer() {
-        return surnameVolunteer;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurnameVolunteer(String surnameVolunteer) {
-        this.surnameVolunteer = surnameVolunteer;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public String getDniVolunteer() {
-        return dniVolunteer;
+    public String getDni() {
+        return dni;
     }
 
-    public void setDniVolunteer(String dniVolunteer) {
-        this.dniVolunteer = dniVolunteer;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
-    public String getPhoneVolunteer() {
-        return phoneVolunteer;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneVolunteer(String phoneVolunteer) {
-        this.phoneVolunteer = phoneVolunteer;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public Date getBirthDateVolunteer() {
-        return birthDateVolunteer;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthDateVolunteer(Date birthDateVolunteer) {
-        this.birthDateVolunteer = birthDateVolunteer;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Date getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(Date applicationDate) {
+        this.applicationDate = applicationDate;
+    }
+
+    public Date getAcceptationDate() {
+        return acceptationDate;
+    }
+
+    public void setAcceptationDate(Date acceptationDate) {
+        this.acceptationDate = acceptationDate;
+    }
+
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public String getTypeServiceVolunteer() {

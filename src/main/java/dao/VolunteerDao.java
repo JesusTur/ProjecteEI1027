@@ -1,5 +1,6 @@
 package dao;
 
+import model.Beneficiary;
 import model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -26,9 +27,9 @@ public class VolunteerDao {
     public void addVolunteer(Volunteer volunteer) {
         try{
             jdbcTemplate.update(
-                    "INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    volunteer.getNameVolunteer(), volunteer.getSurnameVolunteer(), volunteer.getDniVolunteer(), volunteer.getPhoneVolunteer(),
-                    volunteer.getBirthDateVolunteer(), volunteer.getTypeServiceVolunteer(), volunteer.getEmail(), volunteer.getUser(),volunteer.getPwd());
+                    "INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)",
+                    volunteer.getName(), volunteer.getSurname(), volunteer.getDni(), volunteer.getPhoneNumber(),
+                    volunteer.getBirthDate(),volunteer.getApplicationDate(),volunteer.getAcceptationDate(),volunteer.getAccepted(), volunteer.getTypeServiceVolunteer(), volunteer.getEmail(), volunteer.getUser(),volunteer.getPwd());
         }
         catch(DuplicateKeyException e) {
         }
@@ -44,13 +45,32 @@ public class VolunteerDao {
 
     public void updateVolunteer(Volunteer volunteer) {
         try{
-            jdbcTemplate.update("UPDATE Volunteer SET nameVolunteer = ?, surnameVolunteer = ?, phoneVolunteer = ?," +
-                            "birthDateVolunteer = ?, user = ?, pwd = ?, typeServiceVolunteer = ?, email = ? WHERE dniVolunteer=?",
-                    volunteer.getNameVolunteer(), volunteer.getSurnameVolunteer(), volunteer.getPhoneVolunteer(), volunteer.getBirthDateVolunteer(),
+            jdbcTemplate.update("UPDATE Volunteer SET name = ?, surname = ?, phoneNumber = ?," +
+                            "birthDate = ?, applicationDate = ?, acceptationDate = ?, accepted = ?, userVolunteer = ?, passwordVolunteer = ?, typeServiceVolunteer = ?, email = ? WHERE dni=?",
+                    volunteer.getName(), volunteer.getSurname(), volunteer.getPhoneNumber(), volunteer.getBirthDate(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getAccepted(),
                     volunteer.getUser(), volunteer.getPwd(), volunteer.getTypeServiceVolunteer(),
-                    volunteer.getEmail(), volunteer.getDniVolunteer());
+                    volunteer.getEmail(), volunteer.getDni());
         }
         catch (DataAccessException e){
+        }
+    }
+    public List<Volunteer> getVolunteers() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Volunteer",
+                    new VolunteerRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+    }
+
+
+    public Volunteer getVolunteer(String dniVolunteer) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni = ?", new VolunteerRowMapper(),dniVolunteer);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
         }
     }
 

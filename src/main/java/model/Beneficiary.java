@@ -9,10 +9,13 @@ public class Beneficiary {
     private String homeAddress;
     private String phoneNumber;
     private String bankAccount;
+    private String email;
+    private Date dateCreation;
     private Date birthDate;
     private String socialWorker;
     private String user;
     private String password;
+    private String description;
     public Beneficiary(){}
 
     public String getDni() {
@@ -63,6 +66,23 @@ public class Beneficiary {
         this.bankAccount = bankAccount;
     }
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
     public Date getBirthDate() {
         return birthDate;
     }
@@ -93,5 +113,13 @@ public class Beneficiary {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

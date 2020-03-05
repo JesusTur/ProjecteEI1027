@@ -25,9 +25,9 @@ public class BeneficiaryDao {
     public void addBeneficiary(Beneficiary beneficiary) {
         try{
             jdbcTemplate.update(
-                    "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(),
-                    beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),
+                    beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
                     beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword());
 
         }
@@ -47,10 +47,10 @@ public class BeneficiaryDao {
     public void updateBeneficiary(Beneficiary beneficiary) {
         try{
             jdbcTemplate.update("UPDATE Beneficiary SET name = ?, surname = ?, homeAddress = ?, phoneNumber = ?," +
-                    "bankAccount = ?, birthDate = ?,socialWorker = ?, user = ?, password = ?,WHERE dni=?",
+                    "bankAccount = ?, email = ?, dateCreation = ?, birthDate = ?,socialWorker = ?, userBeneficiary = ?, passwordBeneficiary = ?, description = ?,WHERE dni=?",
                     beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),
-                    beneficiary.getBankAccount(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
-                    beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDni());
+                    beneficiary.getBankAccount(),beneficiary.getEmail(),beneficiary.getDateCreation(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
+                    beneficiary.getUser(), beneficiary.getPassword(),beneficiary.getDescription(), beneficiary.getDni());
         }
         catch (DataAccessException e){
         }
@@ -68,9 +68,9 @@ public class BeneficiaryDao {
     }
 
 
-    public Beneficiary getBeneficiary(String nomBeneficary) {
+    public Beneficiary getBeneficiary(String dniBeneficiary) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE name = ?", new BeneficiaryRowMapper(),nomBeneficary);
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE dni = ?", new BeneficiaryRowMapper(),dniBeneficiary);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
