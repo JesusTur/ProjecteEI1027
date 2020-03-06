@@ -45,7 +45,7 @@ public class VolunteerTimeDao {
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
         try{
             jdbcTemplate.update("UPDATE VolunteerTime SET dateVolunteer = ?, beginningHour = ?," +
-                            "endingHour = ?, availabe = ?, WHERE dniVolunteer =? AND dniBeneficiary = ?",
+                            "endingHour = ?, availabe = ?, WHERE dniVolunteer = ? AND dniBeneficiary = ?",
                     volunteerTime.getDate(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour(),volunteerTime.isAvailable(),volunteerTime.getDniVolunteer(),volunteerTime.getDniBeneficiary());
         }
         catch (DataAccessException e){
