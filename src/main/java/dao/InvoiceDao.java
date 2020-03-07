@@ -31,4 +31,32 @@ public class InvoiceDao {
         catch(DuplicateKeyException e) {
         }
     }
+
+    public void deleteInvoice(String ninv) {
+        try{
+            jdbcTemplate.update("DELETE FROM Invoice WHERE ninv =?", ninv);
+        }
+        catch(DataAccessException e){
+        }
+    }
+
+    public void updateInvoice(Invoice invoice) {
+        try{
+            jdbcTemplate.update("UPDATE Invoice SET dateinv = ?, totalprice = ?, description = ?, dnibeneficiary = ?",
+                                invoice.getDateinv(),invoice.getTotalPrice(), invoice.getDescription(),  invoice.getDnibeneficiary());
+
+        }
+        catch (DataAccessException e){
+        }
+    }
+
+    public List<Invoice> getInvoices() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Invoice",
+                    new InvoiceRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Invoice>();
+        }
+    }
 }
