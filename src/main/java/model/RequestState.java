@@ -8,4 +8,8 @@ public enum RequestState {
     RequestState(String state){
         this.state=state;
     }
+    @Override
+    public String toString(){
+        return state;
+    }
 }

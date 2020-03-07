@@ -43,7 +43,7 @@ public class InvoiceDao {
     public void updateInvoice(Invoice invoice) {
         try{
             jdbcTemplate.update("UPDATE Invoice SET dateinv = ?, totalprice = ?, description = ?, dnibeneficiary = ?",
-                                invoice.getDateinv(),invoice.getTotalPrice(), invoice.getDescription(),  invoice.getDnibeneficiary());
+                                invoice.getDateinv(),invoice.getTotalPrice(), invoice.getDescription(), invoice.getDnibeneficiary());
 
         }
         catch (DataAccessException e){

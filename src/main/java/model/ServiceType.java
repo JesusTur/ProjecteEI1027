@@ -7,4 +7,8 @@ public enum ServiceType {
     ServiceType(String s) {
         this.type=s;
     }
+    @Override
+    public String toString(){
+        return type;
+    }
 }

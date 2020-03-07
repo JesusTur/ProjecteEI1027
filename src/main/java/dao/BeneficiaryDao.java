@@ -70,7 +70,8 @@ public class BeneficiaryDao {
 
     public Beneficiary getBeneficiary(String dniBeneficiary) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE dni = ?", new BeneficiaryRowMapper(),dniBeneficiary);
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE dni = ?",
+                    new BeneficiaryRowMapper(), dniBeneficiary);
         }
         catch(EmptyResultDataAccessException e) {
             return null;

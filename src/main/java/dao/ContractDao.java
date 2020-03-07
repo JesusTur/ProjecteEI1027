@@ -37,7 +37,8 @@ public class ContractDao {
 
     public void updateContract(Contract contract) {
         try{
-            jdbcTemplate.update("UPDATE Contract SET price = ?, startDate = ?, finalDate = ?, quantity = ?",contract.getPrice(),contract.getStartDate(),contract.getFinalDate(),contract.getQuantity());
+            jdbcTemplate.update("UPDATE Contract SET price = ?, startDate = ?, finalDate = ?, quantity = ?",
+                    contract.getPrice(), contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
         }
         catch (DataAccessException e){
         }

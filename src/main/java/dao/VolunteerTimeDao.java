@@ -26,7 +26,8 @@ public class VolunteerTimeDao {
         try{
             jdbcTemplate.update(
                     "INSERT INTO VolunteerTime VALUES(?, ?, ?, ?, ?, ?)",
-                    volunteerTime.getDate(),volunteerTime.getDniVolunteer(),volunteerTime.getDniBeneficiary(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour(),volunteerTime.isAvailable());
+                    volunteerTime.getDate(), volunteerTime.getDniVolunteer(), volunteerTime.getDniBeneficiary(),
+                    volunteerTime.getBeginningHour(), volunteerTime.getEndingHour(), volunteerTime.isAvailable());
 
         }
         catch(DuplicateKeyException e) {
@@ -46,7 +47,8 @@ public class VolunteerTimeDao {
         try{
             jdbcTemplate.update("UPDATE VolunteerTime SET dateVolunteer = ?, beginningHour = ?," +
                             "endingHour = ?, availabe = ?, WHERE dniVolunteer = ? AND dniBeneficiary = ?",
-                    volunteerTime.getDate(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour(),volunteerTime.isAvailable(),volunteerTime.getDniVolunteer(),volunteerTime.getDniBeneficiary());
+                    volunteerTime.getDate(), volunteerTime.getBeginningHour(), volunteerTime.getEndingHour(),
+                    volunteerTime.isAvailable(), volunteerTime.getDniVolunteer(), volunteerTime.getDniBeneficiary());
         }
         catch (DataAccessException e){
         }

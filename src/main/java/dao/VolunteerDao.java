@@ -29,7 +29,9 @@ public class VolunteerDao {
             jdbcTemplate.update(
                     "INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)",
                     volunteer.getName(), volunteer.getSurname(), volunteer.getDni(), volunteer.getPhoneNumber(),
-                    volunteer.getBirthDate(),volunteer.getApplicationDate(),volunteer.getAcceptationDate(),volunteer.getAccepted(), volunteer.getTypeServiceVolunteer(), volunteer.getEmail(), volunteer.getUser(),volunteer.getPwd());
+                    volunteer.getBirthDate(),volunteer.getApplicationDate(),volunteer.getAcceptationDate(),
+                    volunteer.getAccepted(), volunteer.getTypeServiceVolunteer(), volunteer.getEmail(),
+                    volunteer.getUser(),volunteer.getPwd());
         }
         catch(DuplicateKeyException e) {
         }

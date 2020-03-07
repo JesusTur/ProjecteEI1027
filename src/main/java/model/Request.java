@@ -3,7 +3,9 @@ package model;
 import java.util.Date;
 
 public class Request {
-    private String id;
+    private int id;
+    private String dniBeneficiary;
+    private int contractid;
     private String TypeOfService;
     private Date schedule;
     private RequestState requestState;
@@ -13,11 +15,11 @@ public class Request {
     private Date dateFinal;
     public Request(){}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -75,5 +77,21 @@ public class Request {
 
     public void setDateFinal(Date dateFinal) {
         this.dateFinal = dateFinal;
+    }
+
+    public String getDniBeneficiary() {
+        return dniBeneficiary;
+    }
+
+    public void setDniBeneficiary(String dniBeneficiary) {
+        this.dniBeneficiary = dniBeneficiary;
+    }
+
+    public int getContractid() {
+        return contractid;
+    }
+
+    public void setContractid(int contractid) {
+        this.contractid = contractid;
     }
 }
