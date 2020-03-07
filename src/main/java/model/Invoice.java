@@ -3,25 +3,30 @@ package model;
 import java.util.Date;
 
 public class Invoice {
-    private int nFact;
-    private Date date;
+
+    private int ninv;
+    private Date dateinv;
     private float totalPrice;
+    private String description;
+    private String dnibeneficiary;
+
     public Invoice(){}
 
-    public int getnFact() {
-        return nFact;
+
+    public int getNinv() {
+        return ninv;
     }
 
-    public void setnFact(int nFact) {
-        this.nFact = nFact;
+    public void setNinv(int ninv) {
+        this.ninv = ninv;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateinv() {
+        return dateinv;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateinv(Date dateinv) {
+        this.dateinv = dateinv;
     }
 
     public float getTotalPrice() {
@@ -31,4 +36,24 @@ public class Invoice {
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDnibeneficiary() {
+        return dnibeneficiary;
+    }
+
+    public void setDnibeneficiary(String dnibeneficiary) {
+        this.dnibeneficiary = dnibeneficiary;
+    }
+
+
+
+
 }

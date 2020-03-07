@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import model.Invoice;
 
 
 @Repository
@@ -19,5 +20,15 @@ public class InvoiceDao {
     @Autowired
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public void addInvoice(Invoice invoice) {
+        try{
+            jdbcTemplate.update(
+                    "INSERT INTO Invoice VALUES(?, ?, ?, ?, ?)",
+                   invoice.getNinv(), invoice.getDateinv(), invoice.getTotalPrice(), invoice.getDescription(), invoice.getDnibeneficiary());
+        }
+        catch(DuplicateKeyException e) {
+        }
     }
 }
