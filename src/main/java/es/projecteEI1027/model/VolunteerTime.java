@@ -1,7 +1,7 @@
 package es.projecteEI1027.model;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 public class VolunteerTime {
     private Date date;

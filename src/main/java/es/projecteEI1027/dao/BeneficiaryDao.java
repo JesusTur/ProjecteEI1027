@@ -26,9 +26,9 @@ public class BeneficiaryDao {
         try{
             jdbcTemplate.update(
                     "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    beneficiary.getName(), beneficiary.getDni(), beneficiary.getSurname(),
+                    beneficiary.getDni(), beneficiary.getName(), beneficiary.getSurname(),
                     beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
-                    beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword());
+                    beneficiary.getDateCreation(),beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
 
         }
         catch(DuplicateKeyException e) {

@@ -1,6 +1,6 @@
 package es.projecteEI1027.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Generate {
     private String id;
