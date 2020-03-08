@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ProjecteEI1027" options="-parameters" />
+      <module name="ProjecteEI1027" options="" />
     </option>
   </component>
 </project>
