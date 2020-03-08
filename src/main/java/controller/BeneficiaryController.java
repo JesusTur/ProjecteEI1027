@@ -44,7 +44,7 @@ public class BeneficiaryController {
         return "redirect:list.html";
     }
 
-    @RequestMapping(value="/update/{nom}", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
     public String editNadador(Model model, @PathVariable String nom) {
         model.addAttribute("beneficary", beneficiaryDao.getBeneficiary(nom));
         return "beneficary/update";
@@ -60,7 +60,7 @@ public class BeneficiaryController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{nom}")
+    @RequestMapping(value="/delete/{dni}")
     public String processDelete(@PathVariable String nom) {
         beneficiaryDao.deleteBeneficiary(nom);
         return "redirect:../list";

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar beneficiarios</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Lista de beneficiarios</h1>
+<table>
+    <thead>
+    <tr>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Nombre usuario</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="beneficiary: ${beneficiaries}">
+        <td th:text="${beneficiary.dni}"></td>
+        <td th:text="${beneficiary.name}"></td>
+        <td th:text="${beneficiary.surname}"></td>
+        <td th:text="${beneficiary.email}"></td>
+        <td th:text="${beneficiary.userbeneficiary}"></td>
+        <td><a th:href="@{/beneficiary/update/{dni}(dni=${beneficiary.dni})}">Editar</a>
+        </td>
+        <td><a th:href="@{/beneficiary/delete/{dni}(dni=${beneficiary.dni})}">Borrar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add">Añadir beneficiario</a>
+</body>
+</html>
