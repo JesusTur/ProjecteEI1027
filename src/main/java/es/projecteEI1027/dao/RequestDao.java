@@ -41,11 +41,12 @@ public class RequestDao {
     }
     public void updateRequest(Request request){
         try {
-            jdbcTemplate.update("UPDATE Request SET id = ?, dniBeneficiary = ?, typeOfService = ?, contractId = ?," +
-                    "creationDate = ?, requestState = ?, dateAccept = ?, dateReject = ?, comments = ?, dateFinal = ?",
-                    request.getId(), request.getDniBeneficiary(), request.getTypeOfService(), request.getContractid(),
+            jdbcTemplate.update("UPDATE Request SET  dniBeneficiary = ?, typeOfService = ?, contractId = ?," +
+                    "creationDate = ?, requestState = ?, dateAccept = ?, dateReject = ?, comments = ?, dateFinal = ?" +
+                            "WHERE id = ?",
+                    request.getDniBeneficiary(), request.getTypeOfService(), request.getContractid(),
                     request.getSchedule(), request.getRequestState().toString(), request.getDateAccept(), request.getDateReject(),
-                    request.getComment(), request.getDateFinal());
+                    request.getComment(), request.getDateFinal(), request.getId());
         }
         catch (DataAccessException e){
 

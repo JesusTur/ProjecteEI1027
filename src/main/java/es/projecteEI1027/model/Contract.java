@@ -3,12 +3,29 @@ package es.projecteEI1027.model;
 import java.sql.Date;
 
 public class Contract {
+    private int id;
+    private String cif;
     ServiceType typeOfService;
-    private float price;
     private Date startDate;
     private Date finalDate;
     private int quantity;
     public Contract(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCif() {
+        return cif;
+    }
+
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
 
     public ServiceType getTypeOfService() {
         return typeOfService;
@@ -18,13 +35,6 @@ public class Contract {
         this.typeOfService = typeOfService;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
 
     public Date getStartDate() {
         return startDate;

@@ -26,21 +26,43 @@ public class ContractDao {
     public void addContract(Contract contract) {
         try{
             jdbcTemplate.update(
-                    "INSERT INTO Nadador VALUES(?, ?, ?, ?, ?)",
-                    contract.getTypeOfService(), contract.getPrice(), contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
+                    "INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?)",
+                    contract.getId(), contract.getCif(), contract.getTypeOfService().toString(),
+                    contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
 
         }
         catch(DuplicateKeyException e) {
+        }
+    }
+    public void deleteRequest(int id){
+        try{
+            jdbcTemplate.update("DELETE FROM Contract WHERE id = ?", id);
+        }
+        catch (DataAccessException e){
+
         }
     }
 
 
     public void updateContract(Contract contract) {
         try{
-            jdbcTemplate.update("UPDATE Contract SET price = ?, startDate = ?, finalDate = ?, quantity = ?",
-                    contract.getPrice(), contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
+            jdbcTemplate.update("UPDATE Contract SET cif = ?, typeOfService = ?,startDate = ?, finalDate = ?," +
+                            " quantity = ? WHERE id = ?",
+                    contract.getCif(), contract.getTypeOfService().toString(), contract.getStartDate(),
+                    contract.getFinalDate(), contract.getQuantity(), contract.getId());
         }
         catch (DataAccessException e){
+        }
+    }
+
+    public Contract getContract(int id){
+        try {
+
+            return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE id = ?",
+                    new ContractRowMapper(), id);
+        }
+        catch (EmptyResultDataAccessException e){
+            return  null;
         }
     }
 
