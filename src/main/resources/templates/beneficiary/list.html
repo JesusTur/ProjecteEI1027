@@ -25,7 +25,7 @@
         <td th:text="${beneficiary.name}"></td>
         <td th:text="${beneficiary.surname}"></td>
         <td th:text="${beneficiary.userbeneficiary}"></td>
-        <td th:text="${beneficiaryr.description}"></td>
+        <td th:text="${beneficiary.description}"></td>
         <td><a th:href="@{/beneficiary/update/{dni}(dni=${beneficiary.dni})}">Editar</a>
         </td>
         <td><a th:href="@{/beneficiary/delete/{dni}(dni=${beneficiary.dni})}">Borrar</a>
