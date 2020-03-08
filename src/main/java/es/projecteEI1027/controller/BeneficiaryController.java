@@ -41,7 +41,7 @@ public class BeneficiaryController {
         if (bindingResult.hasErrors())
             return "beneficary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
