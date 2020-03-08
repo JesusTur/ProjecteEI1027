@@ -44,20 +44,18 @@ public class BeneficiaryController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{dni}", method=RequestMethod.GET)
     public String editBeneficiary(Model model, @PathVariable String dni) {
         model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(dni));
         return "beneficiary/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value="/update", method=RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("beneficiary") Beneficiary beneficiary,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/beneficiary/update";
-        System.out.println(beneficiary.getDni());
-        System.out.println(beneficiary.getName());
         beneficiaryDao.updateBeneficiary(beneficiary);
         return "redirect:list";
     }
