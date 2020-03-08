@@ -7,14 +7,14 @@
 </head>
 <body>
 <h1>Lista de beneficiarios</h1>
-<table>
+<table class="table table-striped">
     <thead>
     <tr>
-        <th>DNI</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Email</th>
-        <th>Nombre usuario</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nombre usuario</th>
     </tr>
     </thead>
     <tbody>
@@ -24,13 +24,13 @@
         <td th:text="${beneficiary.surname}"></td>
         <td th:text="${beneficiary.email}"></td>
         <td th:text="${beneficiary.user}"></td>
-        <td><a th:href="@{/beneficiary/update/{dni}(dni=${beneficiary.dni})}">Editar</a>
+        <td><a th:href="@{/beneficiary/update/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-warning">Editar</button></a>
         </td>
-        <td><a th:href="@{/beneficiary/delete/{dni}(dni=${beneficiary.dni})}">Borrar</a>
+        <td><a th:href="@{/beneficiary/delete/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-danger">Borrar</button></a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="add">Añadir beneficiario</a>
+<a href="add"><button type="button" class="btn btn-success">Añadir beneficiario</button></a>
 </body>
 </html>
