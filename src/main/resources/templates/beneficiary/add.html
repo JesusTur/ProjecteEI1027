@@ -9,12 +9,12 @@
 </head>
 <body>
 <h2>Nuevo beneficiario</h2>
-<form action="#" th:action="@{/beneficiary/add}" ①
-      th:object="${beneficiary}" method="post"> ②
+<form action="#" th:action="@{/beneficiary/add}"
+      th:object="${beneficiary}" method="post">
     <table>
         <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{name}" /></td> ③
+            <td><input type="text" th:field="*{name}" /></td>
         </tr>
         <tr>
             <td><label>Apellido</label></td>
