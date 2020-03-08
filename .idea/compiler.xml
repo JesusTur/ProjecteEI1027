@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ProjecteEI1027" />
+        <module name="ProjectEI1027" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ProjectEI1027" options="-parameters" />
       <module name="ProjecteEI1027" options="-parameters" />
     </option>
   </component>
