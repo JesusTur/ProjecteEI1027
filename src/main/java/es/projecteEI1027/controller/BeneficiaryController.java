@@ -13,7 +13,7 @@ import es.projecteEI1027.dao.BeneficiaryDao;
 
 
 @Controller
-@RequestMapping("/templates/beneficiary")
+@RequestMapping("/beneficiary")
 public class BeneficiaryController {
 
     private BeneficiaryDao beneficiaryDao;
@@ -26,13 +26,13 @@ public class BeneficiaryController {
     @RequestMapping("/list")
     public String listBeneficiaries(Model model) {
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiaries());
-        return "templates/beneficiary/list";
+        return "beneficiary/list";
     }
 
     @RequestMapping(value="/add")
     public String addBeneficary(Model model) {
-        model.addAttribute("templates/beneficiary", new Beneficiary());
-        return "templates/beneficiary/add";
+        model.addAttribute("beneficiary", new Beneficiary());
+        return "beneficiary/add";
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
