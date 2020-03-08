@@ -56,6 +56,8 @@ public class BeneficiaryController {
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/beneficiary/update";
+        System.out.println(beneficiary.getDni());
+        System.out.println(beneficiary.getName());
         beneficiaryDao.updateBeneficiary(beneficiary);
         return "redirect:list";
     }

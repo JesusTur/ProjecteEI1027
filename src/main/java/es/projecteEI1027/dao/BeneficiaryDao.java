@@ -64,7 +64,7 @@ public class BeneficiaryDao {
 
     public void updateBeneficiary(Beneficiary beneficiary) {
         try{
-            jdbcTemplate.update("UPDATE Beneficiary SET name = ?, surname = ?, homeAddress = ?, phoneNumber = ?," +
+            jdbcTemplate.update("UPDATE Beneficiary SET  name = ?, surname = ?, homeAddress = ?, phoneNumber = ?," +
                     "bankAccount = ?, email = ?, dateCreation = ?, birthDate = ?,socialWorker = ?, userBeneficiary = ?, passwordBeneficiary = ?, description = ? WHERE dni=?",
                     beneficiary.getName(), beneficiary.getSurname(), beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),
                     beneficiary.getBankAccount(),beneficiary.getEmail(),beneficiary.getDateCreation(), beneficiary.getBirthDate(), beneficiary.getSocialWorker(),
