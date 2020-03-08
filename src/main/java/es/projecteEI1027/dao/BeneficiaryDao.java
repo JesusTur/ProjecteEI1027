@@ -29,10 +29,10 @@ public class BeneficiaryDao {
         if(beneficiary.getSocialWorker().equals("")){
             try{
                 jdbcTemplate.update(
-                        "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?)",
+                        "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         beneficiary.getDni(), beneficiary.getName(), beneficiary.getSurname(),
                         beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
-                        beneficiary.getDateCreation(),beneficiary.getBirthDate(), beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
+                        beneficiary.getDateCreation(),beneficiary.getBirthDate(), null ,beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
 
             }
             catch(DuplicateKeyException e) {

@@ -45,8 +45,8 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
-    public String editBeneficiary(Model model, @PathVariable String nom) {
-        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(nom));
+    public String editBeneficiary(Model model, @PathVariable String dni) {
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(dni));
         return "beneficiary/update";
     }
 

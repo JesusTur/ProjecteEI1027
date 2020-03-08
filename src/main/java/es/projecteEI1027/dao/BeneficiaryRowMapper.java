@@ -11,15 +11,15 @@ public final class BeneficiaryRowMapper implements RowMapper<Beneficiary>{
         beneficiary.setDni(rs.getString("dni"));
         beneficiary.setName(rs.getString("name"));
         beneficiary.setSurname(rs.getString("surname"));
-        beneficiary.setHomeAddress(rs.getString("homeaddress"));
-        beneficiary.setPhoneNumber(rs.getString("phonenumber"));
-        beneficiary.setBankAccount(rs.getString("bankaccount"));
+        beneficiary.setHomeAddress(rs.getString("homeAddress"));
+        beneficiary.setPhoneNumber(rs.getString("phoneNumber"));
+        beneficiary.setBankAccount(rs.getString("bankAccount"));
         beneficiary.setEmail(rs.getString("email"));
-        beneficiary.setDateCreation(rs.getDate("datecreation"));
-        beneficiary.setBirthDate(rs.getDate("birthdate"));
-        beneficiary.setSocialWorker(rs.getString("socialworker"));
-        beneficiary.setUser(rs.getString("userbeneficiary"));
-        beneficiary.setPassword(rs.getString("passwordbeneficiary"));
+        beneficiary.setDateCreation(rs.getDate("dateCreation"));
+        beneficiary.setBirthDate(rs.getDate("birthDate"));
+        beneficiary.setSocialWorker(rs.getString("socialWorker"));
+        beneficiary.setUser(rs.getString("userBeneficiary"));
+        beneficiary.setPassword(rs.getString("passwordBeneficiary"));
         beneficiary.setDescription(rs.getString("description"));
         return beneficiary;
     }
