@@ -1,6 +1,7 @@
 package es.projecteEI1027.model;
 
 import java.sql.Date;
+import static java.sql.Types.NULL;
 
 public class Beneficiary {
     private String dni;
@@ -103,7 +104,7 @@ public class Beneficiary {
         return user;
     }
 
-    public void setUser(String usser) {
+    public void setUser(String user) {
         this.user = user;
     }
 

@@ -9,8 +9,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.sql.Types.NULL;
 
 @Repository
 public class BeneficiaryDao {
@@ -23,16 +26,31 @@ public class BeneficiaryDao {
     }
 
     public void addBeneficiary(Beneficiary beneficiary) {
-        try{
-            jdbcTemplate.update(
-                    "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    beneficiary.getDni(), beneficiary.getName(), beneficiary.getSurname(),
-                    beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
-                    beneficiary.getDateCreation(),beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
+        if(beneficiary.getSocialWorker().equals("")){
+            try{
+                jdbcTemplate.update(
+                        "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?)",
+                        beneficiary.getDni(), beneficiary.getName(), beneficiary.getSurname(),
+                        beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
+                        beneficiary.getDateCreation(),beneficiary.getBirthDate(), beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
 
+            }
+            catch(DuplicateKeyException e) {
+            }
         }
-        catch(DuplicateKeyException e) {
+        else{
+            try{
+                jdbcTemplate.update(
+                        "INSERT INTO Beneficiary VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        beneficiary.getDni(), beneficiary.getName(), beneficiary.getSurname(),
+                        beneficiary.getHomeAddress(), beneficiary.getPhoneNumber(),beneficiary.getBankAccount(),beneficiary.getEmail(),
+                        beneficiary.getDateCreation(),beneficiary.getBirthDate(), beneficiary.getSocialWorker(), beneficiary.getUser(), beneficiary.getPassword(), beneficiary.getDescription());
+
+            }
+            catch(DuplicateKeyException e) {
+            }
         }
+
     }
 
     public void deleteBeneficiary(String dni) {
