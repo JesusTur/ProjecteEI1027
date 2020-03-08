@@ -30,32 +30,32 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/add")
-    public String addBeneficary(Model model) {
+    public String addBeneficiary(Model model) {
         model.addAttribute("beneficiary", new Beneficiary());
         return "beneficiary/add";
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("beneficary") Beneficiary beneficiary,
+    public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "beneficary/add";
+            return "beneficiary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
         return "redirect:list";
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
-    public String editNadador(Model model, @PathVariable String nom) {
-        model.addAttribute("beneficary", beneficiaryDao.getBeneficiary(nom));
-        return "beneficary/update";
+    public String editBeneficiary(Model model, @PathVariable String nom) {
+        model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(nom));
+        return "beneficiary/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
-            @ModelAttribute("beneficary") Beneficiary beneficiary,
+            @ModelAttribute("beneficiary") Beneficiary beneficiary,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "templates/beneficiary/update";
+            return "/beneficiary/update";
         beneficiaryDao.updateBeneficiary(beneficiary);
         return "redirect:list";
     }
