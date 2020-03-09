@@ -23,7 +23,7 @@ public class GenerateDao {
 
     public void addGenerate(Generate generate){
         try{
-            jdbcTemplate.update("INSERT INTO GeneratesInv VALUES(?, ?, ?",
+            jdbcTemplate.update("INSERT INTO GeneratesInv VALUES(?, ?, ?)",
                     generate.getnFact(), generate.getId(), generate.getDate());
         }
         catch (DuplicateKeyException e){
