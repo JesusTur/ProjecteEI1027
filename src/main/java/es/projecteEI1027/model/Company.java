@@ -7,13 +7,20 @@ public class Company {
     private String nameCompany;
     private String address;
     private String user;
-    private String phone;
     private String password;
     private Date registeredDate;
+    private ServiceType serviceType;
     private String contractPersonName;
     private String companyMail;
-    private int checkingAccountNumber;
     public Company(){}
+
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
+    }
 
     public String getCif() {
         return cif;
@@ -45,14 +52,6 @@ public class Company {
 
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPassword() {
@@ -87,11 +86,4 @@ public class Company {
         this.companyMail = companyMail;
     }
 
-    public int getCheckingAccountNumber() {
-        return checkingAccountNumber;
-    }
-
-    public void setCheckingAccountNumber(int checkingAccountNumber) {
-        this.checkingAccountNumber = checkingAccountNumber;
-    }
 }
