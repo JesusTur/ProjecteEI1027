@@ -3,16 +3,16 @@ package es.projecteEI1027.model;
 import java.sql.Date;
 
 public class Generate {
-    private String id;
+    private int id;
     private int nFact;
     private Date date;
     public Generate(){}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
