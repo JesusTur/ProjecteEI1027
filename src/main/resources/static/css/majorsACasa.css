@@ -1,17 +1,24 @@
 /* Estil aplicat al cos de la pagina */
 body{
-font-family: Arial;
-background-color: blue;
+background: linear-gradient(180deg, #4fb2e3 0%, #239edb 100%);
+text-align:center;
+margin:0;
+background-repeat:no-repeat;
+background-attachment:fixed;
 }
 
-/*Capcelera*/
+/*Capçalera*/
 h1{
 font-size: x-large;
-color: black;}
+color: black;
+font-weight: bold;
+
+}
+
 /*Per als errores*/
 .error {
      color: red;
-     font-size:80%
+     font-size:100%
 }
 
 /* Classe CSS per atributs erronis */
