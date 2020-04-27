@@ -22,28 +22,35 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String login(Model model){
-        model.addAttribute("beneficiaryUser", new Beneficiary());
-        return "login";
+        model.addAttribute("user", new Beneficiary());
+        return "beneficiary/login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("beneficiaryUser") Beneficiary user,
+    public String checkLogin(@ModelAttribute("user") Beneficiary user,
                              BindingResult bindingResult, HttpSession session){
+        System.out.println(user.getUser());
         UserValidator userValidator = new UserValidator();
         userValidator.validate(user, bindingResult);
         if(bindingResult.hasErrors()){
-            return "login";
+            return "beneficiary/login";
+        }
+        if(userDao.getBeneficiaryPerNom(user.getUser()) == null){
+            bindingResult.rejectValue("user", "invalid",
+                    "No existeix aquest usuari");
+            return "beneficiary/login";
         }
 
         if(! userDao.getBeneficiaryPerNom(user.getUser()).getPassword().equals(user.getPassword())){
             bindingResult.rejectValue("password", "invalid",
                     "La contrasenya es incorrecta");
-            return "login";
+            return "beneficiary/login";
         }
 
-        session.setAttribute("beneficiaryUser", user);
+        session.setAttribute("user", user);
         if(session.getAttribute("nextUrl") != null){
             return "redirect:/"+(String) session.getAttribute("nextUrl");
         }
+
         return "redirect:/";
     }
 }
@@ -59,10 +66,6 @@ class UserValidator implements Validator {
         if(userDetails.getUser().equals("") )
             errors.rejectValue("user", "obligatori",
                     "Cal introduir un valor");
-        if(userDao.getBeneficiaryPerNom(userDetails.getUser()) == null){
-            errors.rejectValue("user", "invalid",
-                    "No existeix aquest usuari");
-        }
 
         if (userDetails.getPassword().equals(""))
             errors.rejectValue("password", "obligatori",

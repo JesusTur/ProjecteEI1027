@@ -8,6 +8,11 @@ background-color: blue;
 h1{
 font-size: x-large;
 color: black;}
+/*Per als errores*/
+.error {
+     color: red;
+     font-size:80%
+}
 
 /* Classe CSS per atributs erronis */
 .needcorrection {
