@@ -1,0 +1,21 @@
+/* Estil aplicat al cos de la pagina */
+body{
+font-family: Arial;
+background-color: blue;
+}
+
+/*Capcelera*/
+h1{
+font-size: x-large;
+color: black;}
+
+/* Classe CSS per atributs erronis */
+.needcorrection {
+     color: red;
+     background-color:yellow;
+}
+.loggeduser {
+	color: gray;
+	text-align: right;
+margin-right: 10pt;
+}
