@@ -110,4 +110,14 @@ public class BeneficiaryDao {
         }
     }
 
+    public Beneficiary getBeneficiaryPerNom(String userBeneficiari) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Beneficiary WHERE userBeneficiary = ?",
+                    new BeneficiaryRowMapper(), userBeneficiari);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 }
