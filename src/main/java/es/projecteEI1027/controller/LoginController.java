@@ -65,10 +65,10 @@ class UserValidator implements Validator {
         BeneficiaryDao userDao = new BeneficiaryDao();
         if(userDetails.getUser().equals("") )
             errors.rejectValue("user", "obligatori",
-                    "Cal introduir un valor");
+                    "El usuario es incorrecto o no existe");
 
         if (userDetails.getPassword().equals(""))
             errors.rejectValue("password", "obligatori",
-                    "Cal introduir un valor");
+                    "Contraseña incorrecta");
     }
 }
