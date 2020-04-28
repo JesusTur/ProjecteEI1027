@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/majorsACasa.css"
+          th:href="@{/css/majorsACasa.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>ACCÉS</h2>
+    <form action="#" th:action="@{/services}"
+          th:object="${tipo}" method="post">
+        <select name="tipo">
+
+            <option>catering</option>
+
+            <option>limpieza de hogar</option>
+
+            <option>cuidado personal</option>
+
+        </select>
+       <!-- <p>
+            <label>Nom d'usuari:</label>
+            <input class="form_control" type="text" th:field="*{user}"/>tipos: {catering,....
+        <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+        </p>
+        <p>
+            <label>Contrasenya:</label>
+            <input class="form_control" type="password" th:field="*{password}"/>
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </p>-->
+        <input type="submit" value="Accedir" />
+    </form>
+</div>
+</body>
+</html>

@@ -75,7 +75,7 @@ public class BeneficiaryController {
         beneficiaryDao.deleteBeneficiary(dni);
         return "redirect:../list";
     }
-    @RequestMapping("/services")
+    @RequestMapping("/login")
     public String listServices(HttpSession session, Model model){
         if(session.getAttribute("user") == null){
             model.addAttribute("user", new Beneficiary());

@@ -9,6 +9,16 @@ public class Contract {
     private Date startDate;
     private Date finalDate;
     private int quantity;
+    private float priceUnit;
+
+    public float getPriceUnit() {
+        return priceUnit;
+    }
+
+    public void setPriceUnit(float priceUnit) {
+        this.priceUnit = priceUnit;
+    }
+
     public Contract(){}
 
     public int getId() {

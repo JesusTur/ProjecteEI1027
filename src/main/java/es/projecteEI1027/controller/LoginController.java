@@ -28,7 +28,6 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") Beneficiary user,
                              BindingResult bindingResult, HttpSession session){
-        System.out.println(user.getUser());
         UserValidator userValidator = new UserValidator();
         userValidator.validate(user, bindingResult);
         if(bindingResult.hasErrors()){
@@ -47,11 +46,12 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
-        if(session.getAttribute("nextUrl") != null){
+        return  "beneficiary/services";
+        /*if(session.getAttribute("nextUrl") != null){
             return "redirect:/"+(String) session.getAttribute("nextUrl");
         }
 
-        return "redirect:/";
+        return "redirect:/";*/
     }
 }
 class UserValidator implements Validator {

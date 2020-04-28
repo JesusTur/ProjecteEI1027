@@ -1,6 +1,9 @@
 package es.projecteEI1027.dao;
 
 import es.projecteEI1027.model.Beneficiary;
+import es.projecteEI1027.model.Company;
+import es.projecteEI1027.model.Contract;
+import es.projecteEI1027.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -11,7 +14,10 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static java.sql.Types.NULL;
 
@@ -119,5 +125,39 @@ public class BeneficiaryDao {
             return null;
         }
     }
+
+    public List<Volunteer> getVolunteerPerTipus(String tipo){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND accepted IS TRUE",
+                    new VolunteerRowMapper(), tipo);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+    }
+    public List<Company> getCompanyPerTipus(String tipo){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE typeOfService = ? AND requestState LIKE 'accepted'))",
+                    new CompanyRowMapper(), tipo);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+    public Map<String,Float> getPrecioContract(List<Company> list){
+        Map<String,Float> precios = new ConcurrentHashMap<>();
+
+        for(Company company:list){
+            try{
+                Contract contr = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE cif = ?",
+                        new ContractRowMapper(), company.getCif());
+                precios.put(company.getCif(),contr.getPriceUnit());
+            } catch(EmptyResultDataAccessException e) {
+                return null;
+            }
+        }
+        return precios;
+    }
+
 
 }
