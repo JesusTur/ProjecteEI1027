@@ -19,13 +19,13 @@
 <div th:if="${#lists.isEmpty(companies)}">
     No hi ha companyies
 </div>
+<thead>
+<tr>
+    <th>Nom d'usuari</th>
+    <td th:text="${user}"></td>
+</tr>
+</thead>
 <table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-condensed">
-    <thead>
-    <tr>
-        <th>Nom d'usuari</th>
-    </tr>
-    </thead>
-
     <tbody>
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
@@ -33,15 +33,18 @@
     </tr>
     </tbody>
 </table>
-<table th:unless="${#lists.isEmpty(companies)}"  class="table table-condensed">
-    <thead>
-    <tr>
-        <th>Nom d'usuari</th>
-    </tr>
-    </thead>
+<table th:unless="${#lists.isEmpty(companiesServices)}"  class="table table-condensed">
 
     <tbody>
-    <th>Companyies: </th>
+    <th>Companyies per a solicitar: </th>
+    <tr th:each="company: ${companiesServices}">
+        <td th:text="${company.nameCompany}"></td>
+    </tr>
+    </tbody>
+</table>
+<table th:unless="${#lists.isEmpty(companies)}"  class="table table-condensed">
+    <tbody>
+    <th>Companyies actives: </th>
     <tr th:each="company: ${companies}">
         <td th:text="${company.nameCompany}"></td>
 

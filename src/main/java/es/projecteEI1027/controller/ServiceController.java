@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.parser.Element;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,7 @@ public class ServiceController {
         return "beneficiary/services";
     }
     @RequestMapping(value = "/services", method = RequestMethod.POST)
-    public String checkServices(@ModelAttribute("tipo") String tipo,
-                             BindingResult bindingResult, HttpSession session, Model model){
+    public String checkServices(@ModelAttribute("tipo") String tipo, BindingResult bindingResult, HttpSession session, Model model){
 
         if(session.getAttribute("user") == null){
             bindingResult.rejectValue("user", "invalid",
@@ -39,10 +39,16 @@ public class ServiceController {
             return "beneficiary/login";
         }
         List<Volunteer> listVolunteer= userDao.getVolunteerPerTipus(tipo);
-        List<Company> listCompany= userDao.getCompanyPerTipus(tipo);
-        Map<String,Float> precios = userDao.getPrecioContract(listCompany);
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        System.out.println(user.getUser());
+        List<Company> listCompanyActives= userDao.getCompanyPerBen(user.getUser());
+        List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
+        Map<String,Float> precios = userDao.getPrecioContract(listCompanyActives);
+        model.addAttribute("user",user.getUser());
         model.addAttribute("volunteers",  listVolunteer);
-        model.addAttribute("companies", listCompany);
+        model.addAttribute("companies", listCompanyActives);
+        model.addAttribute("companiesServices", listCompany);
+        System.out.println(listCompany.size());
         model.addAttribute("precios",precios);
         return "beneficiary/listServices";
 

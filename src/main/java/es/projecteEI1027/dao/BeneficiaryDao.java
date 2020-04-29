@@ -135,10 +135,22 @@ public class BeneficiaryDao {
             return new ArrayList<Volunteer>();
         }
     }
-    public List<Company> getCompanyPerTipus(String tipo){
+    public List<Company> getCompanyPerTipus(String tipo, String user){
         try {
-            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE typeOfService = ? AND requestState LIKE 'accepted'))",
-                    new CompanyRowMapper(), tipo);
+            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId " +
+                            "FROM Request WHERE typeOfService = ? AND ((requestState NOT LIKE 'accepted' AND requestState NOT LIKE 'processing' AND dniBeneficiary " +
+                            "= (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)) OR dniBeneficiary NOT LIKE (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))) " +
+                            "OR cif IN (SELECT cif FROM Contract WHERE id NOT IN (SELECT contractId FROM request))",
+                    new CompanyRowMapper(), tipo, user, user);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+    public List<Company> getCompanyPerBen(String user){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE requestState LIKE 'accepted' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))",
+                    new CompanyRowMapper(), user);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Company>();
