@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear beneficiario</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Comments</h2>
+<form action="#" th:action="@{/services/addRequest}"
+      th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td><label>Comments</label></td>
+            <td><input type="text" th:field="*{comments}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

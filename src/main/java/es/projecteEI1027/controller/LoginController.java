@@ -46,7 +46,7 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
-        return  "beneficiary/services";
+        return  "beneficiary/indexServices";
         /*if(session.getAttribute("nextUrl") != null){
             return "redirect:/"+(String) session.getAttribute("nextUrl");
         }

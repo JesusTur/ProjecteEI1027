@@ -66,6 +66,21 @@ public class ContractDao {
             return  null;
         }
     }
+    public Integer getContractByCompany(String cif){
+        Integer id;
+        try {
+            System.out.println("hola");
+            Contract cont = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE cif = (SELECT cif FROM Company WHERE cif = ?)",
+                    new ContractRowMapper(), cif);
+            id = cont.getId();
+            System.out.println(id);
+
+        }
+        catch (EmptyResultDataAccessException e){
+            return  null;
+        }
+        return id;
+    }
 
     public List<Contract> getContracts() {
         try {

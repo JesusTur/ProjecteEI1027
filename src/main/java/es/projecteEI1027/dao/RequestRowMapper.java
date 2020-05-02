@@ -13,8 +13,9 @@ public class RequestRowMapper implements RowMapper<Request> {
         Request request = new Request();
         request.setId(rs.getInt("id"));
         request.setDniBeneficiary(rs.getString("dniBeneficiary"));
-        request.setTypeOfService(rs.getString("requestState"));
+        request.setTypeOfService(rs.getString("typeOfService"));
         request.setContractid(rs.getInt("conractId"));
+        request.setSchedule(rs.getDate("creationDate"));
         request.setRequestState(RequestState.valueOf(rs.getString("requestState")));
         request.setDateAccept(rs.getDate("dateAccept"));
         request.setDateReject(rs.getDate("dateReject"));

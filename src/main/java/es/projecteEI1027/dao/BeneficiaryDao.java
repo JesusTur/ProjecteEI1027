@@ -126,10 +126,10 @@ public class BeneficiaryDao {
         }
     }
 
-    public List<Volunteer> getVolunteerPerTipus(String tipo){
+    public List<Volunteer> getVolunteerServicesUser(String dni){
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND accepted IS TRUE",
-                    new VolunteerRowMapper(), tipo);
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE dni IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary = ? AND available IS TRUE) AND accepted IS TRUE",
+                    new VolunteerRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();
@@ -149,7 +149,7 @@ public class BeneficiaryDao {
     }
     public List<Company> getCompanyPerBen(String user){
         try {
-            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE requestState LIKE 'accepted' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))",
+            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE (requestState LIKE 'accepted' OR requestState LIKE 'processing') AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))",
                     new CompanyRowMapper(), user);
         }
         catch(EmptyResultDataAccessException e) {
@@ -169,6 +169,15 @@ public class BeneficiaryDao {
             }
         }
         return precios;
+    }
+    public List<Volunteer> getVolunteerPerBen(String tipo){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND dni NOT IN (SELECT dniVolunteer FROM VolunteerTime) AND accepted IS TRUE",
+                    new VolunteerRowMapper(), tipo);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
     }
 
 

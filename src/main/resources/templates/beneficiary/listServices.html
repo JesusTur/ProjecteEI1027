@@ -14,10 +14,10 @@
 <body>
 <h1>Llista d'usuaris del sistema</h1>
 <div th:if="${#lists.isEmpty(volunteers)}">
-    No hi ha voluntaris
+    No hi ha servicis solicitats a voluntaris
 </div>
 <div th:if="${#lists.isEmpty(companies)}">
-    No hi ha companyies
+    No hi ha servicis solicitats a companyies
 </div>
 <thead>
 <tr>
@@ -33,7 +33,7 @@
     </tr>
     </tbody>
 </table>
-<table th:unless="${#lists.isEmpty(companiesServices)}"  class="table table-condensed">
+<!--<table th:unless="${#lists.isEmpty(companiesServices)}"  class="table table-condensed">
 
     <tbody>
     <th>Companyies per a solicitar: </th>
@@ -41,24 +41,17 @@
         <td th:text="${company.nameCompany}"></td>
     </tr>
     </tbody>
-</table>
+</table>-->
 <table th:unless="${#lists.isEmpty(companies)}"  class="table table-condensed">
     <tbody>
     <th>Companyies actives: </th>
     <tr th:each="company: ${companies}">
         <td th:text="${company.nameCompany}"></td>
 
-        <tr th:unless="${#maps.isEmpty(precios)}">
-            <tr th:each="precio: ${precios}">
-                <td th:text="${precio.key}"></td>
-                <td th:text="${precio.value}"></td>
-            </tr>
-        </tr>
-
     </tr>
     </tbody>
 </table>
-
+<a href="/services/add"><button type="button" class="btn btn-success">Añadir servicio</button></a>
 <a href="/" class="btn btn-primary" role="button">Tornar</a>
 </body>
 </html>

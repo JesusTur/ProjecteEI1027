@@ -1,9 +1,9 @@
 package es.projecteEI1027.model;
 
 public enum RequestState {
-    approved("approved"),
+    approved("accepted"),
     rejected("rejected"),
-    waiting("waiting");
+    waiting("processing");
     public final String state;
     RequestState(String state){
         this.state=state;
