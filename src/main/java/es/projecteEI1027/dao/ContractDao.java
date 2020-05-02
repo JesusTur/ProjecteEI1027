@@ -60,6 +60,7 @@ public class ContractDao {
 
             return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE id = ?",
                     new ContractRowMapper(), id);
+
         }
         catch (EmptyResultDataAccessException e){
             return  null;

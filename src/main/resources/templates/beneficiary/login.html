@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
     <link rel="stylesheet" type="text/css"
           href="/css/majorsACasa.css"
           th:href="@{/css/majorsACasa.css}"/>
@@ -26,7 +27,7 @@
             <input class="form_control" type="password" th:field="*{password}"/>
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>
-        <input type="submit" value="Accedir" />
+        <input  type="submit" value="Accedir" />
     </form>
 </div>
 </body>
