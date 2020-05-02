@@ -34,6 +34,8 @@ public class ServiceController {
     static private AtomicInteger id;
     @Autowired
     private ContractDao contractDao;
+    @Autowired
+    private RequestDao requestDao;
     @RequestMapping("/services/add")
     public String login(Model model){
         model.addAttribute("tipo", new String());
@@ -79,6 +81,7 @@ public class ServiceController {
         List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
         List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(tipo);
         Map<String,Float> precios = userDao.getPrecioContract(listCompany);
+        session.setAttribute("tipo", tipo);
         model.addAttribute("volunteerServices", volunteerServices);
         model.addAttribute("companiesServices", listCompany);
         model.addAttribute("precios",precios);
@@ -97,38 +100,41 @@ public class ServiceController {
         System.out.println("hola");
         System.out.println(cif);
         System.out.println(contractDao.getContractByCompany(cif));
+        id = new AtomicInteger(contractDao.getContractId(cif));
         model.addAttribute("id",contractDao.getContractByCompany(cif));
        /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);
         request.setDateReject(null);
         request.setComment();*/
-
-
-        return "/beneficiary/addRequest";
-
-    }
-    @RequestMapping(value="/services/addRequest")
-    public String AddRequest( Model model) {
         model.addAttribute("request", new Request());
+
         return "beneficiary/addRequest";
+
     }
+/*    @RequestMapping(value="/services/addRequest")
+    public String AddRequest( Model model) {
+
+        System.out.println("hel");
+        return "beneficiary/addRequest";
+    }*/
     @RequestMapping(value="/services/addRequest", method=RequestMethod.POST)
     public String processAddRequest(@ModelAttribute("request") Request request,
                                             BindingResult bindingResult,HttpSession session, Model model) {
         System.out.println("adios");
-        request.setId(id.incrementAndGet());
+        request.setId(requestDao.getRequestid());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());
-        request.setContractid((Integer)session.getAttribute("id"));
+        request.setContractid(id.intValue());
         request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);
         request.setDateReject(null);
         request.setComment(request.getComment());
         request.setDateFinal(null);
-        return "/";
+        requestDao.addRequest(request);
+        return "beneficiary/listServices";
 
     }
 }

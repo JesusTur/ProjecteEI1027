@@ -28,6 +28,7 @@ public class Request {
     }
 
     public void setTypeOfService(String typeOfService) {
+        TypeOfService="rejected";
         TypeOfService = typeOfService;
     }
 

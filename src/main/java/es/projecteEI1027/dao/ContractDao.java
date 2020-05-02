@@ -91,5 +91,13 @@ public class ContractDao {
             return new ArrayList<Contract>();
         }
     }
+    public Integer getContractId(String cif){
+        try {
+            return jdbcTemplate.queryForObject("SELECT id FROM Contract WHERE cif = ?", Integer.class, cif);
+        }
+        catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
 
 }

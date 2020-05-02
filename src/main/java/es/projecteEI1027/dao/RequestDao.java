@@ -72,4 +72,14 @@ public class RequestDao {
         }
 
     }
+    public synchronized Integer getRequestid(){
+        try {
+
+            return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Request",
+                    Integer.class);
+        }
+        catch (EmptyResultDataAccessException e){
+            return  null;
+        }
+    }
 }
