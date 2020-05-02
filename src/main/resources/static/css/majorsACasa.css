@@ -1,15 +1,18 @@
 /* Estil aplicat al cos de la pagina background: linear-gradient(180deg, #76cbf5 20%, #239edb 100%); */
-body{
 
+
+body{
 background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
+background-repeat:no-repeat center fixed;
+background-size: cover;
 text-align:center;
-margin:0;
-background-repeat:no-repeat;
-background-attachment:fixed;
+margin:center;
+height: 100%;
+width: 100%;
+font-size: 16px;
+position: relative;
 
 }
-
-
 
 /*Capçalera
 
@@ -22,14 +25,40 @@ font-weight: bold;
 
 }
 
-
 /* Capçalera de nivell 2                                p.solid {border-style: solid;} */
 h2 {
+   font-family: 'MetropolisBlack';
    font-size: xx-large;
-   font-family: 'MetropolisSemiBold';
    font-weight: normal;
    font-style: normal;
    color: tomato;
+   text-shadow: 1px 1px 3px orangered;
+
+}
+form {
+    margin:auto;
+    width: 50%;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid #E1E1E1;
+	padding: 40px;
+}
+input{
+    display: block;
+    padding: 10px;
+    width: 100%;
+    margin: 25px 0;
+    font-family: 'MetropolisRegular'
+    font-size: 20px;
+
+}
+p{
+   font-family: 'MetropolisSemiBold';
+   font-size: normal;
+   font-weight: normal;
+   font-style: normal;
+   color: darkslategrey;
+
 }
 
 /*Per als errores*/
