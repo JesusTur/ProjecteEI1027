@@ -18,11 +18,11 @@
           th:object="${tipo}" method="post">
         <select name="tipo">
 
-            <option>catering</option>
+            <option>Catering</option>
 
-            <option>limpieza de hogar</option>
+            <option>Limpieza de hogar</option>
 
-            <option>cuidado personal</option>
+            <option>Cuidado personal</option>
 
         </select>
        <!-- <p>
@@ -36,7 +36,20 @@
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>-->
         <input type="submit" value="Accedir" />
+
+        <div class="loggeduser" th:object="${session}">
+            <p th:if="*{user == null}">
+                No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+            </p>
+            <p th:unless="*{user == null}">
+                <!--Autenticat com <span th:text="*{user.name}"></span> -->
+                <a href="/logout" th:href="@{/logout}">Eixir</a>
+            </p>
+        </div>
+
     </form>
+
+
 </div>
 </body>
 </html>

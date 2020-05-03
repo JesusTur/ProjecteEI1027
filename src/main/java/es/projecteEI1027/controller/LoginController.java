@@ -25,6 +25,12 @@ public class LoginController {
         model.addAttribute("user", new Beneficiary());
         return "beneficiary/login";
     }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") Beneficiary user,
                              BindingResult bindingResult, HttpSession session){
