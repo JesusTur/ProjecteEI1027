@@ -4,8 +4,8 @@
       layout:decorate="~{fragments/base}">
 <head>
     <link rel="stylesheet" type="text/css"
-          href="/css/majorsACasa.css"
-          th:href="@{/css/majorsACasa.css}"/>
+          href="/css/indexServices.css"
+          th:href="@{/css/indexServices.css}"/>
     <title>Login</title>
     <meta charset="UTF-8"/>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
@@ -13,7 +13,8 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h2>ACCÉS</h2>
+    <div class="pezu-bg"></div>
+    <h2>MAJORS A CASA</h2>
     <form action="#" th:action="@{/services}" th:object="${user}"  method="post">
         <!-- <p>
              <label>Nom d'usuari:</label>
@@ -37,7 +38,6 @@
             </p>
         </div>
     </form>
-
 </div>
 </body>
 </html>
