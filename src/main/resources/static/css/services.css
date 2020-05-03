@@ -36,31 +36,43 @@ h1{
 
 /* Capçalera de nivell 2                                */
 h2 {
+   margin-top:25pt;
+   margin-right: 66pt;
+   margin-left: 50pt;
    font-family: 'MetropolisBlack';
-   font-size: xx-large;
+   font-size: xxx-large;
    font-weight: normal;
    font-style: normal;
    color: tomato;
    text-shadow: 1px 1px 3px orangered;
 }
-/*form {
+form {
+    margin-top:100pt;
     margin:auto;
     width: 50%;
     max-width: 500px;
+
+}
+/*form {
+    margin:auto;
+    margin-top:60pt;
+    width: 50%;
+    max-width: 500px;
     background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
+	border: 2px solid #E1E1E1;
 	padding: 40px;
 }*/
-/*input{
+input{
     display: block;
     border-style: solid;
-    padding: 10px;
-    width: 100%;
-    margin: 20px 0;
-    font-family: 'MetropolisRegular'
-    font-size: 20px;
+    padding: 8px;
+    width: 20%;
+    margin:auto;
+    margin-top:120pt;
+    position:relative;
 
-}*/
+
+}
 input[type="submit"]{
     font-family: 'MetropolisRegular';
     background: linear-gradient(#FFDEAD,#FFE4E1);

@@ -35,9 +35,14 @@ body{
 
 /*Capçalera*/
 h1{
-    font-size: x-large;
+    margin-top:25pt;
+    margin-right: 66pt;
+    margin-left: 50pt;
+    font-family: 'MetropolisBlack';
+    font-size: xx-large;
+    font-weight: normal;
+    font-style: normal;
     color: black;
-    font-weight: bold;
 
 }
 
