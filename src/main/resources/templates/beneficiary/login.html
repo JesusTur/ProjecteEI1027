@@ -9,8 +9,8 @@
           th:href="@{/css/majorsACasa.css}"/>
     <title>Login</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
 
 </head>
 <body>
@@ -19,12 +19,12 @@
     <form action="#" class="login" th:action="@{/login}"
           th:object="${user}" method="post">
         <p>
-            <label>Nom d'usuari:</label>
+            <!--<label>Nom d'usuari:</label>-->
             <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; Usuari" />
         <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
         </p>
         <p>
-            <label>Contrasenya:</label>
+            <!--<label>Contrasenya:</label>-->
             <input class="form_control" type="password" th:field="*{password}" placeholder="&#128272; Contrasenya" />
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>
