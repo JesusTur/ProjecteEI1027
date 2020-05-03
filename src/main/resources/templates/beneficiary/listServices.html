@@ -13,16 +13,17 @@
 
 <body>
 <h1>Llista d'usuaris del sistema</h1>
-<div th:if="${#lists.isEmpty(volunteers)}">
+<div class="voluntaris" th:if="${#lists.isEmpty(volunteers)}">
     No hi ha servicis solicitats a voluntaris
 </div>
-<div th:if="${#lists.isEmpty(companies)}">
+<div class="companyies" th:if="${#lists.isEmpty(companies)}">
     No hi ha servicis solicitats a companyies
 </div>
 <thead>
 <tr>
-    <th>Nom d'usuari</th>
+    <th>Nom d'usuari: </th>
     <td th:text="${user}"></td>
+
 </tr>
 </thead>
 <table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-condensed">
