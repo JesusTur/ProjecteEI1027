@@ -12,15 +12,15 @@ public class RequestRowMapper implements RowMapper<Request> {
     public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
         Request request = new Request();
         request.setId(rs.getInt("id"));
-        request.setDniBeneficiary(rs.getString("dniBeneficiary"));
-        request.setTypeOfService(rs.getString("typeOfService"));
-        request.setContractid(rs.getInt("conractId"));
-        request.setSchedule(rs.getDate("creationDate"));
-        request.setRequestState(RequestState.valueOf(rs.getString("requestState")));
-        request.setDateAccept(rs.getDate("dateAccept"));
-        request.setDateReject(rs.getDate("dateReject"));
+        request.setDniBeneficiary(rs.getString("dnibeneficiary"));
+        request.setTypeOfService(rs.getString("typeofservice"));
+        request.setContractid(rs.getInt("contractid"));
+        request.setSchedule(rs.getDate("creationdate"));
+        request.setRequestState(RequestState.valueOf(rs.getString("requeststate")));
+        request.setDateAccept(rs.getDate("dateaccept"));
+        request.setDateReject(rs.getDate("datereject"));
         request.setComment(rs.getString("comments"));
-        request.setDateFinal(rs.getDate("dateFinal"));
+        request.setDateFinal(rs.getDate("datefinal"));
         return request;
     }
 }
