@@ -4,33 +4,33 @@
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
 @import url('https://fontlibrary.org/face/metropolis');
 body{
-background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
-background-repeat:no-repeat center fixed;
-background-size: cover;
-text-align:center;
-margin:center;
-height: 100%;
-width: 100%;
-font-size: 16px;
-position: relative;
-
+    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
+    /* Center and scale the image nicely */
+    background-repeat: no-repeat center fixed;
+    background-size: cover;
+    text-align:center;
+    margin:center;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    position: relative;
 }
 
-/*Capçalera
-
-
-*/
+/*Capçalera*/
 h1{
-font-size: x-large;
-color: black;
-font-weight: bold;
+    font-size: x-large;
+    color: black;
+    font-weight: bold;
 
 }
 
 /* Capçalera de nivell 2                                p.solid {} */
 h2 {
+   margin-top:25pt;
+   margin-right: 66pt;
+   margin-left: 50pt;
    font-family: 'MetropolisBlack';
-   font-size: xx-large;
+   font-size: xxx-large;
    font-weight: normal;
    font-style: normal;
    color: tomato;
@@ -39,10 +39,11 @@ h2 {
 }
 form {
     margin:auto;
+    margin-top:60pt;
     width: 50%;
     max-width: 500px;
     background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
+	border: 2px solid #E1E1E1;
 	padding: 40px;
 }
 input{
@@ -51,13 +52,14 @@ input{
     padding: 10px;
     width: 100%;
     margin: 20px 0;
-    font-family: 'MetropolisRegular'
+    font-family: 'MetropolisRegular';
     font-size: 20px;
 
 }
 input[type="submit"]{
     background: linear-gradient(#FFDEAD,#FFE4E1);
     font-family: 'MetropolisRegular'
+    font-size: 20px;
     border:0;
     color:brown;
     opacity:3.0;
