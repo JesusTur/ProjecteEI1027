@@ -3,11 +3,6 @@
 
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
 @import url('https://fontlibrary.org/face/metropolis');
-
-*{
-   font-family: 'MetropolisRegular'
-}
-
 body{
 background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
 background-repeat:no-repeat center fixed;
@@ -17,13 +12,14 @@ margin:center;
 height: 100%;
 width: 100%;
 font-size: 16px;
-
 position: relative;
-
 
 }
 
-/*Capçalera*/
+/*Capçalera
+
+
+*/
 h1{
 font-size: x-large;
 color: black;
@@ -31,7 +27,7 @@ font-weight: bold;
 
 }
 
-/* Capçalera de nivell 2                                */
+/* Capçalera de nivell 2                                p.solid {} */
 h2 {
    font-family: 'MetropolisBlack';
    font-size: xx-large;
@@ -39,16 +35,17 @@ h2 {
    font-style: normal;
    color: tomato;
    text-shadow: 1px 1px 3px orangered;
+
 }
-/*form {
+form {
     margin:auto;
     width: 50%;
     max-width: 500px;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 1px solid #E1E1E1;
 	padding: 40px;
-}*/
-/*input{
+}
+input{
     display: block;
     border-style: solid;
     padding: 10px;
@@ -57,9 +54,10 @@ h2 {
     font-family: 'MetropolisRegular'
     font-size: 20px;
 
-}*/
+}
 input[type="submit"]{
     background: linear-gradient(#FFDEAD,#FFE4E1);
+    font-family: 'MetropolisRegular'
     border:0;
     color:brown;
     opacity:3.0;
@@ -86,24 +84,19 @@ p{
 }
 .loggeduser {
 	color: gray;
-	position:absolute;
-	bottom: 5px;
-	right:10px
-	/*text-align: right;
-    margin-right: 10pt;*/
+	text-align: right;
+    margin-right: 10pt;
 }
 
 
 /*Per als errores*/
 .error {
-     font-family: 'MetropolisBold'
      color: red;
      font-size:100%
 }
 
 /* Classe CSS per atributs erronis */
 .needcorrection {
-     font-family: 'MetropolisBold'
      color: red;
      background-color:yellow;
 }
