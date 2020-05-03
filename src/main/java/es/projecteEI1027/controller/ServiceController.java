@@ -122,7 +122,8 @@ public class ServiceController {
     public String processAddRequest(@ModelAttribute("request") Request request,
                                             BindingResult bindingResult,HttpSession session, Model model) {
         System.out.println("adios");
-        request.setId(requestDao.getRequestid());
+        int idContrato = requestDao.getRequestid();
+        request.setId(++idContrato);
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());

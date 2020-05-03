@@ -23,11 +23,11 @@ public class RequestDao {
 
     public void addRequest(Request request) {
         try {
-            jdbcTemplate.update("Insert INTO Request Values(?, ? ,?, ?, ?, ?, ?, ?, ?, ?)",
+            jdbcTemplate.update(
+                    "INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     request.getId(), request.getDniBeneficiary(), request.getTypeOfService(), request.getContractid(),
                     request.getSchedule(), request.getRequestState().toString(), request.getDateAccept(), request.getDateReject(),
                     request.getComment(), request.getDateFinal());
-
         } catch (DuplicateKeyException e) {
         }
     }
