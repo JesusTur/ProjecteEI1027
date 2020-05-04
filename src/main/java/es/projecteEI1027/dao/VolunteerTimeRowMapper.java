@@ -14,8 +14,8 @@ public class VolunteerTimeRowMapper implements RowMapper<VolunteerTime> {
         volunteerTime.setDate(rs.getDate("dateVolunteer"));
         volunteerTime.setDniVolunteer(rs.getString("dniVolunteer"));
         volunteerTime.setDniBeneficiary(rs.getString("dniBeneficiary"));
-        volunteerTime.setBeginningHour(rs.getTime("beginningHour"));
-        volunteerTime.setEndingHour(rs.getTime("endingHour"));
+        volunteerTime.setBeginningTime(rs.getTimestamp("beginningHour").toLocalDateTime());
+        volunteerTime.setEndingTime(rs.getTimestamp("endingHour").toLocalDateTime());
         volunteerTime.setAvailable(rs.getBoolean("available"));
         return volunteerTime;
     }

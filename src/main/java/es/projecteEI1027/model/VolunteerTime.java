@@ -1,19 +1,28 @@
 package es.projecteEI1027.model;
 
-import java.sql.Time;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class VolunteerTime {
     private Date date;
     private String dniVolunteer;
     private String dniBeneficiary;
-    private Time beginningHour;
-    private Time endingHour;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime beginningTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime endingTime;
     private boolean available;
     public VolunteerTime(){}
 
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDniVolunteer() {
@@ -25,27 +34,27 @@ public class VolunteerTime {
     }
 
     public String getDniBeneficiary() {
-        return this.dniBeneficiary;
+        return dniBeneficiary;
     }
 
     public void setDniBeneficiary(String dniBeneficiary) {
         this.dniBeneficiary = dniBeneficiary;
     }
 
-    public Time getBeginningHour() {
-        return beginningHour;
+    public LocalDateTime getBeginningTime() {
+        return beginningTime;
     }
 
-    public void setBeginningHour(Time beginningHour) {
-        this.beginningHour = beginningHour;
+    public void setBeginningTime(LocalDateTime beginningTime) {
+        this.beginningTime = beginningTime;
     }
 
-    public Time getEndingHour() {
-        return endingHour;
+    public LocalDateTime getEndingTime() {
+        return endingTime;
     }
 
-    public void setEndingHour(Time endingHour) {
-        this.endingHour = endingHour;
+    public void setEndingTime(LocalDateTime endingTime) {
+        this.endingTime = endingTime;
     }
 
     public boolean isAvailable() {
@@ -54,9 +63,5 @@ public class VolunteerTime {
 
     public void setAvailable(boolean available) {
         this.available = available;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

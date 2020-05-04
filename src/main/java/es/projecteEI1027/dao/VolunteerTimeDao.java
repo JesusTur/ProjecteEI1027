@@ -9,7 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class VolunteerTimeDao {
             jdbcTemplate.update(
                     "INSERT INTO VolunteerTime VALUES(?, ?, ?, ?, ?, ?)",
                     volunteerTime.getDate(), volunteerTime.getDniVolunteer(), volunteerTime.getDniBeneficiary(),
-                    volunteerTime.getBeginningHour(), volunteerTime.getEndingHour(), volunteerTime.isAvailable());
+                    volunteerTime.getBeginningTime(), volunteerTime.getEndingTime(), volunteerTime.isAvailable());
 
         }
         catch(DuplicateKeyException e) {
@@ -48,7 +49,7 @@ public class VolunteerTimeDao {
         try{
             jdbcTemplate.update("UPDATE VolunteerTime SET dateVolunteer = ?, beginningHour = ?," +
                             "endingHour = ?, availabe = ? WHERE dniVolunteer = ? AND dniBeneficiary = ?",
-                    volunteerTime.getDate(), volunteerTime.getBeginningHour(), volunteerTime.getEndingHour(),
+                    volunteerTime.getDate(), volunteerTime.getBeginningTime(), volunteerTime.getEndingTime(),
                     volunteerTime.isAvailable(), volunteerTime.getDniVolunteer(), volunteerTime.getDniBeneficiary());
         }
         catch (DataAccessException e){
@@ -67,7 +68,7 @@ public class VolunteerTimeDao {
     }
 
 
-    public VolunteerTime getVolunteerTime(String dniVol, Time tiempoIni, Time tiempoFin) {
+    public VolunteerTime getVolunteerTime(String dniVol, LocalDateTime tiempoIni, LocalDateTime tiempoFin) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND beginningHour =  ? AND endingHour = ?", new VolunteerTimeRowMapper(),dniVol,tiempoIni,tiempoFin);
         }
@@ -76,28 +77,28 @@ public class VolunteerTimeDao {
         }
     }
 
-    public Time getVolunteerTimeInit(String dniVol) {
+    public LocalDateTime getVolunteerTimeInit(String dniVol) {
         try {
             VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
-            return vt.getBeginningHour();
+            return vt.getBeginningTime();
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
     }
-    public Time getVolunteerTimeFinal(String dniVol) {
+    public LocalDateTime getVolunteerTimeFinal(String dniVol) {
         try {
             VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
-            return vt.getEndingHour();
+            return vt.getEndingTime();
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
-    }public void updateTime(String dni, Time fechaIni, Time fechaFin){
+    }public void updateTime(String dni, Timestamp fechaIni, Timestamp fechaFin){
         try {
             VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
 
-            if(vt.getEndingHour().equals(fechaFin)){
+            if(vt.getEndingTime().equals(fechaFin)){
                 jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL", dni);
             }else{
                 jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ? WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", fechaFin,dni);
