@@ -173,7 +173,8 @@ public class BeneficiaryDao {
     }
     public List<Volunteer> getVolunteerPerBen(String tipo){
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND dni IN (SELECT dniVolunteer FROM VolunteerTime) AND accepted IS TRUE",
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ?  AND accepted IS TRUE " +
+                            "AND dni IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary IS NULL)",
                     new VolunteerRowMapper(), tipo);
         }
         catch(EmptyResultDataAccessException e) {

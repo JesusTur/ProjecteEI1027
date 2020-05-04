@@ -18,6 +18,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.parser.Element;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Types;
 import java.util.Calendar;
 import java.util.List;
@@ -137,8 +138,8 @@ public class ServiceController {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         volunteerTime.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         volunteerTime.setAvailable(true);
-        volunteerTimeDao.addVolunteerTime(volunteerTime);
         volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour());
+        volunteerTimeDao.addVolunteerTime(volunteerTime);
         return "beneficiary/listServices";
 
     }
@@ -162,7 +163,6 @@ public class ServiceController {
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);
         request.setDateReject(null);
-        request.setComment(request.getComment());
         request.setDateFinal(null);
         requestDao.addRequest(request);
         return "beneficiary/listServices";

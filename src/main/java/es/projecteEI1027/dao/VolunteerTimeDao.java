@@ -96,10 +96,13 @@ public class VolunteerTimeDao {
     }public void updateTime(String dni, Time fechaIni, Time fechaFin){
         try {
             VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
-            if(vt.getEndingHour() == fechaFin){
-                jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniBeneficiary = ? AND dniBeneficiary IS NULL", dni);
+
+            if(vt.getEndingHour().equals(fechaFin)){
+                jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL", dni);
+            }else{
+                jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ? WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", fechaFin,dni);
             }
-            jdbcTemplate.queryForObject("UPDATE VolunteerTime SET beginningHour = ?, endingHour = ? ", new VolunteerTimeRowMapper(),dni,fechaFin,fechaFin);
+
         }
         catch(EmptyResultDataAccessException e) {
         }
