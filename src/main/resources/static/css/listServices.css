@@ -63,8 +63,14 @@ table {
 	border: 1px solid #E1E1E1;
 	padding: 40px;
 }
-a{
-    margin:auto;
+/*.no-hi-ha{
+    margin-top:30pt;
+    margin-right: 66pt;
+    margin-left: 50pt;
+
+}*/
+.botones{
+    margin-bottom:0pt;
 
 }
 /*input{

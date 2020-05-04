@@ -13,20 +13,22 @@
 
 <body>
 <h1 class="text-center">Llista de serveis contratats</h1>
-<div class="voluntaris" th:if="${#lists.isEmpty(volunteers)}">
+<div class="text-center" th:if="${#lists.isEmpty(volunteers)}">
     No hi ha servicis solicitats a voluntaris
 </div>
-<div class="companyies" th:if="${#lists.isEmpty(companies)}">
+<div class="text-center" th:if="${#lists.isEmpty(companies)}">
     No hi ha servicis solicitats a companyies
 </div>
-<thead>
-<tr>
-    <th>Nom d'usuari: </th>
-    <td th:text="${user}"></td>
 
-</tr>
-</thead>
 <table th:unless="${#lists.isEmpty(volunteers)}">
+    <thead>
+    <tr>
+        <th>Nom d'usuari: </th>
+        <td th:text="${user}"></td>
+
+    </tr>
+    </thead>
+
     <tbody>
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
@@ -52,7 +54,10 @@
     </tr>
     </tbody>
 </table>
-<a href="/services/add"><button type="button" class="btn btn-success">Añadir servicio</button></a>
-<a href="/" class="btn btn-primary" role="button">Tornar</a>
+<div class="text-center">
+    <a href="/services/add"><button type="button" class="btn btn-success">Añadir servicio</button></a>
+    <a href="/" class="btn btn-primary" role="button">Tornar</a>
+</div>
+
 </body>
 </html>
