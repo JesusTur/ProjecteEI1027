@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" type="text/css"
-          href="/css/majorsACasa.css"
-          th:href="@{/css/majorsACasa.css}"/>
+          href="/css/listServices.css"
+          th:href="@{/css/listServices.css}"/>
     <title>Llista d'usuaris del sistema</title>
     <meta charset="UTF-8"/>
     <!-- Afegim una fulla d'estil (Bootstrap) -->
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<h1>Llista d'usuaris del sistema</h1>
+<h1 class="text-center">Llista de serveis contratats</h1>
 <div class="voluntaris" th:if="${#lists.isEmpty(volunteers)}">
     No hi ha servicis solicitats a voluntaris
 </div>
@@ -26,7 +26,7 @@
 
 </tr>
 </thead>
-<table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-condensed">
+<table th:unless="${#lists.isEmpty(volunteers)}">
     <tbody>
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
@@ -43,7 +43,7 @@
     </tr>
     </tbody>
 </table>-->
-<table th:unless="${#lists.isEmpty(companies)}"  class="table table-condensed">
+<table th:unless="${#lists.isEmpty(companies)}">
     <tbody>
     <th>Companyies actives: </th>
     <tr th:each="company: ${companies}">

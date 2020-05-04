@@ -1,0 +1,133 @@
+/* Estil aplicat al cos de la pagina background: linear-gradient(180deg, #76cbf5 20%, #239edb 100%); */
+
+
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
+@import url('https://fontlibrary.org/face/metropolis');
+body{
+    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
+    /* Center and scale the image nicely */
+    background-repeat: no-repeat center fixed;
+    background-size: cover;
+    text-align:center;
+    margin:center;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    position: relative;
+}
+
+.pezu-bg{
+   /* The image used */
+    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
+
+   /* Add the blur effect */
+   filter: blur(8px);
+   -webkit-filter: blur(8px);
+
+   /* Full height */
+   height: 100%;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+/*Capçalera*/
+h1{
+    margin-top:25pt;
+    margin-right: 66pt;
+    margin-left: 50pt;
+    font-family: 'MetropolisBlack';
+    font-size: xx-large;
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+
+}
+
+/* Capçalera de nivell 2                                */
+h2 {
+   font-family: 'MetropolisBlack';
+   font-size: xx-large;
+   font-weight: normal;
+   font-style: normal;
+   color: tomato;
+   text-shadow: 1px 1px 3px orangered;
+}
+table {
+    margin:auto;
+    width: 50%;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid #E1E1E1;
+	padding: 40px;
+}
+a{
+    margin:auto;
+
+}
+/*input{
+    display: block;
+    border-style: solid;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+    font-family: 'MetropolisRegular'
+    font-size: 20px;
+
+}*/
+input[type="submit"]{
+    font-family: 'MetropolisRegular';
+    background: linear-gradient(#FFDEAD,#FFE4E1);
+    border:0;
+    color:brown;
+    opacity:3.0;
+    cursor:pointer;
+    border-radius:20px;
+    margin-bottom:0;
+}
+
+input[type="submit"]:hover{
+    opacity:4.0;
+}
+
+input[type="submit"]:active{
+    transform: scale(0.95);
+}
+
+
+
+p{
+   font-family: 'MetropolisSemiBold';
+   font-size: normal;
+   font-weight: normal;
+   font-style: normal;
+   color: darkslategrey;
+
+}
+.loggeduser {
+	color: gray;
+	position:absolute;
+	top: 25px;
+	right:10px
+
+	/*
+	text-align: right;
+    margin-right: 10pt;*/
+}
+
+
+/*Per als errores*/
+.error {
+     font-family: 'MetropolisBold'
+     color: red;
+     font-size:100%
+}
+
+/* Classe CSS per atributs erronis */
+.needcorrection {
+     font-family: 'MetropolisBold'
+     color: red;
+     background-color:yellow;
+}
