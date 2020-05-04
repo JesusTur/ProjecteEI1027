@@ -1,10 +1,7 @@
 package es.projecteEI1027.controller;
 
 import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
-import es.projecteEI1027.dao.BeneficiaryDao;
-import es.projecteEI1027.dao.CompanyDao;
-import es.projecteEI1027.dao.ContractDao;
-import es.projecteEI1027.dao.RequestDao;
+import es.projecteEI1027.dao.*;
 import es.projecteEI1027.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +33,8 @@ public class ServiceController {
     private ContractDao contractDao;
     @Autowired
     private RequestDao requestDao;
+    @Autowired
+    private VolunteerTimeDao volunteerTimeDao;
     @RequestMapping("/services/add")
     public String login(Model model){
         model.addAttribute("tipo", new String());
@@ -108,12 +107,48 @@ public class ServiceController {
         return "beneficiary/addRequest";
 
     }
+    @RequestMapping(value="/services/add/volunteerServices/{dni}", method=RequestMethod.GET)
+    public String processAddVServicesSubmit(@PathVariable String dni,HttpSession session, Model model) {
+
+        /*Request request = new Request();
+        request.setId(id.incrementAndGet());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        model.addAttribute("tiempoIni",volunteerTimeDao.getVolunteerTimeInit(dni));
+        model.addAttribute("tiempoFin",volunteerTimeDao.getVolunteerTimeFinal(dni));
+        session.setAttribute("dniVolunteer",dni);
+       /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        request.setRequestState(RequestState.valueOf("processing"));
+        request.setDateAccept(null);
+        request.setDateReject(null);
+        request.setComment();*/
+        model.addAttribute("volunteerTime", new VolunteerTime());
+
+        return "beneficiary/addVolunteerTime";
+
+    }
+    @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
+    public String processAddVolunteerTime(@ModelAttribute("volunteerTime") VolunteerTime volunteerTime,
+                                    BindingResult bindingResult,HttpSession session, Model model) {
+
+        volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        volunteerTime.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        volunteerTime.setAvailable(true);
+        volunteerTimeDao.addVolunteerTime(volunteerTime);
+        volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour());
+        return "beneficiary/listServices";
+
+    }
 /*    @RequestMapping(value="/services/addRequest")
     public String AddRequest( Model model) {
 
         System.out.println("hel");
         return "beneficiary/addRequest";
     }*/
+
     @RequestMapping(value="/services/addRequest", method=RequestMethod.POST)
     public String processAddRequest(@ModelAttribute("request") Request request,
                                             BindingResult bindingResult,HttpSession session, Model model) {

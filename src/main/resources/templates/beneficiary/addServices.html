@@ -33,6 +33,7 @@
     <th>Companyies per a solicitar: </th>
     <tr th:each="volunteer: ${volunteerServices}">
         <td th:text="${volunteer.name}"></td>
+        <td><a th:href="@{/services/add/volunteerServices/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-warning">añadir servicio</button></a></td>
 
     </tr>
     </tbody>

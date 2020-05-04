@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class VolunteerTimeDao {
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
         try{
             jdbcTemplate.update("UPDATE VolunteerTime SET dateVolunteer = ?, beginningHour = ?," +
-                            "endingHour = ?, availabe = ?, WHERE dniVolunteer = ? AND dniBeneficiary = ?",
+                            "endingHour = ?, availabe = ? WHERE dniVolunteer = ? AND dniBeneficiary = ?",
                     volunteerTime.getDate(), volunteerTime.getBeginningHour(), volunteerTime.getEndingHour(),
                     volunteerTime.isAvailable(), volunteerTime.getDniVolunteer(), volunteerTime.getDniBeneficiary());
         }
@@ -66,12 +67,41 @@ public class VolunteerTimeDao {
     }
 
 
-    public VolunteerTime getVolunteerTime(String dniVol,String dniBen) {
+    public VolunteerTime getVolunteerTime(String dniVol, Time tiempoIni, Time tiempoFin) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary = ?", new VolunteerTimeRowMapper(),dniVol,dniBen);
+            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND beginningHour =  ? AND endingHour = ?", new VolunteerTimeRowMapper(),dniVol,tiempoIni,tiempoFin);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
+        }
+    }
+
+    public Time getVolunteerTimeInit(String dniVol) {
+        try {
+            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+            return vt.getBeginningHour();
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    public Time getVolunteerTimeFinal(String dniVol) {
+        try {
+            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+            return vt.getEndingHour();
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }public void updateTime(String dni, Time fechaIni, Time fechaFin){
+        try {
+            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
+            if(vt.getEndingHour() == fechaFin){
+                jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniBeneficiary = ? AND dniBeneficiary IS NULL", dni);
+            }
+            jdbcTemplate.queryForObject("UPDATE VolunteerTime SET beginningHour = ?, endingHour = ? ", new VolunteerTimeRowMapper(),dni,fechaFin,fechaFin);
+        }
+        catch(EmptyResultDataAccessException e) {
         }
     }
 

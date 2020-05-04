@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear beneficiario</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Tiempo disponible</h2>
+<tr>
+    <td th:text="${tiempoIni}"></td>
+    <td th:text="${tiempoFin}"></td>
+</tr>
+<form action="#" th:action="@{/services/addVolunteerTime}"
+      th:object="${volunteerTime}" method="post">
+    <table>
+        <tr>
+            <td><label>Tiempo inicio</label></td>
+            <td><input type="time" step="1" th:field="*{beginningHour}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Tiempo final</label></td>
+            <td><input type="time" step="1" th:field="*{endingHour}" required=""/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
