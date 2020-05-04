@@ -86,7 +86,7 @@ public class BeneficiaryController {
         }
         //model.addAttribute("companyServices", contractDao.getContracts());
         //model.addAttribute("volunteerServices", volunteerTimeDao.getVolunteerTimes());
-        return "beneficiary/services";
+        return "beneficiary/indexServices";
     }
 
 }

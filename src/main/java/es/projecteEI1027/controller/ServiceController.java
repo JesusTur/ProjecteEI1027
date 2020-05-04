@@ -36,11 +36,7 @@ public class ServiceController {
     private RequestDao requestDao;
     @Autowired
     private VolunteerTimeDao volunteerTimeDao;
-    @RequestMapping("/services/add")
-    public String login(Model model){
-        model.addAttribute("tipo", new String());
-        return "beneficiary/services";
-    }
+
     @RequestMapping(value = "/services", method = RequestMethod.POST)
     public String checkServices(@ModelAttribute("user") String userio ,BindingResult bindingResult, HttpSession session, Model model){
 
@@ -73,6 +69,11 @@ public class ServiceController {
         }
 
         return "redirect:/";*/
+    }
+    @RequestMapping("/services/add")
+    public String login(Model model){
+        model.addAttribute("tipo", new String());
+        return "beneficiary/services";
     }
     @RequestMapping(value="/services/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("tipo") String tipo,
@@ -140,7 +141,7 @@ public class ServiceController {
         volunteerTime.setAvailable(true);
         volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),volunteerTime.getBeginningHour(),volunteerTime.getEndingHour());
         volunteerTimeDao.addVolunteerTime(volunteerTime);
-        return "beneficiary/listServices";
+        return "beneficiary/addServices";
 
     }
 /*    @RequestMapping(value="/services/addRequest")
@@ -165,7 +166,7 @@ public class ServiceController {
         request.setDateReject(null);
         request.setDateFinal(null);
         requestDao.addRequest(request);
-        return "beneficiary/listServices";
+        return "beneficiary/addServices";
 
     }
 }
