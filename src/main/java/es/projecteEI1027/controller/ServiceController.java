@@ -29,9 +29,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
 public class ServiceController {
+    static public AtomicInteger idRequest;
     @Autowired
     private BeneficiaryDao userDao;
-    static private AtomicInteger id;
     @Autowired
     private ContractDao contractDao;
     @Autowired
@@ -90,18 +90,14 @@ public class ServiceController {
 
     }
     @RequestMapping(value="/services/add/companyServices/{cif}", method=RequestMethod.GET)
-    public String processAddCServicesSubmit(@PathVariable String cif, Model model) {
+    public String processAddCServicesSubmit(@PathVariable String cif,HttpSession session, Model model) {
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());*/
-        System.out.println("hola");
-        System.out.println(cif);
-        System.out.println(contractDao.getContractByCompany(cif));
-        id = new AtomicInteger(contractDao.getContractId(cif));
-        model.addAttribute("id",contractDao.getContractByCompany(cif));
+        session.setAttribute("id",contractDao.getContractByCompany(cif));
        /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);
@@ -121,13 +117,12 @@ public class ServiceController {
     @RequestMapping(value="/services/addRequest", method=RequestMethod.POST)
     public String processAddRequest(@ModelAttribute("request") Request request,
                                             BindingResult bindingResult,HttpSession session, Model model) {
-        System.out.println("adios");
-        int idContrato = requestDao.getRequestid();
-        request.setId(++idContrato);
+        idRequest = new AtomicInteger(requestDao.getRequestid());
+        request.setId(idRequest.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());
-        request.setContractid(id.intValue());
+        request.setContractid((Integer)session.getAttribute("id"));
         request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);

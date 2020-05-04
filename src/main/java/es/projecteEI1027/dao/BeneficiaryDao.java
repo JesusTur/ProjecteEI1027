@@ -139,9 +139,10 @@ public class BeneficiaryDao {
         try {
             return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId " +
                             "FROM Request WHERE typeOfService = ? AND ((requestState NOT LIKE 'accepted' AND requestState NOT LIKE 'processing' AND dniBeneficiary " +
-                            "= (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)) OR dniBeneficiary NOT LIKE (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))) " +
+                            "= (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)) OR (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) NOT IN (SELECT dniBeneficiary FROM Request WHERE dniBeneficiary = (SELECT dni FROM Beneficiary " +
+                            "WHERE userBeneficiary = ?  ))))) " +
                             "OR cif IN (SELECT cif FROM Contract WHERE id NOT IN (SELECT contractId FROM request))",
-                    new CompanyRowMapper(), tipo, user, user);
+                    new CompanyRowMapper(), tipo, user, user, user);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Company>();
@@ -172,7 +173,7 @@ public class BeneficiaryDao {
     }
     public List<Volunteer> getVolunteerPerBen(String tipo){
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND dni NOT IN (SELECT dniVolunteer FROM VolunteerTime) AND accepted IS TRUE",
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ? AND dni IN (SELECT dniVolunteer FROM VolunteerTime) AND accepted IS TRUE",
                     new VolunteerRowMapper(), tipo);
         }
         catch(EmptyResultDataAccessException e) {
