@@ -57,7 +57,7 @@ h2 {
 }
 
 table {
-    background: linear-gradient(to bottom, #33ccff 1%, #ff99cc 100%);
+    background: linear-gradient(to top, #ffffff 45%, #ffff66 100%);
     margin: 2% auto;
     width: 70%;
     text-align: left;
