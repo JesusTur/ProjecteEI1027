@@ -113,14 +113,11 @@ p{
 
 }
 .loggeduser {
-	color: gray;
+	color: black;
 	position:absolute;
-	top: 25px;
-	right:10px
-
-	/*
-	text-align: right;
-    margin-right: 10pt;*/
+	top:0;
+	text-align: left;
+    margin-left: 10pt;
 }
 
 
