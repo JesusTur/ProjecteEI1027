@@ -56,13 +56,15 @@ h2 {
    text-shadow: 1px 1px 3px orangered;
 }
 table {
-    margin: 10% auto;
+    margin: 4% auto;
     width: 50%;
     max-width: 500px;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 1px solid #E1E1E1;
 	padding: 40px;
 }
+
+
 /*.no-hi-ha{
     margin-top:30pt;
     margin-right: 66pt;
