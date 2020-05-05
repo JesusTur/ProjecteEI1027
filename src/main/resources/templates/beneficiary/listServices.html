@@ -11,7 +11,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
 </head>
 
-<body>
+<p>
 <h1 class="text-center">Llista de serveis contratats</h1>
 <div class="text-center" th:if="${#lists.isEmpty(volunteers)}">
     No hi ha servicis solicitats a voluntaris
@@ -20,15 +20,13 @@
     No hi ha servicis solicitats a companyies
 </div>
 
-<table th:unless="${#lists.isEmpty(volunteers)}">
+<h6 class="text-center" th:unless="${#lists.isEmpty(volunteers)}">
     <thead>
-    <tr>
         <th>Nom d'usuari: </th>
         <td th:text="${user}"></td>
-
-    </tr>
     </thead>
-</table>
+</h6>
+
 <table>
     <tbody>
     <th>Voluntaris: </th>
