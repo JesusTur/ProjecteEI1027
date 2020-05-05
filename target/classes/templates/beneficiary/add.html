@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear beneficiario</title>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nuevo beneficiario</h2>
+<form action="#" th:action="@{/beneficiary/add}"
+      th:object="${beneficiary}" method="post">
+    <table>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Apellido</label></td>
+            <td><input type="text" th:field="*{surname}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Dirección</label></td>
+            <td><input type="text" th:field="*{homeAddress}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Teléfono</label></td>
+            <td><input type="text" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Cuenta bancaria</label></td>
+            <td><input type="text" th:field="*{bankAccount}" placeholder="ESXXXXXXXXXXXXXX" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de creación</label></td>
+            <td><input type="date" th:field="*{dateCreation}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de nacimiento</label></td>
+            <td><input type="date" th:field="*{birthDate}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Asistente social</label></td>
+            <td><input type="text" th:field="*{socialWorker}" /></td>
+        </tr>
+        <tr>
+            <td><label>Usuario</label></td>
+            <td><input type="text" th:field="*{user}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Contraseña</label></td>
+            <td><input type="password" th:field="*{password}" required=""/></td>
+        </tr>
+        <tr>
+            <td><label>Descripción</label></td>
+            <td><input type="text" th:field="*{description}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

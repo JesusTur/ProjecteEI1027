@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear beneficiario</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css"
+          href="/css/majors.css"
+          th:href="@{/css/majors.css}"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<h2>Tiempo disponible</h2>
+<tr>
+    <td th:text="${tiempoIni}"></td>
+    <td th:text="${tiempoFin}"></td>
+</tr>
+<tr th:unless="${#maps.isEmpty(mapa)}">
+<tr th:each="map: ${mapa}">
+    <td th:text="${map.key}"></td>
+    <td th:text="${map.value}"></td>
+    <form action="#" th:action="@{/services/addVolunteerTime}"
+          th:object="${volunteerT}" method="post">
+        <table>
+
+            <tr>
+                <td><label>Tiempo inicio</label></td>
+                <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{beginningTime}" required="" th:min= "${map.key}" th:max="${map.value}"/></td>
+            </tr>
+            <tr>
+                <td><label>Tiempo final</label></td>
+                <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{endingTime}" required="" th:min="${map.key}" th:max="${map.value}"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" value="Añadir" /></td>
+            </tr>
+        </table>
+    </form>
+</tr>
+</tr>
+
+
+<div class="loggeduser" th:object="${session}">
+    <p th:if="*{user == null}">
+        No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+    </p>
+    <p th:unless="*{user == null}">
+        <!--Autenticat com <span th:text="*{user.name}"></span> --> <a
+            href="/logout" th:href="@{/logout}">Eixir</a>
+    </p>
+</div>
+</body>
+</html>
