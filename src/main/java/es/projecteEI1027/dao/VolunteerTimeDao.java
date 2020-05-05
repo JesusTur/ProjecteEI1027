@@ -124,7 +124,7 @@ public class VolunteerTimeDao {
             List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
             for(VolunteerTime vol : vt){
                 if(vol.getEndingTime().equals(fechaFin)){
-                    jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL AND endingHour = ? DATE(endingHour) = ?", dni,fechaFin.toLocalDate());
+                    jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL AND DATE(endingHour) = ?", dni,fechaFin.toLocalDate());
                 }else{
                     jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ? WHERE dniVolunteer = ? AND dniBeneficiary IS NULL AND DATE(endingHour) = ?", fechaFin,dni, fechaFin.toLocalDate());
                 }
