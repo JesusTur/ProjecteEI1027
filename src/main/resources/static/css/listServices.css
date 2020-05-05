@@ -57,14 +57,14 @@ h2 {
 }
 
 table {
-    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    background: linear-gradient(to bottom, #33ccff 1%, #ff99cc 100%);
     margin: 2% auto;
     width: 70%;
     text-align: left;
     max-width: 500px;
     border-collapse: collapse;
     text-shadow: 1px 1px 3px blued;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 5, 0.1);
 	border: 2px solid #E1E1E1;
 	padding: 40px;
 	font-size: large;
