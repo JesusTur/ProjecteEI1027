@@ -104,17 +104,15 @@ p{
 
 }
 .loggeduser {
-	font-family: 'MetropolisSemiBold';
-	font-size: normal;
-    font-weight: normal;
-    font-style: normal;
-	color: black;
+	color: gray;
 	position:absolute;
-	text-align: left;
-	top:0;
-    margin-left: 10pt;
-}
+	top: 5px;
+	right:10px
 
+	/*
+	text-align: right;
+    margin-right: 10pt;*/
+}
 
 
 /*Per als errores*/

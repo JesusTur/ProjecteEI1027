@@ -55,40 +55,29 @@ h2 {
    color: tomato;
    text-shadow: 1px 1px 3px orangered;
 }
-
 table {
-    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-    margin: 2% auto;
+    margin: 4% auto;
     width: 70%;
     text-align: left;
     max-width: 500px;
     border-collapse: collapse;
-    text-shadow: 1px 1px 3px blued;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 2px solid #E1E1E1;
 	padding: 40px;
-	font-size: large;
-    font-weight: normal;
-    font-style: normal;
+	caption-side: top
 }
-
-caption {
-    caption-side: top-outside;
+caption, td, th {
+   padding: 0.3em;
 }
-
-tbody {
-  border: blue 2px solid;
-}
-
-
 th, td {
    border: 2px solid #999;
    width: 25%;
 }
-
-span {
-  text-transform: capitalize;
+caption {
+   font-weight: bold;
+   font-style: italic;
 }
+
 
 /*.no-hi-ha{
     margin-top:30pt;
@@ -128,7 +117,9 @@ input[type="submit"]:hover{
 input[type="submit"]:active{
     transform: scale(0.95);
 }
-
+span {
+  text-transform: capitalize;
+}
 .loggeduser {
 	font-family: 'MetropolisSemiBold';
 	font-size: normal;
