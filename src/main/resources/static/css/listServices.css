@@ -62,7 +62,7 @@ table {
     max-width: 500px;
     border-collapse: collapse;
     background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
+	border: 2px solid #E1E1E1;
 	padding: 40px;
 	caption-side: top
 }
@@ -70,7 +70,7 @@ caption, td, th {
    padding: 0.3em;
 }
 th, td {
-   border-bottom: 1px solid #999;
+   border: 2px solid #999;
    width: 25%;
 }
 caption {
