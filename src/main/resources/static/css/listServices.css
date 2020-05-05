@@ -57,11 +57,25 @@ h2 {
 }
 table {
     margin: 4% auto;
-    width: 50%;
+    width: 70%;
+    text-align: left;
     max-width: 500px;
+    border-collapse: collapse;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 1px solid #E1E1E1;
 	padding: 40px;
+	caption-side: top
+}
+caption, td, th {
+   padding: 0.3em;
+}
+th, td {
+   border-bottom: 1px solid #999;
+   width: 25%;
+}
+caption {
+   font-weight: bold;
+   font-style: italic;
 }
 
 
