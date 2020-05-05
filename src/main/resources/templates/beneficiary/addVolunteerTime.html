@@ -10,10 +10,6 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <h2>Tiempo disponible</h2>
-<tr>
-    <td th:text="${tiempoIni}"></td>
-    <td th:text="${tiempoFin}"></td>
-</tr>
 <tr th:unless="${#maps.isEmpty(mapa)}">
 <tr th:each="map: ${mapa}">
     <td th:text="${map.key}"></td>
