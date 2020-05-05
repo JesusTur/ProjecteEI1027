@@ -33,6 +33,7 @@
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
         <td th:text="${volunteer.name}"></td>
+        <td th:text="${volunteer.typeServiceVolunteer}"></td>
     </tr>
     </tbody>
 </table>
@@ -50,6 +51,7 @@
     <th>Companyies actives: </th>
     <tr th:each="company: ${companies}">
         <td th:text="${company.nameCompany}"></td>
+        <td th:text="${company.serviceType}"></td>
 
     </tr>
     </tbody>
