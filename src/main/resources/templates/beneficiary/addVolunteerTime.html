@@ -19,11 +19,11 @@
       th:object="${volunteerT}" method="post">
     <tr>
         <td><label>Tiempo inicio</label></td>
-        <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" value="${tiempoIni}" th:field="*{beginningTime}" required="" min="${tiempoIni}" /></td>
+        <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:value="${tiempoIni}" th:field="*{beginningTime}" required="" min="${tiempoIni}" /></td>
     </tr>
     <tr>
         <td><label>Tiempo final</label></td>
-        <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" value="${tiempoFin}" th:field="*{endingTime}" required="" max="${tiempoFin}"></td>
+        <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:value="${tiempoFin}" th:field="*{endingTime}" required="" max="${tiempoFin}"></td>
     </tr>
     <tr>
         <td colspan="2"><input type="submit" value="Añadir" /></td>

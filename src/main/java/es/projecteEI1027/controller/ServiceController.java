@@ -127,7 +127,10 @@ public class ServiceController {
         request.setDateAccept(null);
         request.setDateReject(null);
         request.setComment();*/
-        model.addAttribute("volunteerT", new VolunteerTime());
+        VolunteerTime volunteerTime = new VolunteerTime();
+        volunteerTime.setBeginningTime(volunteerTimeDao.getVolunteerTimeInit(dni));
+        volunteerTime.setEndingTime(volunteerTimeDao.getVolunteerTimeFinal(dni));
+        model.addAttribute("volunteerT", volunteerTime);
 
         return "beneficiary/addVolunteerTime";
 
@@ -135,14 +138,12 @@ public class ServiceController {
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime,
                                     BindingResult bindingResult,HttpSession session, Model model) {
-        System.out.println(volunteerTime.getBeginningTime());
-        System.out.println(volunteerTime.getEndingTime());
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         volunteerTime.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         volunteerTime.setAvailable(true);
-        volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),Timestamp.valueOf(volunteerTime.getBeginningTime()),Timestamp.valueOf(volunteerTime.getEndingTime()));
+        volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
         volunteerTimeDao.addVolunteerTime(volunteerTime);
         return "beneficiary/addServices";
 

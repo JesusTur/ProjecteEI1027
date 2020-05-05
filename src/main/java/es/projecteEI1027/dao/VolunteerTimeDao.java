@@ -94,10 +94,9 @@ public class VolunteerTimeDao {
         catch(EmptyResultDataAccessException e) {
             return null;
         }
-    }public void updateTime(String dni, Timestamp fechaIni, Timestamp fechaFin){
+    }public void updateTime(String dni, LocalDateTime fechaIni, LocalDateTime fechaFin){
         try {
             VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
-
             if(vt.getEndingTime().equals(fechaFin)){
                 jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL", dni);
             }else{
