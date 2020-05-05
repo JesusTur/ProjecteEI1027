@@ -85,18 +85,10 @@ th, td {
    border: 2px solid #999;
    width: 25%;
 }
-<<<<<<< HEAD
 
 span {
   text-transform: capitalize;
 }
-=======
-caption {
-   font-weight: bold;
-   font-style: italic;
-}
-
->>>>>>> origin/master
 
 /*.no-hi-ha{
     margin-top:30pt;
@@ -136,9 +128,7 @@ input[type="submit"]:hover{
 input[type="submit"]:active{
     transform: scale(0.95);
 }
-span {
-  text-transform: capitalize;
-}
+
 .loggeduser {
 	font-family: 'MetropolisSemiBold';
 	font-size: normal;
