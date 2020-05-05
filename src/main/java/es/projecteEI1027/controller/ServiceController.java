@@ -139,8 +139,6 @@ public class ServiceController {
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime,
                                     BindingResult bindingResult,HttpSession session, Model model) {
-        System.out.println(volunteerTime.getBeginningTime());
-        System.out.println(volunteerTime.getEndingTime());
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
