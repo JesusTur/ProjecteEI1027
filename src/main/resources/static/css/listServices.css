@@ -61,8 +61,8 @@ table {
     text-align: left;
     max-width: 500px;
     border-collapse: collapse;
-    background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
+    background-color: white;
+	border: 3px solid #E1E1E1;
 	padding: 40px;
 	caption-side: top
 }
