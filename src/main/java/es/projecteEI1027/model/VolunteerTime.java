@@ -10,10 +10,10 @@ public class VolunteerTime {
     private Date date;
     private String dniVolunteer;
     private String dniBeneficiary;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime beginningTime;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime endingTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime beginningTime = LocalDateTime.now();
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime endingTime = LocalDateTime.now();
     private boolean available;
     public VolunteerTime(){}
 

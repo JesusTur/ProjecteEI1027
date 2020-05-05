@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -134,13 +135,12 @@ public class ServiceController {
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime,
                                     BindingResult bindingResult,HttpSession session, Model model) {
-
+        System.out.println(volunteerTime.getBeginningTime());
+        System.out.println(volunteerTime.getEndingTime());
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         volunteerTime.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        System.out.println(volunteerTime.getBeginningTime());
-        System.out.println(volunteerTime.getEndingTime());
         volunteerTime.setAvailable(true);
         volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),Timestamp.valueOf(volunteerTime.getBeginningTime()),Timestamp.valueOf(volunteerTime.getEndingTime()));
         volunteerTimeDao.addVolunteerTime(volunteerTime);
