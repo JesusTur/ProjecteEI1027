@@ -16,6 +16,7 @@
     <tbody>
     <th>Companyies per a solicitar: </th>
     <tr th:each="company: ${companiesServices}">
+        <td><a th:href="@{/services/add/companyServices/{cif}(cif=${company.cif})}"><button type="button" class="btn btn-warning">añadir servicio</button></a></td>
         <td th:text="${company.nameCompany}"></td>
         <tr th:unless="${#maps.isEmpty(precios)}">
             <tr th:each="precio: ${precios}">
@@ -23,7 +24,6 @@
             <td th:text="${precio.value}"></td>
             </tr>
         </tr>
-        <td><a th:href="@{/services/add/companyServices/{cif}(cif=${company.cif})}"><button type="button" class="btn btn-warning">añadir servicio</button></a></td>
     </tr>
     </tbody>
 </table>

@@ -42,7 +42,7 @@ h1{
     font-size: xx-large;
     font-weight: normal;
     font-style: normal;
-    color: black;
+    color: blue;
 
 }
 
@@ -55,14 +55,41 @@ h2 {
    color: tomato;
    text-shadow: 1px 1px 3px orangered;
 }
+
 table {
-    margin: 10% auto;
-    width: 50%;
+    background: linear-gradient(to top, #ffffff 45%, #ffff66 100%);
+    margin: 2% auto;
+    width: 70%;
+    text-align: left;
     max-width: 500px;
-    background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
+    border-collapse: collapse;
+    text-shadow: 1px 1px 3px blued;
+    background-color: rgba(0, 0, 5, 0.1);
+	border: 2px solid #E1E1E1;
 	padding: 40px;
+	font-size: large;
+    font-weight: normal;
+    font-style: normal;
 }
+
+caption {
+    caption-side: top-outside;
+}
+
+tbody {
+  border: blue 2px solid;
+}
+
+
+th, td {
+   border: 2px solid #999;
+   width: 25%;
+}
+
+span {
+  text-transform: capitalize;
+}
+
 /*.no-hi-ha{
     margin-top:30pt;
     margin-right: 66pt;
@@ -102,25 +129,16 @@ input[type="submit"]:active{
     transform: scale(0.95);
 }
 
-
-
-p{
-   font-family: 'MetropolisSemiBold';
-   font-size: normal;
-   font-weight: normal;
-   font-style: normal;
-   color: darkslategrey;
-
-}
 .loggeduser {
-	color: gray;
+	font-family: 'MetropolisSemiBold';
+	font-size: normal;
+    font-weight: normal;
+    font-style: normal;
+	color: black;
 	position:absolute;
-	top: 25px;
-	right:10px
-
-	/*
-	text-align: right;
-    margin-right: 10pt;*/
+	text-align: left;
+	top:0;
+    margin-left: 10pt;
 }
 
 

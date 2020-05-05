@@ -12,7 +12,9 @@ import javax.sql.DataSource;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class VolunteerTimeDao {
@@ -76,33 +78,57 @@ public class VolunteerTimeDao {
             return null;
         }
     }
-
-    public LocalDateTime getVolunteerTimeInit(String dniVol) {
+    public Map<LocalDateTime,LocalDateTime> getVolunteerTime(String dniVol) {
+        Map<LocalDateTime,LocalDateTime> lvt = new HashMap<>();
         try {
-            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
-            return vt.getBeginningTime();
+            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+            for(VolunteerTime vol : vt){
+                lvt.put(vol.getBeginningTime(),vol.getEndingTime());
+            }
+            return lvt;
+
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
     }
-    public LocalDateTime getVolunteerTimeFinal(String dniVol) {
+
+    public List<LocalDateTime> getVolunteerTimeInit(String dniVol) {
+        List<LocalDateTime> lvt = new ArrayList<>();
         try {
-            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
-            return vt.getEndingTime();
+            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+           for(VolunteerTime vol : vt){
+               lvt.add( vol.getBeginningTime());
+           }
+           return lvt;
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    public List<LocalDateTime> getVolunteerTimeFinal(String dniVol) {
+        List<LocalDateTime> lvt = new ArrayList<>();
+        try {
+            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+            for(VolunteerTime vol : vt){
+                lvt.add( vol.getEndingTime());
+            }
+            return lvt;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
     }public void updateTime(String dni, LocalDateTime fechaIni, LocalDateTime fechaFin){
         try {
-            VolunteerTime vt = jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
-            if(vt.getEndingTime().equals(fechaFin)){
-                jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL", dni);
-            }else{
-                jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ? WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", fechaFin,dni);
+            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
+            for(VolunteerTime vol : vt){
+                if(vol.getEndingTime().equals(fechaFin)){
+                    jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer= ? AND dniBeneficiary IS NULL AND endingHour = ? DATE(endingHour) = ?", dni,fechaFin.toLocalDate());
+                }else{
+                    jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ? WHERE dniVolunteer = ? AND dniBeneficiary IS NULL AND DATE(endingHour) = ?", fechaFin,dni, fechaFin.toLocalDate());
+                }
             }
-
         }
         catch(EmptyResultDataAccessException e) {
         }

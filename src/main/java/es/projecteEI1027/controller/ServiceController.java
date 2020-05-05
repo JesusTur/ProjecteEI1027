@@ -23,6 +23,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -89,7 +90,7 @@ public class ServiceController {
         model.addAttribute("companiesServices", listCompany);
         model.addAttribute("precios",precios);
         model.addAttribute("dni",userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        return "/beneficiary/addServices";
+        return "beneficiary/addServices";
 
     }
     @RequestMapping(value="/services/add/companyServices/{cif}", method=RequestMethod.GET)
@@ -119,6 +120,8 @@ public class ServiceController {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        Map<LocalDateTime,LocalDateTime> map = new HashMap<>();
+        model.addAttribute("mapa",volunteerTimeDao.getVolunteerTime(dni));
         model.addAttribute("tiempoIni",volunteerTimeDao.getVolunteerTimeInit(dni));
         model.addAttribute("tiempoFin",volunteerTimeDao.getVolunteerTimeFinal(dni));
         session.setAttribute("dniVolunteer",dni);
@@ -128,8 +131,6 @@ public class ServiceController {
         request.setDateReject(null);
         request.setComment();*/
         VolunteerTime volunteerTime = new VolunteerTime();
-        volunteerTime.setBeginningTime(volunteerTimeDao.getVolunteerTimeInit(dni));
-        volunteerTime.setEndingTime(volunteerTimeDao.getVolunteerTimeFinal(dni));
         model.addAttribute("volunteerT", volunteerTime);
 
         return "beneficiary/addVolunteerTime";
@@ -138,6 +139,8 @@ public class ServiceController {
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime,
                                     BindingResult bindingResult,HttpSession session, Model model) {
+        System.out.println(volunteerTime.getBeginningTime());
+        System.out.println(volunteerTime.getEndingTime());
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
