@@ -28,7 +28,6 @@
 </h6>
 
 <table>
-    <tbody>
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
         <td th:text="${volunteer.name}"></td>
@@ -64,7 +63,7 @@
         No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
     </p>
     <p th:unless="*{user == null}">
-        Autenticat com: <span th:text="${user}"></span> </br> <a
+        <!--Autenticat com <span th:text="*{user.name}"></span> --> <a
             href="/logout" th:href="@{/logout}">Eixir</a>
     </p>
 </div>
