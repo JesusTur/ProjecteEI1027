@@ -20,11 +20,11 @@
     No hi ha servicis solicitats a companyies
 </div>
 
-<h6 class="text-left" th:unless="${#lists.isEmpty(volunteers)}">
-    <!--<thead>
-        <th>Usuari:</th>
+<h6 class="text-center" th:unless="${#lists.isEmpty(volunteers)}">
+    <thead>
+        <th>Usuari: </th>
         <td th:text="${user}"></td>
-    </thead>-->
+    </thead>
 </h6>
 
 <table>
@@ -64,7 +64,7 @@
         No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
     </p>
     <p th:unless="*{user == null}">
-        Autenticat com <span th:text="${user}"></span> </br>  <a
+        <!--Autenticat com <span th:text="*{user.name}"></span> --> <a
             href="/logout" th:href="@{/logout}">Eixir</a>
     </p>
 </div>
