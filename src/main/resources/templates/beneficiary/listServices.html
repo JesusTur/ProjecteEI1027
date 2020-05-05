@@ -64,7 +64,7 @@
         No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
     </p>
     <p th:unless="*{user == null}">
-        <!--Autenticat com <span th:text="*{user.name}"></span> --> <a
+        Autenticat com <span th:text="*{user.name}"></span> </br> <a
             href="/logout" th:href="@{/logout}">Eixir</a>
     </p>
 </div>
