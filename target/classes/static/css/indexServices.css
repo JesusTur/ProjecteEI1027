@@ -5,34 +5,19 @@
 @import url('https://fontlibrary.org/face/metropolis');
 
 body{
-    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
-    /* Center and scale the image nicely */
-    background-repeat: no-repeat center fixed;
-    background-size: cover;
-    text-align:center;
-    margin:center;
-    height: 100%;
-    width: 100%;
-    font-size: 16px;
-    position: relative;
-}
-.pezu-bg{
-   /* The image used */
-    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
-
-   /* Add the blur effect */
-   filter: blur(8px);
-   -webkit-filter: blur(8px);
-
-   /* Full height */
-   height: 100%;
-
-   /* Center and scale the image nicely */
-   background-position: center;
-   background-repeat: no-repeat;
+   background: rgb(11,25,143);
+   background: linear-gradient(8deg, rgba(11,25,143,1) 0%, rgba(18,27,187,1) 50%);
    background-size: cover;
+   background-repeat: no-repeat center fixed;
+   text-align:center;
+   background-attachment:fixed;
+   margin:center;
+   height: 100%;
+   width: 100%;
+   font-size: 16px;
+   position: relative;
 }
-/*Capçalera*/
+
 h1{
     font-size: x-large;
     color: black;
