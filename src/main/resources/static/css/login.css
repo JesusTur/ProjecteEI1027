@@ -34,7 +34,7 @@ h2 {
    font-size: 80pt;
    font-weight: normal;
    font-style: normal;
-   color: tomato;
+   color: white;
    text-shadow: 1px 1px 3px orangered;
 
 }
@@ -46,7 +46,7 @@ form {
     max-width: 1000px;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 2px solid #E1E1E1;
-	padding: 40px;
+	padding: 10px;
 }
 input{
     display: block;
