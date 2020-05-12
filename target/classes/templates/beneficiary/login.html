@@ -20,12 +20,12 @@
           th:object="${user}" method="post">
         <p>
             <!--<label>Nom d'usuari:</label>-->
-            <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; Usuari" />
+            <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; NOM D'USUARI" />
         <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
         </p>
         <p>
             <!--<label>Contrasenya:</label>-->
-            <input class="form_control" type="password" th:field="*{password}" placeholder="&#128272; Contrasenya" />
+            <input class="form_control" type="password" th:field="*{password}" placeholder="&#128272; CONTRASENYA" />
         <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </p>
         <input  type="submit" value="ACCEDIR" />

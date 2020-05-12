@@ -20,7 +20,7 @@
           th:object="${user}" method="post">
         <p>
             <!--<label>Nom d'usuari:</label>-->
-            <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; USUARI" />
+            <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; NOM D'USUARI" />
         <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
         </p>
         <p>
