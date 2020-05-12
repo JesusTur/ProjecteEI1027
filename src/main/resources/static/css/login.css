@@ -19,7 +19,7 @@ body{
 
 /*Capçalera*/
 h1{
-    font-size: x-large;
+    font-size: xxx-large;
     color: black;
     font-weight: bold;
 
@@ -31,7 +31,7 @@ h2 {
    margin-right: 66pt;
    margin-left: 50pt;
    font-family: 'MetropolisBlack';
-   font-size: xxx-large;
+   font-size: 80pt;
    font-weight: normal;
    font-style: normal;
    color: tomato;
@@ -41,8 +41,9 @@ h2 {
 form {
     margin:auto;
     margin-top:60pt;
+    height: 300px;
     width: 50%;
-    max-width: 500px;
+    max-width: 1000px;
     background-color: rgba(0, 0, 0, 0.1);
 	border: 2px solid #E1E1E1;
 	padding: 40px;
@@ -51,10 +52,11 @@ input{
     display: block;
     border-style: solid;
     padding: 10px;
+    height: 70px;
     width: 100%;
     margin: 20px 0;
     font-family: 'MetropolisBold';
-    font-size: 20px;
+    font-size: 30px;
 
 }
 input[type="submit"]{
