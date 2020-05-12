@@ -16,10 +16,9 @@ body{
    width: 100%;
    font-size: 16px;
    position: relative;
-}
 
 h1{
-    font-size: x-large;
+    font-size: xxx-large;
     color: black;
     font-weight: bold;
 
@@ -31,36 +30,36 @@ h2 {
    margin-right: 66pt;
    margin-left: 50pt;
    font-family: 'MetropolisBlack';
-   font-size: xxx-large;
+   font-size: 80pt;
    font-weight: normal;
    font-style: normal;
-   color: tomato;
+   color: white;
    text-shadow: 1px 1px 3px orangered;
 
 }
-/*form {
-    margin:auto;
-    width: 50%;
-    max-width: 500px;
-    background-color: rgba(0, 0, 0, 0.1);
-	border: 1px solid #E1E1E1;
-	padding: 40px;
-}
-    margin: 20px 0;
-*/
-input{
-    margin-top:100pt;
-    right:50px
-   /* margin-left: 300pt;
-    margin-right: 50pt;*/
-    display: block;
-    border-style: solid;
-    padding: 8px;
-    width: 20%;
-    font-family: 'MetropolisRegular';
-    font-size: 20px;
 
+form {
+    margin:auto;
+    margin-top:60pt;
+    height: 300px;
+    width: 50%;
+    max-width: 1000px;
+    background-color: rgba(0, 0, 0, 0.1);
+	border: 2px solid #E1E1E1;
+	padding: 10px;
 }
+
+input{
+     display: block;
+     border-style: solid;
+     padding: 10px;
+     height: 70px;
+     width: 100%;
+     margin: 20px 0;
+     font-family: 'MetropolisBold';
+     font-size: 30px;
+}
+
 input[type="submit"]{
     background: linear-gradient(#FFDEAD,#FFE4E1);
     border:0;
