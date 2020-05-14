@@ -16,6 +16,7 @@ body{
    width: 100%;
    font-size: 16px;
    position: relative;
+}
 
 h1{
     font-size: xxx-large;
@@ -41,7 +42,7 @@ h2 {
 form {
     margin:auto;
     margin-top:60pt;
-    height: 300px;
+    height: 140px;
     width: 50%;
     max-width: 1000px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -88,14 +89,24 @@ p{
 
 }
 .loggeduser {
-	color: gray;
-	position:absolute;
-	top: 5px;
-	right:10px
+     height: 50px;
+     position: relative;
+     bottom: -75px;
+}
 
-	/*
-	text-align: right;
-    margin-right: 10pt;*/
+a:link, a:visited {
+  font-family: 'MetropolisSemiBold';
+  background-color: #f44336;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+a:hover, a:active {
+  background-color: red;
 }
 
 
