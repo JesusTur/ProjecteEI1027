@@ -5,7 +5,8 @@
 @import url('https://fontlibrary.org/face/metropolis');
 body{
    background: rgb(11,25,143);
-   background: linear-gradient(8deg, rgba(11,25,143,1) 0%, rgba(18,27,187,1) 50%);background-size: cover;
+   background: linear-gradient(8deg, rgba(11,25,143,1) 0%, rgba(18,27,187,1) 50%);
+   background-size: cover;
    background-repeat: no-repeat center fixed;
    text-align:center;
    background-attachment:fixed;
@@ -16,34 +17,18 @@ body{
    position: relative;
 }
 
-.pezu-bg{
-   /* The image used */
-    background-image: url("https://www.homecare-aid.com/wp-content/uploads/Why-Elderly-Care-Can-Be-So-Important.jpg");
-
-   /* Add the blur effect */
-   filter: blur(8px);
-   -webkit-filter: blur(8px);
-
-   /* Full height */
-   height: 100%;
-
-   /* Center and scale the image nicely */
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-}
-
 /*Capçalera*/
-h1{
-    margin-top:25pt;
+h1 {
+    margin-top: 25pt;
     margin-right: 66pt;
     margin-left: 50pt;
     font-family: 'MetropolisBlack';
-    font-size: xx-large;
+    font-size: 55pt !important;
     font-weight: normal;
     font-style: normal;
-    color: blue;
-
+    color: white !important;
+    text-shadow: 1px 1px 3px orangered;
+    text-decoration: underline;
 }
 
 /* Capçalera de nivell 2                                */
@@ -52,8 +37,18 @@ h2 {
    font-size: xx-large;
    font-weight: normal;
    font-style: normal;
+   font-size: 35pt !important;
    color: tomato;
    text-shadow: 1px 1px 3px orangered;
+}
+
+.text-center {
+    font-family: 'MetropolisBlack';
+    font-size: xxx-large;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+    text-shadow: 1px 1px 3px orangered;
 }
 
 table {
@@ -129,18 +124,26 @@ input[type="submit"]:active{
     transform: scale(0.95);
 }
 
-.loggeduser {
-	font-family: 'MetropolisSemiBold';
-	font-size: normal;
-    font-weight: normal;
-    font-style: normal;
-	color: black;
-	position:absolute;
-	text-align: left;
-	top:0;
-    margin-left: 10pt;
+a:link, a:visited {
+  font-family: 'MetropolisSemiBold';
+  background-color: #f44336;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
 }
 
+a:hover, a:active {
+  background-color: red;
+}
+
+.loggeduser {
+     height: 100px;
+     position: relative;
+     bottom: -75px;
+}
 
 /*Per als errores*/
 .error {

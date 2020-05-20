@@ -12,8 +12,9 @@
 
 </head>
 <body>
-<div layout:fragment="content">
-    <h2 class="text-center">MAJORS A CASA</h2>
+<h2 class="text-center">MAJORS A CASA</h2>
+<div>
+
     <form action="#" th:action="@{/services}" th:object="${user}"  method="post">
         <input type="submit" value="ACCEDIR ALS TEUS SERVEIS" />
     </form>
@@ -23,8 +24,8 @@
         No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
     </p>
     <p th:unless="*{user == null}">
-       <!-- Autenticat com: <span th:text="${user}"></span>  </br>--> <a
-            href="/logout" th:href="@{/logout}">EIXIR</a>
+       <!--Autenticat com: <span th:text="${user}"></span>  </br> -->
+        <a href="/logout" th:href="@{/logout}">EIXIR DE LA SEUA SESSIÓ</a>
     </p>
 </div>
 </body>
