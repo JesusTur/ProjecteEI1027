@@ -3,32 +3,84 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/login.css"
-          th:href="@{/css/login.css}"/>
     <title>Login</title>
     <meta charset="UTF-8"/>
-    <!--<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/metropolis" type="text/css"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Template</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css" th:href="@{/assets/css/login.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-<div layout:fragment="content">
-    <h2 class="text-center">ACCÉS</h2>
-    <form action="#" class="login" th:action="@{/login}"
-          th:object="${user}" method="post">
-        <p>
-            <!--<label>Nom d'usuari:</label>-->
-            <input class="form_control" type="text" th:field="*{user}"  placeholder="&#128100; NOM D'USUARI" />
-        <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
-        </p>
-        <p>
-            <!--<label>Contrasenya:</label>-->
-            <input class="form_control" type="password" th:field="*{password}" placeholder="&#128272; CONTRASENYA" />
-        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-        </p>
-        <input  type="submit" value="ACCEDIR" />
-    </form>
-</div>
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/142/430/original/headshot-of-smiling-old-man-vector.jpg" alt="login" class="login-card-img">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <!--<div class="brand-wrapper">
+                            <img src="/assets/images/logo.svg" alt="logo" class="logo">
+                        </div>-->
+                        <p class="login-card-description">Accedeix als teus serveis</p>
+                        <form action="#" class="login" th:action="@{/login}"
+                              th:object="${user}" method="post">
+                            <div class="form-group">
+                                <label for="usuari" class="sr-only">Email</label>
+                                <input class="form-control" type="text" th:field="*{user}" id="usuari" placeholder="NOM D'USUARI">
+                                <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="sr-only">Password</label>
+                                <input class="form-control" type="password" th:field="*{password}" id="password" placeholder="CONTRASENYA">
+                            </div>
+                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Accedir">
+                        </form>
+                        <a href="#!" class="forgot-password-link">Has olvidat la teua contrasenya?</a>
+                        <nav class="login-card-footer-nav">
+                            <a href="#!">Terms of use.</a>
+                            <a href="#!">Privacy policy</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card login-card">
+          <img src="assets/images/login.jpg" alt="login" class="login-card-img">
+          <div class="card-body">
+            <h2 class="login-card-title">Login</h2>
+            <p class="login-card-description">Sign in to your account to continue.</p>
+            <form action="#!">
+              <div class="form-group">
+                <label for="email" class="sr-only">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="form-prompt-wrapper">
+                <div class="custom-control custom-checkbox login-card-check-box">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember me</label>
+                </div>
+                <a href="#!" class="text-reset">Forgot password?</a>
+              </div>
+              <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
+            </form>
+            <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>
+          </div>
+        </div> -->
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
