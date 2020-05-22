@@ -11,7 +11,7 @@ public class Volunteer {
     private Date applicationDate;
     private Date acceptationDate;
     private Boolean accepted;
-    private String typeServiceVolunteer;
+    private String hobbies;
     private String email;
     private String user;
     private String pwd;
@@ -81,12 +81,12 @@ public class Volunteer {
         this.accepted = accepted;
     }
 
-    public String getTypeServiceVolunteer() {
-        return typeServiceVolunteer;
+    public String getHobbies() {
+        return hobbies;
     }
 
-    public void setTypeServiceVolunteer(String typeServiceVolunteer) {
-        this.typeServiceVolunteer = typeServiceVolunteer;
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
     }
 
     public String getEmail() {

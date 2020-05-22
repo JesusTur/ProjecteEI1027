@@ -5,7 +5,12 @@ import es.projecteEI1027.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Calendar;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -19,5 +24,14 @@ public class VolunteerController {
     public String addVolunteer(Model model) {
         model.addAttribute("volunteer", new Volunteer());
         return "volunteer/add";
+    }
+    @RequestMapping(value="/add", method= RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "beneficiary/add";
+        volunteer.setApplicationDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        volunteerDao.addVolunteer(volunteer);
+        return "redirect:/";
     }
 }

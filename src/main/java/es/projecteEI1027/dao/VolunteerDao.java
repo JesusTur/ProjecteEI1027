@@ -29,7 +29,7 @@ public class VolunteerDao {
                     "INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)",
                     volunteer.getName(), volunteer.getSurname(), volunteer.getDni(), volunteer.getPhoneNumber(),
                     volunteer.getBirthDate(),volunteer.getApplicationDate(),volunteer.getAcceptationDate(),
-                    volunteer.getAccepted(), volunteer.getTypeServiceVolunteer(), volunteer.getEmail(),
+                    volunteer.getAccepted(), volunteer.getHobbies(), volunteer.getEmail(),
                     volunteer.getUser(),volunteer.getPwd());
         }
         catch(DuplicateKeyException e) {
@@ -49,7 +49,7 @@ public class VolunteerDao {
             jdbcTemplate.update("UPDATE Volunteer SET name = ?, surname = ?, phoneNumber = ?," +
                             "birthDate = ?, applicationDate = ?, acceptationDate = ?, accepted = ?, userVolunteer = ?, passwordVolunteer = ?, typeServiceVolunteer = ?, email = ? WHERE dni=?",
                     volunteer.getName(), volunteer.getSurname(), volunteer.getPhoneNumber(), volunteer.getBirthDate(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getAccepted(),
-                    volunteer.getUser(), volunteer.getPwd(), volunteer.getTypeServiceVolunteer(),
+                    volunteer.getUser(), volunteer.getPwd(), volunteer.getHobbies(),
                     volunteer.getEmail(), volunteer.getDni());
         }
         catch (DataAccessException e){
