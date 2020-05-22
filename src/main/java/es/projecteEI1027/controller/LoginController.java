@@ -1,7 +1,13 @@
 package es.projecteEI1027.controller;
 
 import es.projecteEI1027.dao.BeneficiaryDao;
+import es.projecteEI1027.dao.CASDao;
+import es.projecteEI1027.dao.SocialWorkerDao;
+import es.projecteEI1027.dao.VolunteerDao;
 import es.projecteEI1027.model.Beneficiary;
+import es.projecteEI1027.model.CAS;
+import es.projecteEI1027.model.SocialWorker;
+import es.projecteEI1027.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +23,15 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    private Beneficiary beneficiary;
+    private Volunteer volunteer;
+    private SocialWorker socialWorker;
+    private CAS cas;
     @Autowired
     private BeneficiaryDao userDao;
+    private VolunteerDao volunteerDao;
+    private SocialWorkerDao socialWorkerDao;
+    private CASDao casDao;
 
     @RequestMapping("/login")
     public String login(Model model){
