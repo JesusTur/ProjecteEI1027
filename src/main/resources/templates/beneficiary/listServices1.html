@@ -28,7 +28,7 @@
     </thead>
 </h6>
 
-<table th:unless="${#lists.isEmpty(volunteers)}">>
+<table th:unless="${#lists.isEmpty(volunteers)}" class="table table-condensed">>
     <th>Voluntaris: </th>
     <tr th:each="volunteer: ${volunteers}">
         <td th:text="${volunteer.name}"></td>
@@ -55,7 +55,7 @@
     </tbody>
 </table>
 <div class="text-center">
-    <a href="/services/add"><button type="button" class="btn btn-success">Añadir servicio</button></a>
+    <a href="/services/add"><button type="button" class="btn btn-success">Afegir servici</button></a>
     <a href="/" class="btn btn-primary" role="button">Tornar</a>
 </div>
 <div class="loggeduser" th:object="${session}">
