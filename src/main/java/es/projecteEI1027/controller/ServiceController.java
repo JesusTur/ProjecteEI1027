@@ -83,10 +83,10 @@ public class ServiceController {
                                    BindingResult bindingResult,HttpSession session, Model model) {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
-        List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(tipo,userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+       //List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         Map<String,Float> precios = userDao.getPrecioContract(listCompany);
         session.setAttribute("tipo", tipo);
-        model.addAttribute("volunteerServices", volunteerServices);
+        //model.addAttribute("volunteerServices", volunteerServices);
         model.addAttribute("companiesServices", listCompany);
         model.addAttribute("precios",precios);
         model.addAttribute("dni",userDao.getBeneficiaryPerNom(user.getUser()).getDni());

@@ -47,7 +47,7 @@ public class VolunteerDao {
     public void updateVolunteer(Volunteer volunteer) {
         try{
             jdbcTemplate.update("UPDATE Volunteer SET name = ?, surname = ?, phoneNumber = ?," +
-                            "birthDate = ?, applicationDate = ?, acceptationDate = ?, accepted = ?, userVolunteer = ?, passwordVolunteer = ?, typeServiceVolunteer = ?, email = ? WHERE dni=?",
+                            "birthDate = ?, applicationDate = ?, acceptationDate = ?, accepted = ?, userVolunteer = ?, passwordVolunteer = ?, hobbie = ?, email = ? WHERE dni=?",
                     volunteer.getName(), volunteer.getSurname(), volunteer.getPhoneNumber(), volunteer.getBirthDate(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getAccepted(),
                     volunteer.getUser(), volunteer.getPwd(), volunteer.getHobbies(),
                     volunteer.getEmail(), volunteer.getDni());

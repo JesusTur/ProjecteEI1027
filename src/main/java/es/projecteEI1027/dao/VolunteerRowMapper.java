@@ -17,7 +17,7 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setAcceptationDate(rs.getDate("applicationDate"));
         volunteer.setAcceptationDate(rs.getDate("acceptationDate"));
         volunteer.setAccepted(rs.getBoolean("accepted"));
-        volunteer.setHobbies(rs.getString("typeServiceVolunteer"));
+        volunteer.setHobbies(rs.getString("hobbie"));
         volunteer.setEmail(rs.getString("email"));
         volunteer.setUser(rs.getString("userVolunteer"));
         volunteer.setPwd(rs.getString("passwordVolunteer"));

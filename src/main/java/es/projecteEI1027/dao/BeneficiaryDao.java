@@ -171,11 +171,11 @@ public class BeneficiaryDao {
         }
         return precios;
     }
-    public List<Volunteer> getVolunteerPerBen(String tipo,String ben){
+    public List<Volunteer> getVolunteerPerBen(String ben){
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE typeServiceVolunteer = ?  AND accepted IS TRUE " +
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE  AND accepted IS TRUE " +
                             "AND dni IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary IS NULL) AND dni NOT IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary = ?)",
-                    new VolunteerRowMapper(), tipo, ben);
+                    new VolunteerRowMapper(), ben);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();
