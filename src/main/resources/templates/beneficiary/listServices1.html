@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/listServices.css"
+          th:href="@{/css/listServices.css}"/>
+    <title>Llista d'usuaris del sistema</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap)
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
+</head>
+<body>
+<h1 class="text-center">Llista de serveis contratats</h1>
+<div class="text-center" th:if="${#lists.isEmpty(volunteers)}">
+    No hi ha servicis solicitats a voluntaris
+</div>
+<div class="text-center" th:if="${#lists.isEmpty(companies)}">
+    No hi ha servicis solicitats a companyies
+</div>
+
+<h6 class="text-center" th:unless="${#lists.isEmpty(volunteers)}">
+    <thead>
+        <th>Usuari: </th>
+        <td th:text="${user}"></td>
+    </thead>
+</h6>
+
+<table th:unless="${#lists.isEmpty(volunteers)}" class="table table-condensed">>
+    <th>Voluntaris: </th>
+    <tr th:each="volunteer: ${volunteers}">
+        <td th:text="${volunteer.name}"></td>
+        <td th:text="${volunteer.typeServiceVolunteer}"></td>
+    </tr>
+</table>
+<!--<table th:unless="${#lists.isEmpty(companiesServices)}"  class="table table-condensed">
+
+    <tbody>
+    <th>Companyies per a solicitar: </th>
+    <tr th:each="company: ${companiesServices}">
+        <td th:text="${company.nameCompany}"></td>
+    </tr>
+    </tbody>
+</table>-->
+<table th:unless="${#lists.isEmpty(companies)}">
+    <tbody>
+    <th>Companyies actives: </th>
+    <tr th:each="company: ${companies}">
+        <td th:text="${company.nameCompany}"></td>
+        <td th:text="${company.serviceType}"></td>
+
+    </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <a href="/services/add"><button type="button" class="btn btn-success">Afegir servici</button></a>
+    <a href="/" class="btn btn-primary" role="button">Tornar</a>
+</div>
+<div class="loggeduser" th:object="${session}">
+    <p th:if="*{user == null}">
+        No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+    </p>
+    <p th:unless="*{user == null}">
+        <!--Autenticat com <span th:text="*{user.name}"></span> --> <a
+            href="/logout" th:href="@{/logout}">Eixir</a>
+    </p>
+</div>
+</body>
+</html>
