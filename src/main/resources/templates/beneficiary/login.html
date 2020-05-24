@@ -37,7 +37,9 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="password" class="sr-only">Password</label>
-                                <input class="form-control" type="password" th:field="*{password}" id="password" placeholder="CONTRASENYA">
+                                <input class="form-control" type="password" th:field="*{password}" id="password"  placeholder="CONTRASENYA">
+                                <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
                             </div>
                             <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Accedir">
                         </form>
