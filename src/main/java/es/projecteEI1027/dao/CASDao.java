@@ -4,9 +4,10 @@ import es.projecteEI1027.model.CAS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-
+@Repository
 public class CASDao {
     private JdbcTemplate jdbcTemplate;
 

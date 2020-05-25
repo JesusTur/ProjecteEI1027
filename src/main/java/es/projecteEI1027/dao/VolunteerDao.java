@@ -74,9 +74,9 @@ public class VolunteerDao {
             return null;
         }
     }
-    public Volunteer getVolunteerPerUser(String userCas){
+    public Volunteer getVolunteerPerUser(String uservolunteer){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE userCAS = ?", new VolunteerRowMapper(),userCas);
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE uservolunteer = ?", new VolunteerRowMapper(),uservolunteer);
         }
         catch(EmptyResultDataAccessException e) {
             return null;

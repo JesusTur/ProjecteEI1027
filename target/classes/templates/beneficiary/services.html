@@ -3,54 +3,72 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/services.css"
-          th:href="@{/css/services.css}"/>
-    <title>Login</title>
-    <meta charset="UTF-8"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Sol·licitar servei</title>
+    <!--<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />-->
 
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
 </head>
-<body>
-<div class="pezu-bg"></div>
-<div layout:fragment="content">
-    <h2>SERVEIS</h2>
-    <form action="#" th:action="@{/services/add}"
-          th:object="${tipo}" method="post">
-        <select name="tipo">
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"
+    ><span class="d-block d-lg-none">Els meus serveis</span><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="https://www.mes.co.za/wp-content/uploads/bb-plugin/cache/man-place-holder2-circle.png" alt="" /></span></a
+    ><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <a>Usuari: </a>
+    <a th:text="${user}"></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Inici</a></li>
+            <!--Hay que configurar los retornos, poder volver hacia atrás.-->
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Els meus serveis</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" th:object="${session}" href="/logout" th:href="@{/logout}">Eixir</a></li>
 
-            <option>catering</option>
+        </ul>
+    </div>
+</nav>
+<!-- Page Content-->
+<div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about">
+        <div class="resume-section-content">
+            <h1 class="mb-0">Sol·licitar <span class="text-primary">Serveis</span></h1>
 
-            <option>limpieza de hogar</option>
+            <p>
+            <div layout:fragment="content">
+            <form action="#" th:action="@{/services/add}"
+                  th:object="${tipo}" method="post">
 
-            <option>cuidado personal</option>
 
-        </select>
-       <!-- <p>
-            <label>Nom d'usuari:</label>
-            <input class="form_control" type="text" th:field="*{user}"/>tipos: {catering,....
-        <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
-        </p>
-        <p>
-            <label>Contrasenya:</label>
-            <input class="form_control" type="password" th:field="*{password}"/>
-        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-        </p>-->
-        <input type="submit" value="Accedir" />
+                <select name="tipo" class="dropdown dropright">
 
-        <div class="loggeduser" th:object="${session}">
-            <p th:if="*{user == null}">
-                No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+                    <option class="dropdown-item">catering</option>
+
+                    <option class="dropdown-item">limpieza de hogar</option>
+
+                    <option class="dropdown-item">cuidado personal</option>
+
+                </select>
+                <input type="submit" class="btn btn-primary  btn-xl js-scroll-trigger" value="Afegir Servei" />
+
+            </form>
+            </div>
             </p>
-            <p th:unless="*{user == null}">
-                <!--Autenticat com <span th:text="*{user.name}"></span> -->
-                <a href="/logout" th:href="@{/logout}">Eixir</a>
-            </p>
+
+
         </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-    </form>
-
-
+    </section>
 </div>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 
 @Controller
@@ -34,4 +35,15 @@ public class VolunteerController {
         volunteerDao.addVolunteer(volunteer);
         return "redirect:/";
     }
+    @RequestMapping("/login")
+    public String listServices(HttpSession session, Model model){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            //model.addAttribute("companyServices", contractDao.getContracts());
+            return "beneficiary/login";
+        }
+        //model.addAttribute("companyServices", contractDao.getContracts());
+        return "volunteer/indexVolunteer";
+    }
+
 }
