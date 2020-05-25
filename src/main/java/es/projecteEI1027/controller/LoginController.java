@@ -74,6 +74,17 @@ public class LoginController {
             }
             return "volunteer/indexVolunteer";
         }
+        if (casDao.getCASPerUser(usr.getUser()) != null){
+            if(! casDao.getCASPerUser(usr.getUser()).getPassword().equals(usr.getPassword())){
+                bindingResult.rejectValue("password", "invalid",
+                        "La contrasenya es incorrecta");
+                return "beneficiary/login";
+            }
+            CAS user = casDao.getCASPerUser(usr.getUser());
+            session.setAttribute("user", user);
+
+
+        }
 
         if(userDao.getBeneficiaryPerNom(usr.getUser()) == null && volunteerDao.getVolunteerPerUser(usr.getUser()) == null && casDao.getCASPerUser(usr.getUser()) == null){
             bindingResult.rejectValue("user", "invalid",
