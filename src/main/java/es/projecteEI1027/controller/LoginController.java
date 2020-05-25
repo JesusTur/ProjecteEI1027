@@ -36,6 +36,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(Model model){
         model.addAttribute("user", new Beneficiary());
+
         return "beneficiary/login";
     }
     @RequestMapping("/logout")
