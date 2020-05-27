@@ -2,7 +2,8 @@ package es.projecteEI1027.model;
 
 public enum ServiceType {
     catering("catering"),
-    regularServices("regular services");
+    limpieza_de_hogar("limpieza de hogar"),
+    cuidado_personal("cuidado personal");
     public final String type;
     ServiceType(String s) {
         this.type=s;

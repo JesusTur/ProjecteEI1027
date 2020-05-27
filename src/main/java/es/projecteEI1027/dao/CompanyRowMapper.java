@@ -18,7 +18,7 @@ public final class CompanyRowMapper implements RowMapper<Company> {
         company.setRegisteredDate(rs.getDate("registeredDate"));
         company.setContractPersonName(rs.getString("contractPersonName"));
         company.setCompanyMail(rs.getString("email"));
-        company.setServiceType(ServiceType.valueOf(rs.getString("typeOfService")));
+        company.setServiceType(rs.getString("typeOfService"));
         return company;
     }
 }

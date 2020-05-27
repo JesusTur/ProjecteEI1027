@@ -9,16 +9,16 @@ public class Company {
     private String user;
     private String password;
     private Date registeredDate;
-    private ServiceType serviceType;
+    private String serviceType;
     private String contractPersonName;
     private String companyMail;
     public Company(){}
 
-    public ServiceType getServiceType() {
+    public String getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
     }
 

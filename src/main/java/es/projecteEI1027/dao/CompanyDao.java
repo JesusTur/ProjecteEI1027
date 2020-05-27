@@ -25,7 +25,7 @@ public class CompanyDao {
     public void addCompany(Company company){
         try {
             jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", company.getCif(), company.getNameCompany(), company.getAddress(), company.getUser(),
-                    company.getPassword(), company.getRegisteredDate(), company.getContractPersonName(), company.getCompanyMail(), company.getServiceType().toString());
+                    company.getPassword(), company.getRegisteredDate(), company.getContractPersonName(), company.getCompanyMail(), company.getServiceType());
 
         } catch (DuplicateKeyException e){
 
@@ -42,7 +42,7 @@ public class CompanyDao {
     public void updateCompany(Company company){
         jdbcTemplate.update("UPDATE Company SET name = ?, address = ?, userCompany = ?, passwordCompany = ?, registeredDate = ?, contractPersonName = ?, email = ?," +
                 "typeOfService = ? WHERE cif = ?", company.getNameCompany(), company.getAddress(), company.getUser(),  company.getPassword(), company.getRegisteredDate(),
-                company.getContractPersonName(), company.getCompanyMail(), company.getServiceType().toString() , company.getCif());
+                company.getContractPersonName(), company.getCompanyMail(), company.getServiceType(), company.getCif());
     }
     public List<Company> getCompanies(){
         try {

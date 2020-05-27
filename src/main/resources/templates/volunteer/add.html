@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registrar beneficiario</title>
+    <title>Registrar Voluntari</title>
     <meta charset="UTF-8" />
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Nuevo beneficiario</h2>
+<h2>Nuevo voluntario</h2>
 <form action="#" th:action="@{/volunteer/add}"
       th:object="${volunteer}" method="post">
     <table>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" required=""/></td>
+            <td><input type="text" maxlength="9" th:field="*{dni}" required=""/></td>
         </tr>
         <tr>
             <td><label>Teléfono</label></td>

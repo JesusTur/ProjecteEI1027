@@ -2,6 +2,6 @@
 t
 java:S2293@"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
 >	java:S1087")Either remove or fill this block of code.(‚  
-C	java:S108#")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼
 >	java:S108+")Either remove or fill this block of code.(‚  
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼
+C	java:S108#")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ

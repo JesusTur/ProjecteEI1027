@@ -82,7 +82,9 @@ public class LoginController {
             }
             CAS user = casDao.getCASPerUser(usr.getUser());
             session.setAttribute("user", user);
-
+            if(user.getUser().equals("casManager")){
+                return "cas/company/registerCompany";
+            }
 
         }
 
