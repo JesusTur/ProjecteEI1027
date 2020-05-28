@@ -31,7 +31,7 @@
                         <form action="#" class="login" th:action="@{/login}"
                               th:object="${user}" method="post">
                             <div class="form-group">
-                                <label for="usuari" class="sr-only">Email</label>
+                                <label for="usuari" class="sr-only">Usuari</label>
                                 <input class="form-control" type="text" th:field="*{user}" id="usuari" placeholder="NOM D'USUARI">
                                 <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
                             </div>
