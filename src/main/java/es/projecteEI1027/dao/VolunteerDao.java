@@ -51,8 +51,17 @@ public class VolunteerDao {
                     volunteer.getName(), volunteer.getSurname(), volunteer.getPhoneNumber(), volunteer.getBirthDate(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getAccepted(),
                     volunteer.getUser(), volunteer.getPwd(), volunteer.getHobbies(),
                     volunteer.getEmail(), volunteer.getDni());
+
         }
         catch (DataAccessException e){
+        }
+    }
+    public void acceptVolunteer(Volunteer volunteer) {
+        try {
+            jdbcTemplate.update("UPDATE Volunteer SET acceptationDate = ?, accepted = ?WHERE dni=?",
+                  volunteer.getAcceptationDate(), volunteer.getAccepted(), volunteer.getDni());
+
+        } catch (DataAccessException e) {
         }
     }
     public List<Volunteer> getVolunteers() {
@@ -81,6 +90,16 @@ public class VolunteerDao {
         catch(EmptyResultDataAccessException e) {
             return null;
         }
+    }
+    public List<Volunteer> getUnacceptedVolunteers(){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE accepted = 'f'",
+                    new VolunteerRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+
     }
 
 

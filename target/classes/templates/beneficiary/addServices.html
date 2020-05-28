@@ -27,7 +27,9 @@
     </tr>
     </tbody>
 </table>
-<a href="/" class="btn btn-primary" role="button">Tornar</a>
+<form action="#" th:action="@{/services}" th:object="${user}"  method="post">
+    <input type="submit" class="btn btn-primary" role="button" value="Tornar">
+</form>
 </body>
 </html>
     <!--</table>

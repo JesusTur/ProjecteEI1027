@@ -1,6 +1,6 @@
 
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Øâƒº
->	java:S108")Either remove or fill this block of code.(πÂö¸
->	java:S108&")Either remove or fill this block of code.(Ç††ç
 o
 java:S22935"YReplace the type specification in this constructor call with the diamond operator ("<>").(ﬁ¨πÖ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Øâƒº
+>	java:S108&")Either remove or fill this block of code.(Ç††ç
+>	java:S108")Either remove or fill this block of code.(πÂö¸

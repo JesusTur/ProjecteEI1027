@@ -1,0 +1,5 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ö·’î
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÂóéÝ
+m	java:S116	"XRename this field "TypeOfService" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“¡¬œ

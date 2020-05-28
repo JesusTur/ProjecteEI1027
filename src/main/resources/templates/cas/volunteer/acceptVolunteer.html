@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/majorsACasa.css"
+          th:href="@{/css/majorsACasa.css}"/>
+    <title>Acceptar Voluntaris</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No hi ha voluntaris sense acceptar</div>
+<table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-condensed">
+
+    <tbody>
+    <th>Voluntaris no acceptats: </th>
+    <tr>
+        <td>nNom</td>
+        <td>Cognom</td>
+        <td>Dni</td>
+        <td>Nº teléfon</td>
+        <td>Data naixement</td>
+        <td>Data de registre</td>
+        <td>Hobbies</td>
+        <td>email</td>
+        <td></td>
+    </tr>
+    <tr th:each="volunteer: ${volunteers}">
+        <td th:text="${volunteer.name}"></td>
+        <td th:text="${volunteer.surname}"></td>
+        <td th:text="${volunteer.dni}"></td>
+        <td th:text="${volunteer.phoneNumber}"></td>
+        <td th:text="${volunteer.birthDate}"></td>
+        <td th:text="${volunteer.applicationDate}"></td>
+        <td th:text="${volunteer.hobbies}"></td>
+        <td th:text="${volunteer.email}"></td>
+        <td><a th:href="@{/cas/acceptVolunteer/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-warning">acceptar</button></a></td>
+    </tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>

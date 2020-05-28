@@ -31,6 +31,7 @@ public class VolunteerController {
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "beneficiary/add";
+        volunteer.setAccepted(false);
         volunteer.setApplicationDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerDao.addVolunteer(volunteer);
         return "redirect:/";
