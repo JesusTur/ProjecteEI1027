@@ -45,3 +45,11 @@ h
 8src/main/resources/templates/cas/company/addCompany.html,3\9\39d9e6f0b1f420cc1a7fbfe6d5e3cfbd7fc288b5
 i
 9src/main/java/es/projecteEI1027/dao/CompanyRowMapper.java,9\8\98aafe56052b495eb8b30753fd502061e80fbc0a
+q
+Asrc/main/java/es/projecteEI1027/controller/CompanyController.java,f\7\f7cf4a19c00101f74a22290ddbf100e2d904cd7e
+k
+;src/main/java/es/projecteEI1027/dao/VolunteerRowMapper.java,3\3\3313cbe90d2e22e5163b1b388470b82d9481a4ff
+P
+ target/classes/static/index.html,5\9\59a68c1a4f2f8088bfc17d204d9b43a7f34c10e1
+e
+5target/classes/templates/beneficiary/addServices.html,d\a\dab3d999fc51c07b027c224572932b4c80d0f1b8

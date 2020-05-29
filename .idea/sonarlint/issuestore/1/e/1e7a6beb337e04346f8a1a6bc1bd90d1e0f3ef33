@@ -1,29 +1,26 @@
 
 
-java:S1450"]Remove the "beneficiaryDao" field and declare it as a local variable in the relevant methods.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
-x
-java:S1450"[Remove the "volunteerDao" field and declare it as a local variable in the relevant methods.(¦»ú»8õ§³º¥.
-l
-java:S4488,"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äýÿÿÿÿ8±ÒÄº¥.
-r
-java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(Ž¬±…8àª®º¥.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
-Z	java:S1064"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ýÿÿÿÿ8þƒÿ¼¥.
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¡Âï¼¥.
-r
-java:S1128"URemove this unused import 'org.springframework.web.bind.annotation.RequestAttribute'.(³º„„8£½¼¥.
-T
-java:S1068"2Remove this unused "beneficiaryDao" private field.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
-M
-java:S1068"0Remove this unused "volunteerDao" private field.(¦»ú»8†£¬º¥.
+java:S1450"]Remove the "beneficiaryDao" field and declare it as a local variable in the relevant methods.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
+w
+java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ8‹Ý±º¥.
+L
+java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ8†£¬º¥.
+Z	java:S106A"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ýÿÿÿÿ8þƒÿ¼¥.
 [
-java:S3752%">Add a "method" parameter to this "@RequestMapping" annotation.(±ê 8îŒ²¼¥.
+java:S3752&">Add a "method" parameter to this "@RequestMapping" annotation.(±ê 8îŒ²¼¥.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
+G
+java:S1068"*Remove this unused "casDao" private field.(Ž¬±…8å°àÞ¥.
+T
+java:S1068"2Remove this unused "beneficiaryDao" private field.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
 i
 java:S1128	"GRemove this unused import 'org.springframework.validation.ObjectError'.(ý£¿®ÿÿÿÿÿ8¡Âï¼¥.
-G
-java:S1068"*Remove this unused "casDao" private field.(Ž¬±…8¡Î§º¥.
-w
-java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ8‹Ý±º¥.
-L
-java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ8†£¬º¥.
+l
+java:S44889"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äýÿÿÿÿ8±ÒÄº¥.
+[
+java:S3752F">Add a "method" parameter to this "@RequestMapping" annotation.(…´…Ø8ÉÇ£â¥.
+r
+java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(Ž¬±…8å°àÞ¥.
+e
+java:S4488L"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’êù´8™­½ã¥.
+U	java:S106R"9Replace this use of System.out or System.err by a logger.(Þ¬õ·8Èòþã¥.

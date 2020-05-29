@@ -1,23 +1,23 @@
 
-t
-java:S2293h"YReplace the type specification in this constructor call with the diamond operator ("<>").(«ıšùÿÿÿÿ
-u
-java:S2293‡"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
->	java:S108[")Either remove or fill this block of code.(‚  
-T
-java:S1128">Remove this unused import 'javax.validation.constraints.Null'.(ã¥˜
-p
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş¬¹…
-K
-java:S1128"0Remove this unused import 'java.sql.Types.NULL'.(¸İÿúÿÿÿÿ
->	java:S108P")Either remove or fill this block of code.(‚  
-u
-java:S2293µ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
 p
 java:S2293”"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş¬¹…
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼
+C	java:S108,")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
+T
+java:S1128">Remove this unused import 'javax.validation.constraints.Null'.(ã¥˜
+K
+java:S1128"0Remove this unused import 'java.sql.Types.NULL'.(¸İÿúÿÿÿÿ
+C	java:S1088")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
+>	java:S108[")Either remove or fill this block of code.(‚  
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş¬¹…
+u
+java:S2293µ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
+>	java:S108B")Either remove or fill this block of code.(‚  
+t
+java:S2293h"YReplace the type specification in this constructor call with the diamond operator ("<>").(«ıšùÿÿÿÿ
 I
 java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ
-C	java:S1088")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
-C	java:S108,")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
->	java:S108B")Either remove or fill this block of code.(‚  
+>	java:S108P")Either remove or fill this block of code.(‚  
+u
+java:S2293‡"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼

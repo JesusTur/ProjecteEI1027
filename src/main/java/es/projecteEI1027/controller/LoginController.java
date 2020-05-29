@@ -1,9 +1,6 @@
 package es.projecteEI1027.controller;
 
-import es.projecteEI1027.dao.BeneficiaryDao;
-import es.projecteEI1027.dao.CASDao;
-import es.projecteEI1027.dao.SocialWorkerDao;
-import es.projecteEI1027.dao.VolunteerDao;
+import es.projecteEI1027.dao.*;
 import es.projecteEI1027.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +26,8 @@ public class LoginController {
     private VolunteerDao volunteerDao;
     @Autowired
     private CASDao casDao;
+    @Autowired
+    private CompanyDao companyDao;
 
     @RequestMapping("/login")
     public String login(Model model){
@@ -73,6 +72,16 @@ public class LoginController {
                 return "volunteer/noAcceptedYet";
             }
             return "volunteer/indexVolunteer";
+        }
+        if(companyDao.getCompanyPerUser(usr.getUser()) != null){
+            if(! companyDao.getCompanyPerUser(usr.getUser()).getPassword().equals((usr.getPassword()))){
+                bindingResult.rejectValue("password", "invalid",
+                        "La contrasenya es incorrecta");
+                return "beneficiary/login";
+            }
+            Company user = companyDao.getCompanyPerUser(usr.getUser());
+            session.setAttribute("user", user);
+            return "company/indexCompany";
         }
         if (casDao.getCASPerUser(usr.getUser()) != null){
             if(! casDao.getCASPerUser(usr.getUser()).getPassword().equals(usr.getPassword())){

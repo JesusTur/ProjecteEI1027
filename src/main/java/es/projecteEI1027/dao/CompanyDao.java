@@ -62,4 +62,13 @@ public class CompanyDao {
             return null;
         }
     }
+    public Company getCompanyPerUser(String user){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE userCompany = ?",
+                    new CompanyRowMapper(), user);
+        }
+        catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
 }
