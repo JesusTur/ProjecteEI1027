@@ -12,7 +12,7 @@ public final class ContractRowMapper implements RowMapper<Contract> {
         Contract contract = new Contract();
         contract.setId(rs.getInt("id"));
         contract.setCif(rs.getString("cif"));
-        contract.setTypeOfService(ServiceType.valueOf(rs.getString("typeOfService")));
+        contract.setTypeOfService(rs.getString("typeOfService"));
         contract.setFinalDate(rs.getDate("finalDate"));
         contract.setStartDate(rs.getDate("startDate"));
         contract.setQuantity(rs.getInt("quantity"));

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Contract {
     private int id;
     private String cif;
-    ServiceType typeOfService;
+    private String typeOfService;
     private Date startDate;
     private Date finalDate;
     private int quantity;
@@ -37,11 +37,11 @@ public class Contract {
         this.cif = cif;
     }
 
-    public ServiceType getTypeOfService() {
+    public String getTypeOfService() {
         return typeOfService;
     }
 
-    public void setTypeOfService(ServiceType typeOfService) {
+    public void setTypeOfService(String typeOfService) {
         this.typeOfService = typeOfService;
     }
 

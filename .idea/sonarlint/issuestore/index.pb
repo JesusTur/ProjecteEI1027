@@ -21,8 +21,6 @@ c
 3src/main/java/es/projecteEI1027/dao/CompanyDao.java,7\0\70c98f290d734bf6031afba66ebce76a638c5d3d
 _
 /src/main/java/es/projecteEI1027/dao/CASDao.java,1\9\1954fac791ac080154a9930519a4810881c0e232
-i
-9src/main/resources/templates/volunteer/noAcceptedYet.html,4\b\4bb1f0c8f3a7d8fc68fd5f6e7e5ed333241a8da8
 b
 2target/classes/templates/beneficiary/services.html,f\7\f79916af01bf8d977097057c159228c5d36037b0
 s
@@ -37,12 +35,8 @@ b
 2src/main/java/es/projecteEI1027/model/Company.java,d\e\dec3e7c7365e29577234fc89544e23562403d9c0
 f
 6src/main/java/es/projecteEI1027/model/ServiceType.java,1\5\15dad12eb338e407ee62341829b6ae32a9f0d9f7
-_
-/src/main/resources/templates/volunteer/add.html,a\6\a6e2dbc308789f2d4dd2f8e3ee5b0a02588e1f59
 m
 =src/main/java/es/projecteEI1027/controller/CasController.java,1\e\1e7a6beb337e04346f8a1a6bc1bd90d1e0f3ef33
-h
-8src/main/resources/templates/cas/company/addCompany.html,3\9\39d9e6f0b1f420cc1a7fbfe6d5e3cfbd7fc288b5
 i
 9src/main/java/es/projecteEI1027/dao/CompanyRowMapper.java,9\8\98aafe56052b495eb8b30753fd502061e80fbc0a
 q

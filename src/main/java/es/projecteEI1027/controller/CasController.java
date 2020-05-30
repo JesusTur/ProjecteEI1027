@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,7 @@ public class CasController {
     private CompanyDao companyDao;
     private ContractDao contractDao;
     private VolunteerDao volunteerDao;
+    private  RequestDao requestDao;
 
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
@@ -34,6 +36,10 @@ public class CasController {
     public  void setContractDao(ContractDao contractDao){this.contractDao=contractDao;}
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao){this.volunteerDao=volunteerDao;}
+    @Autowired
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
+    }
 
     @RequestMapping(value = "/addCompany")
     public String addCompany(Model model, HttpSession session){
@@ -55,7 +61,7 @@ public class CasController {
         return "cas/company/addCompany";
     }
     @RequestMapping(value="/addCompany", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("company") Company company, Model model, BindingResult bindingResult){
+    public String processAddSubmit(@ModelAttribute("company") Company company, Model model, BindingResult bindingResult, HttpSession session){
         if(bindingResult.hasErrors()){
             ServiceType[] types = ServiceType.values();
             model.addAttribute("types", types);
@@ -64,8 +70,24 @@ public class CasController {
         company.setRegisteredDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         System.out.println(company.getRegisteredDate());
         companyDao.addCompany(company);
-        return "cas/company/registerCompany.html";
+        Contract contract = new Contract();
+        model.addAttribute("contract", contract);
+        session.setAttribute("company", company);
+        return "cas/company/addContract";
 
+    }
+    @RequestMapping(value = "/addContract", method = RequestMethod.POST)
+    public String addContract(@ModelAttribute("contract") Contract contract, HttpSession session){
+        Company company = (Company) session.getAttribute("company");
+        contract.setCif(company.getCif());
+        contract.setTypeOfService(company.getServiceType());
+        contract.setStartDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        int id = contractDao.getMAXId() + 1;
+        contract.setId(id);
+        contract.setPriceUnit(100f);
+        System.out.println(contract.getCif());
+        contractDao.addContract(contract);
+        return "cas/company/registerCompany.html";
     }
     @RequestMapping(value = "/acceptVolunteer")
     public String acceptVolunteer(Model model){
@@ -81,5 +103,36 @@ public class CasController {
         volunteerDao.acceptVolunteer(volunteer);
         System.out.println(volunteerDao.getVolunteer(dni).getAccepted());
         return"cas/volunteer/indexCasVolunteer";
+    }
+    @RequestMapping(value = "/listRequests")
+    public String listRequest(Model model){
+        List<Request> req = requestDao.getPendentRequests();
+        HashMap<Beneficiary, Request> requests = new HashMap<>();
+        for(Request r : req){
+            Beneficiary beneficiary = beneficiaryDao.getBeneficiary(r.getDniBeneficiary());
+            requests.put(beneficiary, r);
+        }
+        model.addAttribute("requests", requests);
+        return "cas/committe/pendingRequests";
+    }
+    @RequestMapping(value = "/denegar/{id}")
+    public String denegarServei(@PathVariable int id, Model model){
+        Request request = requestDao.getRequest(id);
+        request.setRequestState(RequestState.rejected);
+        request.setDateReject(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        requestDao.updateRequest(request);
+        List<Request> req = requestDao.getPendentRequests();
+        HashMap<Beneficiary, Request> requests = new HashMap<>();
+        for(Request r : req){
+            Beneficiary beneficiary = beneficiaryDao.getBeneficiary(r.getDniBeneficiary());
+            requests.put(beneficiary, r);
+        }
+        model.addAttribute("requests", requests);
+        return "cas/committe/pendingRequests";
+    }
+    @RequestMapping(value = "/mostrarCompanyia/{id}")
+    public String  mostrarCompanyies(@PathVariable int id, Model model){
+
+        return"";
     }
 }

@@ -26,9 +26,9 @@ public class ContractDao {
     public void addContract(Contract contract) {
         try{
             jdbcTemplate.update(
-                    "INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?)",
-                    contract.getId(), contract.getCif(), contract.getTypeOfService().toString(),
-                    contract.getStartDate(), contract.getFinalDate(), contract.getQuantity());
+                    "INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?, ?)",
+                    contract.getId(), contract.getCif(), contract.getTypeOfService(),
+                    contract.getStartDate(), contract.getFinalDate(), contract.getQuantity(), contract.getPriceUnit());
 
         }
         catch(DuplicateKeyException e) {
@@ -48,7 +48,7 @@ public class ContractDao {
         try{
             jdbcTemplate.update("UPDATE Contract SET cif = ?, typeOfService = ?,startDate = ?, finalDate = ?," +
                             " quantity = ? WHERE id = ?",
-                    contract.getCif(), contract.getTypeOfService().toString(), contract.getStartDate(),
+                    contract.getCif(), contract.getTypeOfService(), contract.getStartDate(),
                     contract.getFinalDate(), contract.getQuantity(), contract.getId());
         }
         catch (DataAccessException e){
@@ -92,6 +92,14 @@ public class ContractDao {
     public Integer getContractId(String cif){
         try {
             return jdbcTemplate.queryForObject("SELECT id FROM Contract WHERE cif = ?", Integer.class, cif);
+        }
+        catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+    public Integer getMAXId(){
+        try {
+            return jdbcTemplate.queryForObject("SELECT MAX(id) FROM Contract", Integer.class);
         }
         catch (EmptyResultDataAccessException e){
             return null;
