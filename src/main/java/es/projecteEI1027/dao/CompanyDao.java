@@ -73,7 +73,7 @@ public class CompanyDao {
     }
     public List<Company> getCompaniesPerTipus(String tipus){
         try {
-            return jdbcTemplate.query("SELECT * FROM Company as c WHERE typeofservice = ? AND (SELECT quantity FROM contract as con WHERE c.cif = con.cif) > 0",
+            return jdbcTemplate.query("SELECT * FROM Company as c WHERE typeofservice = ? AND (SELECT quantity FROM contract as con WHERE c.cif = con.cif AND finaldate >= CURRENT_DATE) > 0",
                     new CompanyRowMapper(), tipus);
         }
         catch (EmptyResultDataAccessException e){

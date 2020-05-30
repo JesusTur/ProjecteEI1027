@@ -105,5 +105,25 @@ public class ContractDao {
             return null;
         }
     }
+    public Contract getContractbyCif(String cif){
+        try {
+
+            return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE cif = ?",
+                    new ContractRowMapper(), cif);
+
+        }
+        catch (EmptyResultDataAccessException e){
+            return  null;
+        }
+    }
+
+    public  void updateQuantity(int id){
+        try{
+            jdbcTemplate.update("UPDATE Contract SET quantity=quantity-1 WHERE id = ?", id);
+        }
+        catch (DataAccessException e){
+
+        }
+    }
 
 }

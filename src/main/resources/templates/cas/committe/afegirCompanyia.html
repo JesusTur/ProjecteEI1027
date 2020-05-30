@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/majorsACasa.css"
+          th:href="@{/css/majorsACasa.css}"/>
+    <title>Acceptar Voluntaris</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="subheading mb-5" th:if="${#maps.isEmpty(comcon)}">No hi ha companyies que puguen oferir el servei</div>
+<table th:unless="${#maps.isEmpty(comcon)}"  class="table table-condensed">
+<div><h2>Al afegir una companyia el servei serà acceptat</h2></div>
+    <tbody>
+    <th>Companyies disponibles: </th>
+    <tr>
+        <td>Nom</td>
+        <td>Cif</td>
+        <td>Cantitat</td>
+        <td>Data finalització</td>
+        <td></td>
+    </tr>
+        <tr th:each="c: ${comcon}">
+            <td th:text="${c.key.nameCompany}"></td>
+            <td th:text="${c.key.cif}"></td>
+            <td th:text="${c.value.quantity}"></td>
+            <td th:text="${c.value.finalDate}"></td>
+            <td><a th:href="@{/cas/acceptarServei/{id}(id=${c.value.id})}"><button type="button" class="btn btn-success">Afegir companyia</button></a></td>
+        </tr>
+    </tbody>
+</table>
+<div><a th:href="@{/cas/denegar/{id}(id=${request.id})}"><button type="button" class="btn btn-danger">Denegar servei</button></a></div>
+</body>
+</html>

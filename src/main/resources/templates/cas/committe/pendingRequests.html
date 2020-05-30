@@ -23,7 +23,6 @@
         <td>Comentaris</td>
         <td></td>
     </tr>
-    <form>
     <tr th:each="request: ${requests}">
         <td th:text="${request.key.name}"></td>
         <td th:text="${request.key.dni}"></td>
@@ -32,7 +31,6 @@
         <td><a th:href="@{/cas/denegar/{id}(id=${request.value.id})}"><button type="button" class="btn btn-danger">Denegar servei</button></a></td>
         <td><a th:href="@{/cas/mostrarCompanyia/{id}(id=${request.value.id})}"><button type="button" class="btn btn-warning">Afegir companyia</button></a></td>
     </tr>
-    </form>
     </tbody>
 </table>
 </form>

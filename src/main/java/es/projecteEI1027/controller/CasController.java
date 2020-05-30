@@ -131,8 +131,33 @@ public class CasController {
         return "cas/committe/pendingRequests";
     }
     @RequestMapping(value = "/mostrarCompanyia/{id}")
-    public String  mostrarCompanyies(@PathVariable int id, Model model){
-
-        return"";
+    public String  mostrarCompanyies(@PathVariable int id, Model model, HttpSession session){
+        Request request = requestDao.getRequest(id);
+        List<Company> companies = companyDao.getCompaniesPerTipus(request.getTypeOfService());
+        HashMap<Company, Contract> comcon = new HashMap<>();
+        for( Company c : companies){
+            comcon.put(c, contractDao.getContractbyCif(c.getCif()));
+        }
+        model.addAttribute("request", request);
+        model.addAttribute("comcon", comcon);
+        session.setAttribute("request", request);
+        return"cas/committe/afegirCompanyia";
+    }
+    @RequestMapping(value ="/acceptarServei/{id}")
+    public String acceptarServei(@PathVariable int id, Model model, HttpSession session){
+        Request request = (Request) session.getAttribute("request");
+        request.setRequestState(RequestState.accepted);
+        request.setContractid(id);
+        request.setDateAccept(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        contractDao.updateQuantity(id);
+        requestDao.updateRequest(request);
+        List<Request> req = requestDao.getPendentRequests();
+        HashMap<Beneficiary, Request> requests = new HashMap<>();
+        for(Request r : req){
+            Beneficiary beneficiary = beneficiaryDao.getBeneficiary(r.getDniBeneficiary());
+            requests.put(beneficiary, r);
+        }
+        model.addAttribute("requests", requests);
+        return "cas/committe/pendingRequests";
     }
 }
