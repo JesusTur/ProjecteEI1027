@@ -97,6 +97,9 @@ public class LoginController {
             if(user.getUser().equals("casVolunteer")){
                 return"cas/volunteer/indexCasVolunteer";
             }
+            if(user.getUser().equals("casCommitee")){
+                return "cas/committe/indexCommitte";
+            }
 
         }
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/indexServices.css"
+          th:href="@{/css/indexServices.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
+
+</head>
+<body>
+<h2 class="text-center">MAJORS A CASA</h2>
+<div>
+
+    <form action="#" th:action="@{/company/list}" th:object="${user}"  method="post">
+        <input type="submit" value="ACCEDIR ALS AVIS" />
+    </form>
+</div>
+<div class="loggeduser" th:object="${session}">
+    <p th:if="*{user == null}">
+        No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+    </p>
+    <p th:unless="*{user == null}">
+        <!--Autenticat com: <span th:text="${user}"></span>  </br> -->
+        <a href="/logout" th:href="@{/logout}">EIXIR DE LA SEUA SESSIÓ</a>
+    </p>
+</div>
+</body>
+</html>

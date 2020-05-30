@@ -1,26 +1,26 @@
 
-
-java:S1450"]Remove the "beneficiaryDao" field and declare it as a local variable in the relevant methods.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
 w
 java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ8‹Ý±º¥.
-L
-java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ8†£¬º¥.
-Z	java:S106A"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ýÿÿÿÿ8þƒÿ¼¥.
 [
 java:S3752&">Add a "method" parameter to this "@RequestMapping" annotation.(±ê 8îŒ²¼¥.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
-G
-java:S1068"*Remove this unused "casDao" private field.(Ž¬±…8å°àÞ¥.
+L
+java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ8†£¬º¥.
 T
 java:S1068"2Remove this unused "beneficiaryDao" private field.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
-i
-java:S1128	"GRemove this unused import 'org.springframework.validation.ObjectError'.(ý£¿®ÿÿÿÿÿ8¡Âï¼¥.
-l
-java:S44889"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äýÿÿÿÿ8±ÒÄº¥.
+Z	java:S106A"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ýÿÿÿÿ8þƒÿ¼¥.
 [
 java:S3752F">Add a "method" parameter to this "@RequestMapping" annotation.(…´…Ø8ÉÇ£â¥.
-r
-java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(Ž¬±…8å°àÞ¥.
 e
 java:S4488L"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’êù´8™­½ã¥.
+i
+java:S1128	"GRemove this unused import 'org.springframework.validation.ObjectError'.(ý£¿®ÿÿÿÿÿ8¡Âï¼¥.
 U	java:S106R"9Replace this use of System.out or System.err by a logger.(Þ¬õ·8Èòþã¥.
+G
+java:S1068"*Remove this unused "casDao" private field.(Ž¬±…8å°àÞ¥.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
+l
+java:S44889"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äýÿÿÿÿ8±ÒÄº¥.
+
+java:S1450"]Remove the "beneficiaryDao" field and declare it as a local variable in the relevant methods.(‰Õ§Üýÿÿÿÿ8¡Î§º¥.
+r
+java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(Ž¬±…8å°àÞ¥.

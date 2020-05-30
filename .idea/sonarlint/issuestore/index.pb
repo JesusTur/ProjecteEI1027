@@ -53,3 +53,7 @@ P
  target/classes/static/index.html,5\9\59a68c1a4f2f8088bfc17d204d9b43a7f34c10e1
 e
 5target/classes/templates/beneficiary/addServices.html,d\a\dab3d999fc51c07b027c224572932b4c80d0f1b8
+d
+4src/main/java/es/projecteEI1027/dao/ContractDao.java,5\5\5561cc6684bdeaadeec26db58b2da9ca5b968eb7
+c
+3src/main/java/es/projecteEI1027/dao/RequestDao.java,3\a\3af542048729b433cebe615b4c61a491105fd49b

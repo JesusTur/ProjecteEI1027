@@ -1,0 +1,16 @@
+
+NWeb:AvoidCommentedOutCodeCheck$"Remove this commented out code.(İÄÑùÿÿÿÿ
+NWeb:AvoidCommentedOutCodeCheck%"Remove this commented out code.(ÀùÑ£üÿÿÿÿ
+HWeb:BoldAndItalicTagsCheckG"Replace this <i> tag by <em>.(“œ¶ôÿÿÿÿÿ
+HWeb:BoldAndItalicTagsCheckP"Replace this <i> tag by <em>.(øÜ®¦ÿÿÿÿÿ
+CWeb:BoldAndItalicTagsCheckY"Replace this <i> tag by <em>.(ëªø
+CWeb:BoldAndItalicTagsCheckb"Replace this <i> tag by <em>.(Ú“×ó
+I	Web:S1827q"/Remove this deprecated "frameborder" attribute.(ÒÁßßøÿÿÿÿ
+G	Web:S1827q"-Remove this deprecated "scrolling" attribute.(ÒÁßßøÿÿÿÿ
+J	Web:S1827q"0Remove this deprecated "marginheight" attribute.(ÒÁßßøÿÿÿÿ
+I	Web:S1827q"/Remove this deprecated "marginwidth" attribute.(ÒÁßßøÿÿÿÿ
+XWeb:FrameWithoutTitleCheckq"-Add a "title" attribute to this <iframe> tag.(ÒÁßßøÿÿÿÿ
+HWeb:BoldAndItalicTagsCheck~"Replace this <i> tag by <em>.(áó¾¦ÿÿÿÿÿ
+DWeb:BoldAndItalicTagsCheckƒ"Replace this <i> tag by <em>.(ÊÅÌ
+IWeb:BoldAndItalicTagsCheckˆ"Replace this <i> tag by <em>.(Ï·Ïàüÿÿÿÿ
+IWeb:BoldAndItalicTagsCheck’"Replace this <i> tag by <em>.(‡ÉµÔüÿÿÿÿ

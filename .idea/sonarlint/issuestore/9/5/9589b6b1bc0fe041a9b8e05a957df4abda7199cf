@@ -1,10 +1,10 @@
 
-X	java:S125+"<This block of commented-out lines of code should be removed.(øˆªë8Ìê£í¤.
-Y
-java:S3752">Add a "method" parameter to this "@RequestMapping" annotation.(ì¡²åþÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
 `
 java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ú¿Ìã
-X	java:S125."<This block of commented-out lines of code should be removed.(øˆªë8Ìê£í¤.
+X	java:S125+"<This block of commented-out lines of code should be removed.(øˆªë8Ìê£í¤.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
+Y
+java:S3752">Add a "method" parameter to this "@RequestMapping" annotation.(ì¡²åþÿÿÿÿ
 [
 java:S3752'">Add a "method" parameter to this "@RequestMapping" annotation.(ô¸èÉ8Ìê£í¤.
+X	java:S125."<This block of commented-out lines of code should be removed.(øˆªë8Ìê£í¤.
