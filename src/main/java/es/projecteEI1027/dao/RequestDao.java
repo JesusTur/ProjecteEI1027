@@ -92,4 +92,13 @@ public class RequestDao {
             return  new ArrayList<Request>();
         }
     }
+    public  List<Request> getPendentRequests() {
+        try {
+
+            return jdbcTemplate.query("SELECT * FROM Request WHERE requestState = 'processing'",
+                    new RequestRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
 }
