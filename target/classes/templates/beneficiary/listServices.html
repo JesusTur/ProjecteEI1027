@@ -41,9 +41,9 @@
             <h1 class="mb-0">Els meus <span class="text-primary">Serveis</span></h1>
 
 
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No hi ha servicis solicitats a voluntaris</div>
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(companies)}">No hi ha servicis solicitats a companyies</div>
-
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No voluntaris</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesActives)}">No hi ha servicis actius</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesPending)}">No hi ha servicis pendents</div>
             <!--<p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
             <div class="social-icons">
                 <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a><a class="social-icon" href="#"><i class="fab fa-github"></i></a><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -64,12 +64,20 @@
                 </tr>
             </table>
 
-            <table th:unless="${#lists.isEmpty(companies)}" class="table table-borderless">
+            <table th:unless="${#lists.isEmpty(servicesActives)}" class="table table-borderless">
                 <tbody>
-                <th>Companyies actives: </th>
-                <tr th:each="company: ${companies}">
-                    <td th:text="${company.nameCompany}"></td>
-                    <td th:text="${company.serviceType}"></td>
+                <th>Servicis activus: </th>
+                <tr th:each="service: ${servicesActives}">
+                    <td th:text="${service.typeOfService}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+            <table th:unless="${#lists.isEmpty(servicesPending)}" class="table table-borderless">
+                <tbody>
+                <th>Servicis pendents: </th>
+                <tr th:each="service: ${servicesPending}">
+                    <td th:text="${service.typeOfService}"></td>
 
                 </tr>
                 </tbody>

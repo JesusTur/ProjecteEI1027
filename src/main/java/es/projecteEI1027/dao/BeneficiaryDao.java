@@ -145,13 +145,22 @@ public class BeneficiaryDao {
             return new ArrayList<Company>();
         }
     }
-    public List<Company> getCompanyPerBen(String user){
+    public List<Request> getServicePerBen(String user){
         try {
-            return jdbcTemplate.query("SELECT * FROM Company WHERE cif IN (SELECT cif FROM Contract WHERE id IN (SELECT contractId FROM Request WHERE (requestState LIKE 'accepted' OR requestState LIKE 'processing') AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)))",
-                    new CompanyRowMapper(), user);
+            return jdbcTemplate.query("SELECT * FROM Request WHERE requestState = 'accepted' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)",
+                    new RequestRowMapper(), user);
         }
         catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Company>();
+            return new ArrayList<Request>();
+        }
+    }
+    public List<Request> getServicePerBenPending(String user){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE requestState = 'processing' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?)",
+                    new RequestRowMapper(), user);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
         }
     }
     public Map<String,Float> getPrecioContract(List<Company> list){

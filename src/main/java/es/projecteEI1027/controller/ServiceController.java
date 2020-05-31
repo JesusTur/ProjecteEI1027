@@ -53,12 +53,14 @@ public class ServiceController {
         }
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         List<Volunteer> listVolunteer= userDao.getVolunteerServicesUser(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        List<Company> listCompanyActives= userDao.getCompanyPerBen(user.getUser());
+        List<Request> listServiceActives= userDao.getServicePerBen(user.getUser());
+        List<Request> listServicePending= userDao.getServicePerBenPending(user.getUser());
         //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
         //Map<String,Float> precios = userDao.getPrecioContract(listCompanyActives);
         model.addAttribute("user",user.getUser());
         model.addAttribute("volunteers",  listVolunteer);
-        model.addAttribute("companies", listCompanyActives);
+        model.addAttribute("servicesActives", listServiceActives);
+        model.addAttribute("servicesPending", listServicePending);
         //model.addAttribute("companiesServices", listCompany);
         //model.addAttribute("precios",precios);
         return "beneficiary/listServices";
