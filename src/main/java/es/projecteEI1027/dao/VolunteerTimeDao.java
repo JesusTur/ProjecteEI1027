@@ -1,5 +1,6 @@
 package es.projecteEI1027.dao;
 
+import es.projecteEI1027.model.Volunteer;
 import es.projecteEI1027.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -112,7 +113,7 @@ public class VolunteerTimeDao {
         try {
             List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
             for(VolunteerTime vol : vt){
-                lvt.add( vol.getEndingTime());
+                lvt.add(vol.getEndingTime());
             }
             return lvt;
         }
@@ -131,6 +132,15 @@ public class VolunteerTimeDao {
             }
         }
         catch(EmptyResultDataAccessException e) {
+        }
+    }
+
+    public List<VolunteerTime> getRelatedBeneficiaries(String dniVol) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NOT NULL", new VolunteerTimeRowMapper(),dniVol);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
         }
     }
 

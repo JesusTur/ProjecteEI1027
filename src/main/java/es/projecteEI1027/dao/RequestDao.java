@@ -82,7 +82,7 @@ public class RequestDao {
             return  null;
         }
     }
-    public List<Request> getRequestsByContractIde( int id){
+    public List<Request> getRequestsByContractIde(int id){
         try {
 
             return jdbcTemplate.query("SELECT * FROM Request WHERE contractId = ?",

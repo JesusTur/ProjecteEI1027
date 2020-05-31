@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Consultar beneficiarios</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+</head>
+<body>
+<!--<div class="subheading mb-5" th:if="${#lists.isEmpty(soloBeneficiarios)}">No estás oferint cap acompanyament a cap persona major</div>-->
+
+
+<h1>Lista de personas con solicitud de acompañamiento</h1>
+
+<table th:unless="${#lists.isEmpty(assignedBeneficiaries)}" class="table table-condensed">>
+    <th>BENEFICIARIO: </th>
+    <tr th:each="beneficiary: ${assignedBeneficiaries}">
+        <td th:text="${beneficiary.dniBeneficiary}"></td>
+    </tr>
+</table>
+</body>
+</html>

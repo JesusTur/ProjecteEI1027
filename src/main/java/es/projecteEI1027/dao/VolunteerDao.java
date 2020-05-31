@@ -102,9 +102,18 @@ public class VolunteerDao {
 
     }
 
-
-
-
+    //Esto es para cogerlo por DNI
+    public String getVolunteer2(String dniVolunteer) {
+        String dni;
+        try {
+            Volunteer vol = jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni = ?", new VolunteerRowMapper(),dniVolunteer);
+            dni = vol.getDni();
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+        return dni;
+    }
 
 
 }

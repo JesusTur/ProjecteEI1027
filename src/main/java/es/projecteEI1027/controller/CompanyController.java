@@ -44,11 +44,11 @@ public class CompanyController {
         Integer contractId = contractDao.getContractId(company.getCif());
         List<Request> requests = requestDao.getRequestsByContractIde(contractId);
         HashMap<Beneficiary, Request> benReq = new HashMap<>();
-        for( Request r: requests){
+        for(Request r: requests){
             Beneficiary beneficiary = beneficiaryDao.getBeneficiary(r.getDniBeneficiary());
             benReq.put(beneficiary, r);
         }
         model.addAttribute("benReq", benReq);
-        return"company/listBeneficiaries";
+        return "company/listBeneficiaries";
     }
 }
