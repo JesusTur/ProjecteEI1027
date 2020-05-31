@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Request {
     private int id;
     private String dniBeneficiary;
-    private int contractid;
+    private Integer contractid;
     private String TypeOfService;
     private Date schedule;
     private RequestState requestState;
@@ -88,11 +88,11 @@ public class Request {
         this.dniBeneficiary = dniBeneficiary;
     }
 
-    public int getContractid() {
+    public Integer getContractid() {
         return contractid;
     }
 
-    public void setContractid(int contractid) {
+    public void setContractid(Integer contractid) {
         this.contractid = contractid;
     }
 }

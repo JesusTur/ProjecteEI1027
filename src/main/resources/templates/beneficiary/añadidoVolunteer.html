@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="/css/majorsACasa.css"
+          th:href="@{/css/majorsACasa.css}"/>
+    <title>Llista d'usuaris del sistema</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+</head>
+<body>
+<p>Se ha añadido a: <td th:text="${nombreVolunteer}"></td> de <td th:text="${horasInit}"></td> a <td th:text="${horasFin}"></td></p>
+<form action="#" th:action="@{/services}" th:object="${user}"  method="post">
+    <input type="submit" class="btn btn-primary" role="button" value="Tornar">
+</form>
+</body>
+</html>

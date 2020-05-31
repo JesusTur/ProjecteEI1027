@@ -11,19 +11,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
 </head>
 <body>
-<p>Has solicitado el servicio de: <td th:text="${tipo}"></td>, ¿tiene usted alguna alergia para comunicar?</p>
-<form action="#" th:action="@{/services/addRequest}"
-      th:object="${request}" method="post">
-    <table>
-        <tr>
-            <td><label>Alergias</label></td>
-            <td><input type="text" th:field="*{comment}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir" /></td>
-        </tr>
-    </table>
-</form>
+<p>Ya tienes una solicitud de un servicio pendiente</p>
 <div class="loggeduser" th:object="${session}">
     <p th:if="*{user == null}">
         No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
@@ -35,5 +23,3 @@
 </div>
 </body>
 </html>
-
-

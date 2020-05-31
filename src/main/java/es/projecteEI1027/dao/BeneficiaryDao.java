@@ -1,9 +1,6 @@
 package es.projecteEI1027.dao;
 
-import es.projecteEI1027.model.Beneficiary;
-import es.projecteEI1027.model.Company;
-import es.projecteEI1027.model.Contract;
-import es.projecteEI1027.model.Volunteer;
+import es.projecteEI1027.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -173,7 +170,7 @@ public class BeneficiaryDao {
     }
     public List<Volunteer> getVolunteerPerBen(String ben){
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE  AND accepted IS TRUE " +
+            return jdbcTemplate.query("SELECT * FROM Volunteer WHERE accepted IS TRUE " +
                             "AND dni IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary IS NULL) AND dni NOT IN (SELECT dniVolunteer FROM VolunteerTime WHERE dniBeneficiary = ?)",
                     new VolunteerRowMapper(), ben);
         }
@@ -181,6 +178,27 @@ public class BeneficiaryDao {
             return new ArrayList<Volunteer>();
         }
     }
+
+    public Request servicioPendiente(String user){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE requestState LIKE 'processing' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) ",
+                    new RequestRowMapper(), user);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Request servicioMismoTipo(String user,String tipo){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE typeOfService = ?  AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) ",
+                    new RequestRowMapper(), tipo, user);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 
 }

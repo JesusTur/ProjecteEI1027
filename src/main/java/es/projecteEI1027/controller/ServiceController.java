@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.parser.Element;
+import javax.validation.constraints.Null;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -39,9 +40,11 @@ public class ServiceController {
     private RequestDao requestDao;
     @Autowired
     private VolunteerTimeDao volunteerTimeDao;
+    @Autowired
+    private VolunteerDao volunteerDao;
 
     @RequestMapping(value = "/services", method = RequestMethod.POST)
-    public String checkServices(@ModelAttribute("user") String userio ,BindingResult bindingResult, HttpSession session, Model model){
+    public String checkServices(@ModelAttribute("user") String usuario ,BindingResult bindingResult, HttpSession session, Model model){
 
         if(session.getAttribute("user") == null){
             bindingResult.rejectValue("user", "invalid",
@@ -60,18 +63,6 @@ public class ServiceController {
         //model.addAttribute("precios",precios);
         return "beneficiary/listServices";
 
-       /* if(! userDao.getBeneficiaryPerNom(user.getUser()).getPassword().equals(user.getPassword())){
-            bindingResult.rejectValue("password", "invalid",
-                    "La contrasenya es incorrecta");
-            return "beneficiary/login";
-        }
-
-        session.setAttribute("user", user);
-        if(session.getAttribute("nextUrl") != null){
-            return "redirect:/"+(String) session.getAttribute("nextUrl");
-        }
-
-        return "redirect:/";*/
     }
     @RequestMapping("/services/add")
     public String login(Model model){
@@ -80,17 +71,34 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("tipo") String tipo,
-                                   BindingResult bindingResult,HttpSession session, Model model) {
+                                   HttpSession session, Model model) {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
-        List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
-       //List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        Map<String,Float> precios = userDao.getPrecioContract(listCompany);
+        //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
+        //List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        //Map<String,Float> precios = userDao.getPrecioContract(listCompany);
         session.setAttribute("tipo", tipo);
         //model.addAttribute("volunteerServices", volunteerServices);
-        model.addAttribute("companiesServices", listCompany);
-        model.addAttribute("precios",precios);
+        //model.addAttribute("companiesServices", listCompany);
+        //model.addAttribute("precios",precios);
         model.addAttribute("dni",userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        return "beneficiary/addServices";
+        if(userDao.servicioPendiente(user.getUser())==null && userDao.servicioMismoTipo(user.getUser(),tipo)==null) {
+            Request request = new Request();
+            model.addAttribute("request", new Request());
+            return "beneficiary/addServices";
+        }
+        if(userDao.servicioPendiente(user.getUser())!=null){
+            return "beneficiary/rejectService";
+        }
+        return "beneficiary/rejectServiceTipo";
+
+    }
+    @RequestMapping(value="/services/addVolunteer")
+    public String processAddVolunteer(HttpSession session, Model model) {
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        model.addAttribute("volunteerServices", volunteerServices);
+        model.addAttribute("dni",userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        return "beneficiary/addVolunteer";
 
     }
     @RequestMapping(value="/services/add/companyServices/{cif}", method=RequestMethod.GET)
@@ -107,14 +115,12 @@ public class ServiceController {
         request.setDateAccept(null);
         request.setDateReject(null);
         request.setComment();*/
-        model.addAttribute("request", new Request());
-
+        //model.addAttribute("request", new Request());
         return "beneficiary/addRequest";
 
     }
     @RequestMapping(value="/services/add/volunteerServices/{dni}", method=RequestMethod.GET)
     public String processAddVServicesSubmit(@PathVariable String dni,HttpSession session, Model model) {
-
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
@@ -137,8 +143,7 @@ public class ServiceController {
 
     }
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
-    public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime,
-                                    BindingResult bindingResult,HttpSession session, Model model) {
+    public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime, HttpSession session, Model model) {
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
@@ -146,32 +151,29 @@ public class ServiceController {
         volunteerTime.setAvailable(true);
         volunteerTimeDao.updateTime(session.getAttribute("dniVolunteer").toString(),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
         volunteerTimeDao.addVolunteerTime(volunteerTime);
-        return "beneficiary/addServices";
+        Volunteer vol = volunteerDao.getVolunteer(session.getAttribute("dniVolunteer").toString());
+        model.addAttribute("nombreVolunteer",vol.getName());
+        model.addAttribute("horasInit",volunteerTime.getBeginningTime());
+        model.addAttribute("horasFin",volunteerTime.getEndingTime());
+        return "beneficiary/añadidoVolunteer";
 
     }
-/*    @RequestMapping(value="/services/addRequest")
-    public String AddRequest( Model model) {
-
-        System.out.println("hel");
-        return "beneficiary/addRequest";
-    }*/
-
     @RequestMapping(value="/services/addRequest", method=RequestMethod.POST)
     public String processAddRequest(@ModelAttribute("request") Request request,
-                                            BindingResult bindingResult,HttpSession session, Model model) {
+                                            HttpSession session,Model model) {
         idRequest = new AtomicInteger(requestDao.getRequestid());
         request.setId(idRequest.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());
-        request.setContractid((Integer)session.getAttribute("id"));
+        request.setContractid(null);
         request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         request.setRequestState(RequestState.valueOf("processing"));
         request.setDateAccept(null);
         request.setDateReject(null);
         request.setDateFinal(null);
         requestDao.addRequest(request);
-        return "beneficiary/addServices";
-
+        model.addAttribute("tipo",session.getAttribute("tipo").toString());
+        return "beneficiary/servicioSolicitado";
     }
 }
