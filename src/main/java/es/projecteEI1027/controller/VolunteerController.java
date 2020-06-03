@@ -3,19 +3,19 @@ package es.projecteEI1027.controller;
 import es.projecteEI1027.dao.VolunteerDao;
 import es.projecteEI1027.dao.VolunteerTimeDao;
 import es.projecteEI1027.model.*;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import javax.websocket.server.PathParam;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -60,14 +60,71 @@ public class VolunteerController {
     public String listBeneficiaries(Model model, HttpSession session){
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
-        String volunteerDni = volunteerDao.getVolunteer2(volunteer.getDni());
-        List<VolunteerTime> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteerDni);
-        List<String> soloBeneficiarios = new LinkedList<>();
-        /*for (VolunteerTime dato: assignedBeneficiaries) {
-            soloBeneficiarios.add(dato.getDniBeneficiary());
-            System.out.println(dato.getDniBeneficiary());
-        }*/
+        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
+        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
+        model.addAttribute("mapa", mapa);
         model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
         return "volunteer/listBeneficiariesVol";
     }
+    @RequestMapping("/hourAdd")
+    public String addHour(Model model){
+        VolunteerTime volunteerTime = new VolunteerTime();
+        Calendar fechaHoy = Calendar.getInstance();
+        model.addAttribute("fechaHoy", fechaHoy);
+        model.addAttribute("volunteerTime", volunteerTime);
+        return "volunteer/hourAdd";
+    }
+
+    @RequestMapping(value="/hourAdd", method=RequestMethod.POST)
+    public String processAddVolunteerTime(@ModelAttribute("volunteerTime") VolunteerTime volunteerTime, HttpSession session) {
+        volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        Volunteer user = (Volunteer) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        volunteerTime.setDniVolunteer(volunteer.getDni());
+        volunteerTime.setDniBeneficiary(null);
+        volunteerTime.setAvailable(true);
+        volunteerTimeDao.addVolunteerTime(volunteerTime);
+        return "/volunteer/listBeneficiariesVol";
+    }
+
+    @RequestMapping("/modifiedHour")
+    public String modifyHour(Model model, HttpSession session){
+        Volunteer user = (Volunteer) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        List<VolunteerTime> lista = volunteerTimeDao.getFreeTimeList(volunteer.getDni());
+        if(lista.isEmpty()){
+            return "volunteer/listaVacia";
+        }
+        model.addAttribute("lista", lista);
+        return "volunteer/modifyHour";
+    }
+    @RequestMapping(value="/modifyTimeNow/{beginningTime}", method=RequestMethod.GET)
+    public String processmodifyVolunteerTime(@PathVariable String beginningTime, HttpSession session, Model model) {
+        Volunteer user = (Volunteer) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        session.setAttribute("time",beginningTime);
+        VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(volunteer.getDni(),LocalDateTime.parse(beginningTime));
+        model.addAttribute("volunteerTime",volunteerTime);
+        return "/volunteer/modifyTimeNow";
+    }
+    @RequestMapping(value="/removeTimeNow/{beginningTime}", method=RequestMethod.GET)
+    public String processremoveVolunteerTime(@PathVariable String beginningTime, HttpSession session, Model model) {
+        Volunteer user = (Volunteer) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        session.setAttribute("time",beginningTime);
+        volunteerTimeDao.deleteVolunteerTime(volunteer.getDni(),LocalDateTime.parse(beginningTime));
+        return "/volunteer/listBeneficiariesVol";
+    }
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public String processUpdate(@ModelAttribute("volunteerTime") VolunteerTime volunteerTime, HttpSession session) {
+        volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        Volunteer user = (Volunteer) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        volunteerTime.setDniVolunteer(volunteer.getDni());
+        volunteerTime.setDniBeneficiary(null);
+        volunteerTimeDao.updateTime(volunteer.getDni(),LocalDateTime.parse(session.getAttribute("time").toString()),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
+        return "/volunteer/listBeneficiariesVol";
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package es.projecteEI1027.dao;
 
+import es.projecteEI1027.model.Beneficiary;
 import es.projecteEI1027.model.Volunteer;
 import es.projecteEI1027.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,9 @@ public class VolunteerTimeDao {
         }
     }
 
-    public void deleteVolunteerTime(String dniBen, String dniVol) {
+    public void deleteVolunteerTime(String dniVol, LocalDateTime beginningInit) {
         try{
-            jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniBeneficiary = ? AND dniVolunteer = ?", dniBen,dniVol);
+            jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer = ? AND beginningHour = ?", dniVol,beginningInit);
         }
         catch(DataAccessException e){
 
@@ -71,9 +72,9 @@ public class VolunteerTimeDao {
     }
 
 
-    public VolunteerTime getVolunteerTime(String dniVol, LocalDateTime tiempoIni, LocalDateTime tiempoFin) {
+    public VolunteerTime getVolunteerTime(String dniVol, LocalDateTime tiempoIni) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND beginningHour =  ? AND endingHour = ?", new VolunteerTimeRowMapper(),dniVol,tiempoIni,tiempoFin);
+            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND beginningHour =  ?", new VolunteerTimeRowMapper(),dniVol,tiempoIni);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -120,7 +121,8 @@ public class VolunteerTimeDao {
         catch(EmptyResultDataAccessException e) {
             return null;
         }
-    }public void updateTime(String dni, LocalDateTime fechaIni, LocalDateTime fechaFin){
+    }
+    public void updateTime(String dni, LocalDateTime fechaIni, LocalDateTime fechaFin){
         try {
             List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dni);
             for(VolunteerTime vol : vt){
@@ -135,14 +137,33 @@ public class VolunteerTimeDao {
         }
     }
 
-    public List<VolunteerTime> getRelatedBeneficiaries(String dniVol) {
+    public List<Beneficiary> getRelatedBeneficiaries(String dniVol) {
         try {
-            return jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NOT NULL", new VolunteerTimeRowMapper(),dniVol);
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE dni IN (SELECT dniBeneficiary FROM VolunteerTime WHERE dniVolunteer = ?)", new BeneficiaryRowMapper(),dniVol);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
     }
+    public List<VolunteerTime> getFreeTimeList(String dniVol) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+
+    public void updateTime(String dni, LocalDateTime fechaIni, LocalDateTime fechaInitActualizada, LocalDateTime fechaFinActualizada) {
+        try {
+            jdbcTemplate.update("UPDATE VolunteerTime SET beginningHour = ?, endingHour = ? WHERE dniVolunteer = ? AND beginningHour = ? ", fechaInitActualizada,fechaFinActualizada,dni,fechaIni);
+        }
+        catch(EmptyResultDataAccessException e) {
+        }
+    }
+
+
 
 }
 

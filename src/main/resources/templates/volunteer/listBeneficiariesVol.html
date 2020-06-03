@@ -14,11 +14,18 @@
 
 <h1>Lista de personas con solicitud de acompañamiento</h1>
 
-<table th:unless="${#lists.isEmpty(assignedBeneficiaries)}" class="table table-condensed">>
+<table th:unless="${#lists.isEmpty(assignedBeneficiaries)}" class="table table-condensed">
     <th>BENEFICIARIO: </th>
     <tr th:each="beneficiary: ${assignedBeneficiaries}">
-        <td th:text="${beneficiary.dniBeneficiary}"></td>
+        <td th:text="${beneficiary.name}"></td>
     </tr>
 </table>
+<tr th:unless="${#maps.isEmpty(mapa)}">
+<tr th:each="map: ${mapa}">
+    <td th:text="${map.key}"></td>
+    <td th:text="${map.value}"></td>
+</tr>
+<p><a href="/volunteer/hourAdd"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Afegir horaris</button></a></p>
+<p><a href="/volunteer/modifiedHour"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Modificar horaris</button></a></p>
 </body>
 </html>
