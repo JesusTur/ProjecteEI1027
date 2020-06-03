@@ -326,6 +326,11 @@ a:hover, a:focus, a:active {
   border-color: #1D809F !important;
   color: #fff !important;
 }
+.btn-brown {
+  background-color: #bd5d38 !important;
+  border-color: #bd5d38 !important;
+  color: #fff !important;
+}
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background-color: #155d74 !important;
