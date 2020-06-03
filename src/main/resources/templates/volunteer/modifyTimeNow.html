@@ -15,11 +15,11 @@
     <table>
         <tr>
             <td><label>Tiempo inicio</label></td>
-            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{beginningTime}" required=""/></td>
+            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{beginningTime}" required="" th:min="${fechaHoy}"/></td>
         </tr>
         <tr>
             <td><label>Tiempo final</label></td>
-            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{endingTime}" required=""></td>
+            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{endingTime}" required="" th:min="${fechaHoy}"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Añadir" /></td>

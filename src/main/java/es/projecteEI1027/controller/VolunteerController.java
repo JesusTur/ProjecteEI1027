@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -69,8 +70,9 @@ public class VolunteerController {
     @RequestMapping("/hourAdd")
     public String addHour(Model model){
         VolunteerTime volunteerTime = new VolunteerTime();
-        Calendar fechaHoy = Calendar.getInstance();
-        model.addAttribute("fechaHoy", fechaHoy);
+        LocalDateTime fechaHoy = LocalDateTime.now();
+        String fecha = fechaHoy.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        model.addAttribute("fechaHoy", fecha);
         model.addAttribute("volunteerTime", volunteerTime);
         return "volunteer/hourAdd";
     }
@@ -104,6 +106,9 @@ public class VolunteerController {
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         session.setAttribute("time",beginningTime);
         VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(volunteer.getDni(),LocalDateTime.parse(beginningTime));
+        LocalDateTime fechaHoy = LocalDateTime.now();
+        String fecha = fechaHoy.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        model.addAttribute("fechaHoy", fecha);
         model.addAttribute("volunteerTime",volunteerTime);
         return "/volunteer/modifyTimeNow";
     }
