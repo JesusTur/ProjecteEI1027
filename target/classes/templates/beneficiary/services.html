@@ -50,11 +50,11 @@
             <h1 class="mb-0">Sol·licitar <span class="text-primary">Serveis</span></h1>
 
             <p>
-            <div class="custom-select" layout:fragment="content">
+            <div layout:fragment="content">
             <form action="#" th:action="@{/services/add}"
                   th:object="${tipo}" method="post">
 
-                <select name="tipo">
+                <select class="custom-select" style="width:200px;" name="tipo">
 
                     <option value="catering">Catering</option>
 

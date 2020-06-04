@@ -1,7 +1,7 @@
 package es.projecteEI1027.controller;
-import es.projecteEI1027.dao.ContractDao;
-import es.projecteEI1027.dao.VolunteerDao;
-import es.projecteEI1027.dao.VolunteerTimeDao;
+import es.projecteEI1027.dao.*;
+import es.projecteEI1027.model.CAS;
+import es.projecteEI1027.model.Company;
 import es.projecteEI1027.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.projecteEI1027.model.Beneficiary;
-import es.projecteEI1027.dao.BeneficiaryDao;
 
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
@@ -27,6 +26,8 @@ public class BeneficiaryController {
     private ContractDao contractDao;
     private VolunteerTimeDao volunteerTimeDao;
     private VolunteerDao volunteerDao;
+    private CompanyDao companyDao;
+    private CASDao casDao;
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
         this.beneficiaryDao=beneficiaryDao;
@@ -35,6 +36,10 @@ public class BeneficiaryController {
     public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao){this.volunteerTimeDao = volunteerTimeDao;}
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao){this.volunteerDao = volunteerDao;}
+    @Autowired
+    public void setCompanyDao(CompanyDao companyDao){this.companyDao=companyDao;}
+    @Autowired
+    public void setCasDao(CASDao casDao){this.casDao=casDao;}
 
     @RequestMapping("/list")
     public String listBeneficiaries(Model model) {
@@ -91,12 +96,30 @@ public class BeneficiaryController {
         //model.addAttribute("companyServices", contractDao.getContracts());
         //model.addAttribute("volunteerServices", volunteerTimeDao.getVolunteerTimes());
         if (session.getAttribute("user") instanceof Volunteer){
-            Volunteer user = volunteerDao.getVolunteerPerUser(usr.getUser());
+            Volunteer user = volunteerDao.getVolunteerPerUser(((Volunteer) session.getAttribute("user")).getUser());
             session.setAttribute("user", user);
             if(!user.getAccepted()){
                 return "volunteer/noAcceptedYet";
             }
             return "volunteer/indexVolunteer";
+        }
+        if(session.getAttribute("user") instanceof Company){
+            Company user = companyDao.getCompanyPerUser(((Company) session.getAttribute("user")).getUser());
+            session.setAttribute("user", user);
+            return "company/indexCompany";
+        }
+        if(session.getAttribute("user") instanceof CAS){
+            CAS user = casDao.getCASPerUser(((CAS) session.getAttribute("user")).getUser());
+            session.setAttribute("user", user);
+            if(user.getUser().equals("casManager")){
+                return "cas/company/registerCompany";
+            }
+            if(user.getUser().equals("casVolunteer")){
+                return"cas/volunteer/indexCasVolunteer";
+            }
+            if(user.getUser().equals("casCommitee")){
+                return "cas/committe/indexCommitte";
+            }
         }
         return "beneficiary/indexServices";
     }
