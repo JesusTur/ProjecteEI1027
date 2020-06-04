@@ -51,6 +51,11 @@
             <h1 class="mb-0">Llista de <span class="text-primary">persones </span></h1>
             <h1 class="subheading mb-5">Llista buida</h1>
 
+            <form action="#" th:action="@{/services}" th:object="${user}"  method="post">
+                <input type="submit" class="btn btn-secondary" role="button" value="Tornar">
+            </form>
+
+
 
         </div>
         <!-- Bootstrap core JS-->

@@ -162,6 +162,7 @@ a {
   color: #bd5d38;
   text-decoration: none;
   background-color: transparent;
+  font-size: 1.3rem;
 }
 a:hover {
   color: #824027;
@@ -1686,7 +1687,7 @@ pre code {
 }
 .table {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #212529;
 }
 .table th,
@@ -2606,7 +2607,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  color: #fff;
+  color: #1d2124;
   background-color: #ffc107;
   border-color: #ffc107;
 }

@@ -56,21 +56,21 @@
                 </tr>
             </table>
 
-            <table th:unless="${#lists.isEmpty(servicesActives)}" class="table table-borderless">
+            <table th:unless="${#lists.isEmpty(servicesActives)}" class="table table-dark table-striped">
                 <tbody>
                 <th class="subheading mb-5">Serveis activus: </th>
                 <tr th:each="service: ${servicesActives}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(service.typeOfService)}"></td>
-                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Ya no vuic aquest servici</button></a></td>
+                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ya no vuic aquest servici</button></a></td>
                 </tr>
                 </tbody>
             </table>
-            <table th:unless="${#lists.isEmpty(servicesPending)}" class="table table-borderless">
+            <table th:unless="${#lists.isEmpty(servicesPending)}" class="table table-dark table-striped">
                 <tbody>
                 <th class="subheading mb-5">Servicis pendents: </th>
                 <tr th:each="service: ${servicesPending}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(service.typeOfService)}"></td>
-                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Ya no vuic aquest servici</button></a></td>
+                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ya no vuic aquest servici</button></a></td>
                 </tr>
                 </tbody>
             </table>

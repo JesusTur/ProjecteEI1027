@@ -51,10 +51,12 @@
 
             <p>
             <div layout:fragment="content">
+            <p class="subheading mb-5">Selecciona el servei que necessites</p>
+
             <form action="#" th:action="@{/services/add}"
                   th:object="${tipo}" method="post">
 
-                <select class="custom-select" style="width:200px;" name="tipo">
+                <select class="custom-select" style="width:35%;" name="tipo">
 
                     <option value="catering">Catering</option>
 
@@ -63,6 +65,7 @@
                     <option value="cuidado personal">Cuidado personal</option>
 
                 </select>
+
                 <input type="submit" class="btn btn-primary  btn-xl js-scroll-trigger" value="Afegir Servei" />
 
             </form>
