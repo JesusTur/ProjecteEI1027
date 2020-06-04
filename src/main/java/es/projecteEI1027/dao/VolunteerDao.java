@@ -29,8 +29,8 @@ public class VolunteerDao {
                     "INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)",
                     volunteer.getName(), volunteer.getSurname(), volunteer.getDni(), volunteer.getPhoneNumber(),
                     volunteer.getBirthDate(),volunteer.getApplicationDate(),volunteer.getAcceptationDate(),
-                    volunteer.getAccepted(), volunteer.getHobbies(), volunteer.getEmail(),
-                    volunteer.getUser(),volunteer.getPwd());
+                    volunteer.getAccepted(), volunteer.getEmail(),
+                    volunteer.getUser(),volunteer.getPwd(), volunteer.getHobbies());
         }
         catch(DuplicateKeyException e) {
         }
