@@ -1,26 +1,41 @@
 
-w
-java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ8‹İ±º¥.
-[
-java:S3752&">Add a "method" parameter to this "@RequestMapping" annotation.(±ê 8îŒ²¼¥.
-L
-java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ8†£¬º¥.
-T
-java:S1068"2Remove this unused "beneficiaryDao" private field.(‰Õ§Üıÿÿÿÿ8¡Î§º¥.
-Z	java:S106A"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ıÿÿÿÿ8şƒÿ¼¥.
-[
-java:S3752F">Add a "method" parameter to this "@RequestMapping" annotation.(…´…Ø8ÉÇ£â¥.
+f
+java:S1192"HDefine a constant instead of duplicating this literal "request" 3 times.(›í·ÿ8›³¨¼¦.
+a
+java:S3752…">Add a "method" parameter to this "@RequestMapping" annotation.(âØŒ»ûÿÿÿÿ8éãô·¦.
+l
+java:S4488?"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äıÿÿÿÿ8±ÒÄº¥.
+r
+java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(¬±…8å°àŞ¥.
+G
+java:S1068"*Remove this unused "casDao" private field.(¬±…8å°àŞ¥.
+`
+java:S3752v">Add a "method" parameter to this "@RequestMapping" annotation.(§ÏéÁúÿÿÿÿ8¦î²·¦.
 e
-java:S4488L"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’êù´8™­½ã¥.
+java:S1192:"HDefine a constant instead of duplicating this literal "company" 3 times.(¹ŸÁ8Ì›ıº¦.
+U	java:S106X"9Replace this use of System.out or System.err by a logger.(µÏ¥ƒ8ìÆº¦.
+U	java:S106h"9Replace this use of System.out or System.err by a logger.(Ş¬õ·8Èòşã¥.
+[
+java:S3752k">Add a "method" parameter to this "@RequestMapping" annotation.(Ö…Ü«8áÁï±¦.
+l
+java:S4488O"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÊÂª²øÿÿÿÿ8º‡Õ¹¦.
+Z
+java:S2441"=Make "Request" serializable or don't store it in the session.(ÕÛ›8¹¶¦¼¦.
+[
+java:S3752\">Add a "method" parameter to this "@RequestMapping" annotation.(…´…Ø8à«Î¹¦.
+k
+java:S1192s"IDefine a constant instead of duplicating this literal "requests" 3 times.(ÓàøÕúÿÿÿÿ8µ¯¼¦.
+e
+java:S4488b"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’êù´8™­½ã¥.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
+Z	java:S106G"9Replace this use of System.out or System.err by a logger.(Ó¨Ô•ıÿÿÿÿ8şƒÿ¼¥.
+z
+java:S1192t"]Define a constant instead of duplicating this literal "cas/committe/pendingRequests" 3 times.(ğÎ±ƒ8—¼¢¼¦.
 i
 java:S1128	"GRemove this unused import 'org.springframework.validation.ObjectError'.(ı£¿®ÿÿÿÿÿ8¡Âï¼¥.
-U	java:S106R"9Replace this use of System.out or System.err by a logger.(Ş¬õ·8Èòşã¥.
-G
-java:S1068"*Remove this unused "casDao" private field.(¬±…8å°àŞ¥.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
-l
-java:S44889"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ší äıÿÿÿÿ8±ÒÄº¥.
-
-java:S1450"]Remove the "beneficiaryDao" field and declare it as a local variable in the relevant methods.(‰Õ§Üıÿÿÿÿ8¡Î§º¥.
-r
-java:S1450"URemove the "casDao" field and declare it as a local variable in the relevant methods.(¬±…8å°àŞ¥.
+a
+java:S3752’">Add a "method" parameter to this "@RequestMapping" annotation.(²‰Í¬ùÿÿÿÿ8—¼¢¼¦.
+_
+java:S2441K"=Make "Company" serializable or don't store it in the session.(‰çóİşÿÿÿÿ8ˆÑúº¦.
+[
+java:S3752,">Add a "method" parameter to this "@RequestMapping" annotation.(±ê 8îŒ²¼¥.

@@ -1,5 +1,6 @@
 package es.projecteEI1027.controller;
 import es.projecteEI1027.dao.ContractDao;
+import es.projecteEI1027.dao.VolunteerDao;
 import es.projecteEI1027.dao.VolunteerTimeDao;
 import es.projecteEI1027.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,15 @@ public class BeneficiaryController {
     private BeneficiaryDao beneficiaryDao;
     private ContractDao contractDao;
     private VolunteerTimeDao volunteerTimeDao;
-
+    private VolunteerDao volunteerDao;
     @Autowired
     public void setBeneficiaryDao(BeneficiaryDao beneficiaryDao) {
         this.beneficiaryDao=beneficiaryDao;
     }
     public  void setContractDao(ContractDao contractDao){this.contractDao = contractDao;}
     public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao){this.volunteerTimeDao = volunteerTimeDao;}
+    @Autowired
+    public void setVolunteerDao(VolunteerDao volunteerDao){this.volunteerDao = volunteerDao;}
 
     @RequestMapping("/list")
     public String listBeneficiaries(Model model) {
@@ -87,6 +90,14 @@ public class BeneficiaryController {
         }
         //model.addAttribute("companyServices", contractDao.getContracts());
         //model.addAttribute("volunteerServices", volunteerTimeDao.getVolunteerTimes());
+        if (session.getAttribute("user") instanceof Volunteer){
+            Volunteer user = volunteerDao.getVolunteerPerUser(usr.getUser());
+            session.setAttribute("user", user);
+            if(!user.getAccepted()){
+                return "volunteer/noAcceptedYet";
+            }
+            return "volunteer/indexVolunteer";
+        }
         return "beneficiary/indexServices";
     }
 

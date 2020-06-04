@@ -51,3 +51,15 @@ d
 4src/main/java/es/projecteEI1027/dao/ContractDao.java,5\5\5561cc6684bdeaadeec26db58b2da9ca5b968eb7
 c
 3src/main/java/es/projecteEI1027/dao/RequestDao.java,3\a\3af542048729b433cebe615b4c61a491105fd49b
+l
+<src/main/resources/templates/cas/committe/indexCommitte.html,8\5\8540d3f9bd50bc6f30de1b5ee89fa1902fd94291
+i
+9src/main/java/es/projecteEI1027/dao/VolunteerTimeDao.java,2\6\263099cd78deb39bb7a9e4ebe9c83d4d8fe93165
+j
+:src/main/java/es/projecteEI1027/dao/ContractRowMapper.java,3\9\3908e9b4b9fdfca82f1f2ab09669c28297978f96
+i
+9src/main/resources/templates/company/afegirCompanyia.html,8\a\8a1400e954da86324ec9a6f01fba9214b219c5ac
+i
+9src/main/resources/templates/cas/company/addContract.html,a\0\a09cf21d7427696138934dfb37d82fbaa6089287
+c
+3src/main/java/es/projecteEI1027/model/Contract.java,5\2\525f72d210f51b9f1713466bf1944e3da2442440

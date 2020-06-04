@@ -1,9 +1,11 @@
 
+t
+java:S2293="YReplace the type specification in this constructor call with the diamond operator ("<>").(ò—Úæüÿÿÿÿ
+{
+java:S2293e"YReplace the type specification in this constructor call with the diamond operator ("<>").(ò—Úæüÿÿÿÿ8øµ²¦.
 >	java:S108&")Either remove or fill this block of code.(‚  
->	java:S1083")Either remove or fill this block of code.(‚  
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼
 {
 java:S2293\"YReplace the type specification in this constructor call with the diamond operator ("<>").(ò—Úæüÿÿÿÿ8¼È»‡¦.
 >	java:S108")Either remove or fill this block of code.(¹åšü
-t
-java:S2293="YReplace the type specification in this constructor call with the diamond operator ("<>").(ò—Úæüÿÿÿÿ
+>	java:S1083")Either remove or fill this block of code.(‚  
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼

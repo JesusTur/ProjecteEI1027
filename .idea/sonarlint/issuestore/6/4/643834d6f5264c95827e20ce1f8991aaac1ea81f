@@ -1,10 +1,10 @@
 
-C	java:S108#")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯‰Ä¼
->	java:S108+")Either remove or fill this block of code.(‚  
->	java:S1088")Either remove or fill this block of code.(‚  
-{
-java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ8ÅŸ­â¥.
 t
 java:S2293I"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ
 J	java:S108@")Either remove or fill this block of code.(Ï¤¦úÿÿÿÿ8­³ä¥.
+>	java:S1088")Either remove or fill this block of code.(‚  
+>	java:S108+")Either remove or fill this block of code.(‚  
+C	java:S108#")Either remove or fill this block of code.(ÎÆÅ£ùÿÿÿÿ
+{
+java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ŒĞ•ÿÿÿÿÿ8ÅŸ­â¥.

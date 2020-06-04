@@ -1,39 +1,39 @@
 
-E
-java:S1068"/Remove this unused "beneficiary" private field.(×’å
-B
-java:S1068"'Remove this unused "cas" private field.(‡À…‚şÿÿÿÿ
-V	java:S125r"<This block of commented-out lines of code should be removed.(ôˆ™©ÿÿÿÿÿ
-[
-java:S2441]"9Make "CAS" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8õè¶î¤.
-R
-java:S1128"7Remove this unused import 'javax.jws.soap.SOAPBinding'.(î¶âÑûÿÿÿÿ
 T
 java:S3752 ">Add a "method" parameter to this "@RequestMapping" annotation.(ô¸èÉ
-o
-java:S3776-"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(èĞ«Æ8„Øî¥.
-k
-java:S11926"IDefine a constant instead of duplicating this literal "password" 5 times.(÷¶ï¿øÿÿÿÿ8‘¢¸ì¤.
-C
-java:S1068"-Remove this unused "volunteer" private field.(Ó¤“Ä
-L
-java:S5411G"*Use the primitive boolean expression here.(¡Ô™úÿÿÿÿ8šµÀì¤.
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
-e
-java:S4488,"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ãèïûÿÿÿÿ
-j
-java:S11926"HDefine a constant instead of duplicating this literal "invalid" 5 times.(÷¶ï¿øÿÿÿÿ8‘¢¸ì¤.
-Y
-java:S3752&">Add a "method" parameter to this "@RequestMapping" annotation.(ÓÃÁºøÿÿÿÿ
-c
-java:S2441;"AMake "Beneficiary" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ú•©ì¤.
-h
-java:S1192$"RDefine a constant instead of duplicating this literal "beneficiary/login" 7 times.(û¢ú‰
-a
-java:S2441F"?Make "Volunteer" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ğ »ì¤.
-y
-java:S11927"]Define a constant instead of duplicating this literal "La contrasenya es incorrecta" 4 times.(¼–®)8¹¬¥î¤.
+o
+java:S3776-"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(èĞ«Æ8„Øî¥.
 _
 java:S2441S"=Make "Company" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8¡Ğ»‹¦.
+j
+java:S11926"HDefine a constant instead of duplicating this literal "invalid" 5 times.(÷¶ï¿øÿÿÿÿ8‘¢¸ì¤.
+y
+java:S11927"]Define a constant instead of duplicating this literal "La contrasenya es incorrecta" 4 times.(¼–®)8¹¬¥î¤.
+h
+java:S1192$"RDefine a constant instead of duplicating this literal "beneficiary/login" 7 times.(û¢ú‰
+e
+java:S4488,"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ãèïûÿÿÿÿ
+B
+java:S1068"'Remove this unused "cas" private field.(‡À…‚şÿÿÿÿ
+V	java:S125u"<This block of commented-out lines of code should be removed.(ôˆ™©ÿÿÿÿÿ
+a
+java:S2441F"?Make "Volunteer" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ğ »ì¤.
+C
+java:S1068"-Remove this unused "volunteer" private field.(Ó¤“Ä
+Y
+java:S3752&">Add a "method" parameter to this "@RequestMapping" annotation.(ÓÃÁºøÿÿÿÿ
+E
+java:S1068"/Remove this unused "beneficiary" private field.(×’å
+k
+java:S11926"IDefine a constant instead of duplicating this literal "password" 5 times.(÷¶ï¿øÿÿÿÿ8‘¢¸ì¤.
+[
+java:S2441]"9Make "CAS" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8õè¶î¤.
 c
-java:S2441p"AMake "Beneficiary" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8Ìúšì¤.
+java:S2441s"AMake "Beneficiary" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8Ìúšì¤.
+c
+java:S2441;"AMake "Beneficiary" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ú•©ì¤.
+L
+java:S5411G"*Use the primitive boolean expression here.(¡Ô™úÿÿÿÿ8šµÀì¤.
+R
+java:S1128"7Remove this unused import 'javax.jws.soap.SOAPBinding'.(î¶âÑûÿÿÿÿ

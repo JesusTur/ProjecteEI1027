@@ -1,28 +1,28 @@
 
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
+u
+java:S1450"_Remove the "volunteerTimeDao" field and declare it as a local variable in the relevant methods.(ÌÏ£Å
+X	java:S125W"<This block of commented-out lines of code should be removed.(øˆªë8˜ªÂí¤.
+^
+java:S44889"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ä¨ºŞ
+p
+java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ
+L
+java:S1128"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ
+Y
+java:S3752I">Add a "method" parameter to this "@RequestMapping" annotation.(‚Îãöşÿÿÿÿ
+`
+java:S44880"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ú¿Ìã
+J
+java:S1068"4Remove this unused "volunteerTimeDao" private field.(ÌÏ£Å
+_
+java:S4488?"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ï˜¦
 [
 java:S3752N">Add a "method" parameter to this "@RequestMapping" annotation.(ô¸èÉ8˜ªÂí¤.
 Y
 java:S3752*">Add a "method" parameter to this "@RequestMapping" annotation.(ì¡²åşÿÿÿÿ
-T
-java:S3752$">Add a "method" parameter to this "@RequestMapping" annotation.(ÚüÅÙ
 X	java:S125S"<This block of commented-out lines of code should be removed.(øˆªë8˜ªÂí¤.
-X	java:S125W"<This block of commented-out lines of code should be removed.(øˆªë8˜ªÂí¤.
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©’šõúÿÿÿÿ
-J
-java:S1068"4Remove this unused "volunteerTimeDao" private field.(ÌÏ£Å
-^
-java:S44889"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ä¨ºŞ
-u
-java:S1450"_Remove the "volunteerTimeDao" field and declare it as a local variable in the relevant methods.(ÌÏ£Å
-Y
-java:S3752I">Add a "method" parameter to this "@RequestMapping" annotation.(‚Îãöşÿÿÿÿ
-L
-java:S1128"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ
-`
-java:S44880"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ú¿Ìã
-_
-java:S4488?"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ï˜¦
 E
 java:S1068"/Remove this unused "contractDao" private field.(Ø‹üÂ
-p
-java:S1450"ZRemove the "contractDao" field and declare it as a local variable in the relevant methods.(Ø‹üÂ
+T
+java:S3752$">Add a "method" parameter to this "@RequestMapping" annotation.(ÚüÅÙ
