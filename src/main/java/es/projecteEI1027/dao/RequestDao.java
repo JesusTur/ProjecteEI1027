@@ -85,7 +85,7 @@ public class RequestDao {
     public List<Request> getRequestsByContractIde(int id){
         try {
 
-            return jdbcTemplate.query("SELECT * FROM Request WHERE contractId = ?",
+            return jdbcTemplate.query("SELECT * FROM Request WHERE contractId = ? AND requestState = 'accepted'",
                     new RequestRowMapper(), id);
         }
         catch (EmptyResultDataAccessException e){

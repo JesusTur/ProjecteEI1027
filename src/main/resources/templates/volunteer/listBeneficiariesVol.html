@@ -62,11 +62,13 @@
             </table>
             <tr th:unless="${#maps.isEmpty(mapa)}">
             <tr th:each="map: ${mapa}">
+                <td class="lead mb-5">Temps lliure desde: </td>
                 <td class="lead mb-5" th:text="${#strings.replace(map.key,'T',' ')}"></td>
+                <td class="lead mb-5"> fins: </td>
                 <td class="lead mb-5" th:text="${#strings.replace(map.value,'T',' ')}"></td>
             </tr>
-            <p><a href="/volunteer/hourAdd"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Afegir horaris</button></a></p>
-            <p><a href="/volunteer/modifiedHour"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Modificar horaris</button></a></p>
+            <p><a href="/volunteer/hourAdd"><button type="button" class="btn btn-success">Afegir horaris</button></a>
+            <a href="/volunteer/modifiedHour"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Modificar horaris</button></a></p>
 
 
 

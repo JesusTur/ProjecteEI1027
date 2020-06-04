@@ -20,7 +20,7 @@
         <div class="card login-card">
             <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="https://static.vecteezy.com/system/resources/previews/000/142/007/original/headshot-of-smiling-young-man-with-beard-vector.jpg" alt="login" class="login-card-img">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/142/015/original/headshot-of-young-businessman-vector.jpg" alt="login" class="login-card-img">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
@@ -39,7 +39,7 @@
                             </tr>
                             <tr th:each ="br: ${benReq}">
                                 <td th:text="${br.key.name}"></td>
-                                <td th:text="${br.key.homeAddress}"></td>
+                                <td th:text="${#strings.replace(br.key.homeAddress,'#',' ')}"></td>
                                 <td th:text="${br.value.schedule}"></td>
                                 <td th:text="${br.value.TypeOfService}"></td>
                                 <td th:text="${br.value.comment}"></td>
