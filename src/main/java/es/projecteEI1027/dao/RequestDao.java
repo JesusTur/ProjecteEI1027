@@ -108,4 +108,9 @@ public class RequestDao {
         catch(EmptyResultDataAccessException e) {
         }
     }
+    public void rejectRequest(int id){try {
+        jdbcTemplate.update("UPDATE Request SET requestState = 'rejected' WHERE id = ?", id);
+    }
+    catch(EmptyResultDataAccessException e) {
+    }}
 }

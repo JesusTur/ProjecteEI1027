@@ -120,7 +120,7 @@ public class CasController {
         Request request = requestDao.getRequest(id);
         request.setRequestState(RequestState.rejected);
         request.setDateReject(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
-        requestDao.updateRequest(request);
+        requestDao.rejectRequest(request.getId());
         List<Request> req = requestDao.getPendentRequests();
         HashMap<Beneficiary, Request> requests = new HashMap<>();
         for(Request r : req){
