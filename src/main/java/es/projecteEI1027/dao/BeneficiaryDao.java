@@ -188,6 +188,22 @@ public class BeneficiaryDao {
         }
     }
 
+    public boolean yaTiene(String ben){
+        try{
+            Beneficiary beny = jdbcTemplate.queryForObject("Select * from beneficiary WHERE dni = ? AND dni IN(SELECT dniBeneficiary FROM volunteerTime where available IS TRUE)",
+                    new BeneficiaryRowMapper(), ben);
+            if(beny == null){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        catch(EmptyResultDataAccessException e){
+        }
+        return false;
+    }
+
     public Request servicioPendiente(String user){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE requestState LIKE 'processing' AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) ",

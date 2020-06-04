@@ -23,10 +23,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
@@ -97,7 +94,13 @@ public class ServiceController {
     @RequestMapping(value="/services/addVolunteer")
     public String processAddVolunteer(HttpSession session, Model model) {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
-        List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        List<Volunteer> volunteerServices;
+        if(userDao.yaTiene(userDao.getBeneficiaryPerNom(user.getUser()).getDni())){
+            volunteerServices = new ArrayList<Volunteer>();
+        }
+        else{
+            volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        }
         model.addAttribute("volunteerServices", volunteerServices);
         model.addAttribute("dni",userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         return "beneficiary/addVolunteer";
@@ -218,7 +221,7 @@ public class ServiceController {
         request.setDateReject(null);
         request.setComment();*/
         //model.addAttribute("request", new Request());
-        return "beneficiary/indexServices";
+        return "beneficiary/listServices";
 
     }
 }
