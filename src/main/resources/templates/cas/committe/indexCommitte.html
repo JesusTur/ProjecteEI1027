@@ -1,79 +1,47 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{fragments/base}">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Serveis</title>
+    <!--<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />-->
 
-    <title>Majors a Casa</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
 </head>
-
 <body id="page-top">
+<!-- Page Content-->
+<div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about">
+        <div class="resume-section-content">
 
-<!-- Navigation -->
-
-<!-- Header -->
-<header class="masthead-1 d-flex">
-    <div class="container text-center my-auto">
-        <h1 class="mb-1">Majors a Casa</h1>
-        <h3 class="mb-5">
-            <em>Sempre amb tu, des de sempre.</em>
-        </h3>
-        <form action="#" th:action="@{/cas//listRequests}" th:object="${user}">
-            <input type="submit" class="btn btn-primary btn-xxl js-scroll-trigger" value="ACCEPTAR SOL·LICITUDS DE BENEFICIARIS" />
-        </form>
-
-        <p><a class="btn btn-red btn-xl js-scroll-trigger"  th:object="${session}" href="/logout" th:href="@{/logout}">Eixir</a></p>
-
-
+            <h1 class="mb-1">Majors a Casa</h1>
+            <h3 class="mb-5">
+                <em>Sempre amb tu, des de sempre.</em>
+            </h3>
+            <p>
+            <form action="#" th:action="@{/cas//listRequests}" th:object="${user}"  method="post">
+                <input type="submit" class="btn btn-primary btn-xxl js-scroll-trigger" value="ASSIGNAR VOLUNTARIS A BENEFICIARIS" />
+            </form>
+            </p>
 
 
-    </div>
-    <div class="overlay"></div>
-</header>
+            <p><a class="btn btn-dark"  th:object="${session}" href="/logout" th:href="@{/logout}">Eixir</a></p>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-
-<!-- Footer -->
-<footer class="footer-1 text-center">
-    <div class="container">
-        <ul class="list-inline mb-5">
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="#">
-                    <i class="icon-social-facebook"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="#">
-                    <i class="icon-social-instagram"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white" href="#">
-                    <i class="icon-social-github"></i>
-                </a>
-            </li>
-        </ul>
-        <p class="text-muted small mb-0">Copyright &copy; Majors a Casa 2020</p>
-    </div>
-</footer>
-
-
+    </section>
+</div>
 </body>
-
 </html>

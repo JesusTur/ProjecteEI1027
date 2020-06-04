@@ -56,8 +56,8 @@
                 <th class="subheading mb-5">BENEFICIARI: </th>
                 <tr th:each="beneficiary: ${assignedBeneficiaries}">
                     <td class="lead mb-5" th:text="${beneficiary.name}"></td>
-                    <td><a th:href="@{/volunteer/remove/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-danger">Ya no vuic aquest beneficiari</button></a></td>
-                    <td><a th:href="@{/volunteer/veure/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-danger">Detalls del beneficiari</button></a></td>
+                    <td><a th:href="@{/volunteer/veure/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-warning">Detalls del beneficiari</button></a></td>
+                    <td><a th:href="@{/volunteer/remove/{dni}(dni=${beneficiary.dni})}"><button type="button" class="btn btn-danger">Ja no vuic aquest beneficiari</button></a></td>
                 </tr>
             </table>
             <tr th:unless="${#maps.isEmpty(mapa)}">

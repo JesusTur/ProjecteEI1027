@@ -200,6 +200,27 @@ public class ServiceController {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         volunteerTimeDao.deleteVol(dni,userDao.getBeneficiaryPerNom(user.getUser()).getDni());
 
+        List<Volunteer> listVolunteer= userDao.getVolunteerServicesUser(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        List<Request> listServiceActives= userDao.getServicePerBen(user.getUser());
+        List<Request> listServicePending= userDao.getServicePerBenPending(user.getUser());
+
+        if(userDao.yaTiene(userDao.getBeneficiaryPerNom(user.getUser()).getDni())){
+            VolunteerTime volunteerTime = userDao.horarios(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+            LocalDateTime horaInit = volunteerTime.getBeginningTime();
+            LocalDateTime horaFin = volunteerTime.getEndingTime();
+            model.addAttribute("horaInit",horaInit.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+            model.addAttribute("horaFin",horaFin.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+        }
+
+
+        //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
+        //Map<String,Float> precios = userDao.getPrecioContract(listCompanyActives);
+
+        model.addAttribute("user",user.getUser());
+        model.addAttribute("volunteers",  listVolunteer);
+        model.addAttribute("servicesActives", listServiceActives);
+        model.addAttribute("servicesPending", listServicePending);
+
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");

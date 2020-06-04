@@ -50,6 +50,8 @@
         <div class="resume-section-content">
             <h1 class="mb-0">Sol·licitar <span class="text-primary">Voluntari</span></h1>
             <h1 class="subheading mb-5">Servei de cura personal</h1>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(volunteerServices)}">No hi ha voluntaris assignats per a tu</div>
+
 
 
             <table th:unless="${#lists.isEmpty(volunteerServices)}"  class="table table-dark table-striped">
@@ -62,6 +64,11 @@
                 </tr>
                 </tbody>
             </table>
+
+
+            <form action="#" th:action="@{/services}" th:object="${user}"  method="post">
+                <input type="submit" class="btn btn-secondary" role="button" value="Tornar">
+            </form>
 
 
         </div>
