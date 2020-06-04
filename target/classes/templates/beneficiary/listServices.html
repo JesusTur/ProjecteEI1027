@@ -50,9 +50,9 @@
                 <th class="subheading mb-5">Voluntaris:</th>
                 <tr th:each="volunteer: ${volunteers}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(volunteer.name)}"></td>
-                    <td class="lead mb-5" th:text="${horaInit}"></td>
-                    <td class="lead mb-5" th:text="${horaFin}"></td>
-                    <td><a th:href="@{/services/remove/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Ya no vuic aquest voluntari</button></a></td>
+                    <td class="lead mb-5" >Data inici: </td><td class="lead mb-5" th:text="${horaInit}"></td>
+                    <td class="lead mb-5" >Data fi: </td><td class="lead mb-5" th:text="${horaFin}"></td>
+                    <td><a th:href="@{/services/remove/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-red btn-xl js-scroll-trigger">Ya no vuic aquest voluntari</button></a></td>
                 </tr>
             </table>
 
@@ -61,7 +61,7 @@
                 <th class="subheading mb-5">Serveis activus: </th>
                 <tr th:each="service: ${servicesActives}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(service.typeOfService)}"></td>
-                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Ya no vuic aquest servici</button></a></td>
+                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-red btn-xl js-scroll-trigger">Ya no vuic aquest servici</button></a></td>
                 </tr>
                 </tbody>
             </table>

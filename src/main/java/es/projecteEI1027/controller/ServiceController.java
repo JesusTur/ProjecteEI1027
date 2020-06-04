@@ -23,6 +23,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -57,8 +58,8 @@ public class ServiceController {
             VolunteerTime volunteerTime = userDao.horarios(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
             LocalDateTime horaInit = volunteerTime.getBeginningTime();
             LocalDateTime horaFin = volunteerTime.getEndingTime();
-            model.addAttribute("horaInit",horaInit);
-            model.addAttribute("horaFin",horaFin);
+            model.addAttribute("horaInit",horaInit.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+            model.addAttribute("horaFin",horaFin.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
         }
 
 
