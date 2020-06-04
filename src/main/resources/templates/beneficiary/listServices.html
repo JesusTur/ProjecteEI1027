@@ -43,13 +43,13 @@
 
 
             <div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No hi ha voluntaris</div>
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesActives)}">No hi ha servicis actius</div>
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesPending)}">No hi ha servicis pendents</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesActives)}">No hi ha serveis actius</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesPending)}">No hi ha serveis pendents</div>
 
             <table th:unless="${#lists.isEmpty(volunteers)}" class="table table-borderless">
                 <th class="subheading mb-5">Voluntaris:</th>
                 <tr th:each="volunteer: ${volunteers}">
-                    <td th:text="${volunteer.name}"></td>
+                    <td class="lead mb-5" th:text="${volunteer.name}"></td>
                     <td><a th:href="@{/services/remove/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Ya no vuic aquest voluntari</button></a></td>
                 </tr>
             </table>
