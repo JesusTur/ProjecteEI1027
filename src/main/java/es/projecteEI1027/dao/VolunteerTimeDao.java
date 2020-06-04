@@ -83,7 +83,7 @@ public class VolunteerTimeDao {
     public Map<LocalDateTime,LocalDateTime> getVolunteerTime(String dniVol) {
         Map<LocalDateTime,LocalDateTime> lvt = new HashMap<>();
         try {
-            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL", new VolunteerTimeRowMapper(),dniVol);
+            List<VolunteerTime> vt = jdbcTemplate.query("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary IS NULL AND available IS TRUE", new VolunteerTimeRowMapper(),dniVol);
             for(VolunteerTime vol : vt){
                 lvt.put(vol.getBeginningTime(),vol.getEndingTime());
             }
@@ -139,7 +139,7 @@ public class VolunteerTimeDao {
 
     public List<Beneficiary> getRelatedBeneficiaries(String dniVol) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE dni IN (SELECT dniBeneficiary FROM VolunteerTime WHERE dniVolunteer = ?)", new BeneficiaryRowMapper(),dniVol);
+            return jdbcTemplate.query("SELECT * FROM Beneficiary WHERE dni IN (SELECT dniBeneficiary FROM VolunteerTime WHERE dniVolunteer = ? AND available IS TRUE)", new BeneficiaryRowMapper(),dniVol);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -171,6 +171,15 @@ public class VolunteerTimeDao {
         }
     }
 
+    public VolunteerTime getBeneficiaryTime(String dniVol,String dniBen) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary = ? AND available IS TRUE", new VolunteerTimeRowMapper(),dniVol, dniBen);
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
 
 }

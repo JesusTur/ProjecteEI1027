@@ -55,7 +55,7 @@
             <table th:unless="${#lists.isEmpty(lista)}" class="table table-borderless">
                 <th class="subheading mb-5" >HORARIS:</th>
                 <tr th:each="v: ${lista}">
-                    <td class="lead mb-5" th:text="${v.beginningTime}"></td>
+                    <td class="lead mb-5" th:text="${#strings.replace(v.beginningTime,'T',' ')}"></td>
                     <td><a th:href="@{/volunteer/modifyTimeNow/{beginningTime}(beginningTime=${v.beginningTime})}"><button type="button"  class="btn btn-primary  btn-xl js-scroll-trigger">Modificar temps</button></a></td>
                     <td><a th:href="@{/volunteer/removeTimeNow/{beginningTime}(beginningTime=${v.beginningTime})}"><button type="button"  class="btn btn-primary  btn-xl js-scroll-trigger">Esborrar temps</button></a></td>
                 </tr>

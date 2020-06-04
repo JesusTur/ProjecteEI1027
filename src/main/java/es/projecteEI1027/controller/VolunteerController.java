@@ -1,5 +1,6 @@
 package es.projecteEI1027.controller;
 
+import es.projecteEI1027.dao.BeneficiaryDao;
 import es.projecteEI1027.dao.VolunteerDao;
 import es.projecteEI1027.dao.VolunteerTimeDao;
 import es.projecteEI1027.model.*;
@@ -21,6 +22,8 @@ import java.util.*;
 @Controller
 @RequestMapping("/volunteer")
 public class VolunteerController {
+    @Autowired
+    private BeneficiaryDao userDao;
     private VolunteerTimeDao volunteerTimeDao;
     private VolunteerDao volunteerDao;
     @Autowired
@@ -134,7 +137,8 @@ public class VolunteerController {
     public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
 
         Volunteer user = (Volunteer)session.getAttribute("user");
-        volunteerTimeDao.deleteVol(user.getDni(),dni);
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        volunteerTimeDao.deleteVol(volunteer.getDni(),dni);
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
@@ -149,6 +153,34 @@ public class VolunteerController {
         request.setComment();*/
         //model.addAttribute("request", new Request());
         return "volunteer/indexVolunteer";
+
+    }
+
+    @RequestMapping(value="/veure/{dni}", method=RequestMethod.GET)
+    public String processveureSubmit(@PathVariable String dni,HttpSession session, Model model) {
+
+        Volunteer user = (Volunteer)session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
+        Beneficiary ben = userDao.getBeneficiary(dni);
+        VolunteerTime volunteerTime = volunteerTimeDao.getBeneficiaryTime(volunteer.getDni(),dni);
+        model.addAttribute("hourIn",volunteerTime.getBeginningTime());
+        model.addAttribute("hourOf",volunteerTime.getEndingTime());
+        model.addAttribute("ben",ben);
+
+
+        /*Request request = new Request();
+        request.setId(id.incrementAndGet());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        //session.setAttribute("id",contractDao.getContractByCompany(cif));
+       /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        request.setRequestState(RequestState.valueOf("processing"));
+        request.setDateAccept(null);
+        request.setDateReject(null);
+        request.setComment();*/
+        //model.addAttribute("request", new Request());
+        return "volunteer/detalles";
 
     }
 

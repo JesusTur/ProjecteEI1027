@@ -54,8 +54,10 @@
 
             <tr th:unless="${#maps.isEmpty(mapa)}">
             <tr th:each="map: ${mapa}">
-                <td class="lead mb-5" th:text="${map.key}"></td>
-                <td class="lead mb-5" th:text="${map.value}"></td>
+                <td>Seleccionar horari després de: </td>
+                <td class="lead mb-5" th:text="${#strings.replace(map.key,'T',' ')}"></td>
+                <td>Seleccionar horari abans o fins: </td>
+                <td class="lead mb-5" th:text="${#strings.replace(map.value,'T',' ')}"></td>
                 <form action="#" th:action="@{/services/addVolunteerTime}"
                       th:object="${volunteerT}" method="post">
                     <table>

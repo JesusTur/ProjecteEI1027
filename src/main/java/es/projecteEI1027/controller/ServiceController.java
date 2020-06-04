@@ -143,8 +143,8 @@ public class ServiceController {
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         request.setTypeOfService(session.getAttribute("tipo").toString());*/
-        Map<LocalDateTime,LocalDateTime> map = new HashMap<>();
-        model.addAttribute("mapa",volunteerTimeDao.getVolunteerTime(dni));
+        Map<LocalDateTime,LocalDateTime> map = volunteerTimeDao.getVolunteerTime(dni);
+        model.addAttribute("mapa",map);
         model.addAttribute("tiempoIni",volunteerTimeDao.getVolunteerTimeInit(dni));
         model.addAttribute("tiempoFin",volunteerTimeDao.getVolunteerTimeFinal(dni));
         session.setAttribute("dniVolunteer",dni);
