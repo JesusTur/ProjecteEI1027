@@ -224,6 +224,16 @@ public class BeneficiaryDao {
         }
     }
 
+    public VolunteerTime horarios(String ben){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniBeneficiary = ? AND available IS TRUE",
+                    new VolunteerTimeRowMapper(), ben);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 
 }

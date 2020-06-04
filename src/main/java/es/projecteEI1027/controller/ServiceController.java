@@ -52,8 +52,13 @@ public class ServiceController {
         List<Volunteer> listVolunteer= userDao.getVolunteerServicesUser(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         List<Request> listServiceActives= userDao.getServicePerBen(user.getUser());
         List<Request> listServicePending= userDao.getServicePerBenPending(user.getUser());
+        VolunteerTime volunteerTime = userDao.horarios(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        LocalDateTime horaInit = volunteerTime.getBeginningTime();
+        LocalDateTime horaFin = volunteerTime.getEndingTime();
         //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
         //Map<String,Float> precios = userDao.getPrecioContract(listCompanyActives);
+        model.addAttribute("horaInit",horaInit);
+        model.addAttribute("horaFin",horaFin);
         model.addAttribute("user",user.getUser());
         model.addAttribute("volunteers",  listVolunteer);
         model.addAttribute("servicesActives", listServiceActives);
@@ -186,7 +191,7 @@ public class ServiceController {
     public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
 
         Beneficiary user = (Beneficiary)session.getAttribute("user");
-        volunteerTimeDao.deleteVol(dni,user.getDni());
+        volunteerTimeDao.deleteVol(dni,userDao.getBeneficiaryPerNom(user.getUser()).getDni());
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
@@ -207,7 +212,7 @@ public class ServiceController {
     public String processRemoveServiceSubmit(@PathVariable String typeOfService,HttpSession session, Model model) {
 
         Beneficiary user = (Beneficiary)session.getAttribute("user");
-        requestDao.rejectedService(user.getDni(),typeOfService);
+        requestDao.rejectedService(userDao.getBeneficiaryPerNom(user.getUser()).getDni(),typeOfService);
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
