@@ -52,13 +52,19 @@ public class ServiceController {
         List<Volunteer> listVolunteer= userDao.getVolunteerServicesUser(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         List<Request> listServiceActives= userDao.getServicePerBen(user.getUser());
         List<Request> listServicePending= userDao.getServicePerBenPending(user.getUser());
-        VolunteerTime volunteerTime = userDao.horarios(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
-        LocalDateTime horaInit = volunteerTime.getBeginningTime();
-        LocalDateTime horaFin = volunteerTime.getEndingTime();
+
+        if(userDao.yaTiene(userDao.getBeneficiaryPerNom(user.getUser()).getDni())){
+            VolunteerTime volunteerTime = userDao.horarios(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+            LocalDateTime horaInit = volunteerTime.getBeginningTime();
+            LocalDateTime horaFin = volunteerTime.getEndingTime();
+            model.addAttribute("horaInit",horaInit);
+            model.addAttribute("horaFin",horaFin);
+        }
+
+
         //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
         //Map<String,Float> precios = userDao.getPrecioContract(listCompanyActives);
-        model.addAttribute("horaInit",horaInit);
-        model.addAttribute("horaFin",horaFin);
+
         model.addAttribute("user",user.getUser());
         model.addAttribute("volunteers",  listVolunteer);
         model.addAttribute("servicesActives", listServiceActives);
