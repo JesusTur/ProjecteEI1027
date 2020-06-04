@@ -18,6 +18,11 @@ body {
   padding: 1.25rem 2.5rem;
 }
 
+.btn-xxl{
+  padding: 1.25rem 2.5rem;
+  font-size: 1.4rem;
+}
+
 .content-section {
   padding-top: 7.5rem;
   padding-bottom: 7.5rem;
@@ -94,6 +99,19 @@ h6 {
   padding-top: 8rem;
   padding-bottom: 8rem;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("https://www.mindandmobility.com/wp-content/uploads/2018/08/Helping-Elderly-Parents-4-Signs-They-Need-Home-Care.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.masthead-1 {
+  min-height: 30rem;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: auto;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-color: #d0d0ce;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -297,6 +315,12 @@ footer.footer {
   padding-bottom: 5rem;
 }
 
+footer.footer-1 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: #d0d0ce;
+}
+
 footer.footer .social-link {
   display: block;
   height: 4rem;
@@ -331,6 +355,7 @@ a:hover, a:focus, a:active {
   border-color: #bd5d38 !important;
   color: #fff !important;
 }
+.btn-red {margin-bottom: 0px;margin-top: 20%;background-color: #dc3545;!important;border-color: #ff0000 !important;color: #fff !important;}
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background-color: #155d74 !important;

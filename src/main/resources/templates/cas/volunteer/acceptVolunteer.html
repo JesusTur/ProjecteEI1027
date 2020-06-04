@@ -1,45 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/majorsACasa.css"
-          th:href="@{/css/majorsACasa.css}"/>
-    <title>Acceptar Voluntaris</title>
+    <title>Login</title>
     <meta charset="UTF-8"/>
-    <!-- Afegim una fulla d'estil (Bootstrap) -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Template</title>
+    <!--<link rel="stylesheet" type="text/css" href="/assets/css/login.css" th:href="@{/assets/css/login.css}"/>-->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-<div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No hi ha voluntaris sense acceptar</div>
-<table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-condensed">
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <!--<div class="brand-wrapper">
+                            <img src="/assets/images/logo.svg" alt="logo" class="logo">
+                        </div>-->
+                        <div th:if="${#lists.isEmpty(volunteers)}" class="login-card-description">No hi ha voluntaris sense acceptar</div>
+                        <table th:unless="${#lists.isEmpty(volunteers)}"  class="table table-borderless">
 
-    <tbody>
-    <th>Voluntaris no acceptats: </th>
-    <tr>
-        <td>nNom</td>
-        <td>Cognom</td>
-        <td>Dni</td>
-        <td>Nº teléfon</td>
-        <td>Data naixement</td>
-        <td>Data de registre</td>
-        <td>Hobbies</td>
-        <td>email</td>
-        <td></td>
-    </tr>
-    <tr th:each="volunteer: ${volunteers}">
-        <td th:text="${volunteer.name}"></td>
-        <td th:text="${volunteer.surname}"></td>
-        <td th:text="${volunteer.dni}"></td>
-        <td th:text="${volunteer.phoneNumber}"></td>
-        <td th:text="${volunteer.birthDate}"></td>
-        <td th:text="${volunteer.applicationDate}"></td>
-        <td th:text="${volunteer.hobbies}"></td>
-        <td th:text="${volunteer.email}"></td>
-        <td><a th:href="@{/cas/acceptVolunteer/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-warning">acceptar</button></a></td>
-    </tr>
-    </tbody>
-</table>
-</form>
+                            <h1 class="login-card-description">Voluntaris no acceptats: </h1>
+                            <tbody>
+                            <tr>
+                                <td>Nom</td>
+                                <td>Cognom</td>
+                                <td>Dni</td>
+                                <td>Nº teléfon</td>
+                                <td>Data naixement</td>
+                                <td>Data de registre</td>
+                                <td>Hobbies</td>
+                                <td>Email</td>
+                                <td></td>
+                            </tr>
+                            <tr th:each="volunteer: ${volunteers}">
+                                <td th:text="${volunteer.name}"></td>
+                                <td th:text="${volunteer.surname}"></td>
+                                <td th:text="${volunteer.dni}"></td>
+                                <td th:text="${volunteer.phoneNumber}"></td>
+                                <td th:text="${volunteer.birthDate}"></td>
+                                <td th:text="${volunteer.applicationDate}"></td>
+                                <td th:text="${volunteer.hobbies}"></td>
+                                <td th:text="${volunteer.email}"></td>
+                                <td><a th:href="@{/cas/acceptVolunteer/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-warning">Acceptar</button></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

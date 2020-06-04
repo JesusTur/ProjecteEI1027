@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/majorsACasa.css"
-          th:href="@{/css/majorsACasa.css}"/>
-    <title>Beneficiaris a càrrec</title>
+    <title>Login</title>
     <meta charset="UTF-8"/>
-    <!-- Afegim una fulla d'estil (Bootstrap) -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Template</title>
+    <!--<link rel="stylesheet" type="text/css" href="/assets/css/login.css" th:href="@{/assets/css/login.css}"/>-->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-<div class="subheading mb-5" th:if="${#maps.isEmpty(benReq)}">Ningú ha contractat els teus serveis</div>
-<table th:unless="${#maps.isEmpty(benReq)}">
-    <tr>
-        <td>Solicitant</td>
-        <td>Direcció</td>
-        <td>Horari</td>
-        <td>Tipus</td>
-        <td>Comentaris</td>
-    </tr>
-    <tr th:each ="br: ${benReq}">
-        <td th:text="${br.key.name}"></td>
-        <td th:text="${br.key.homeAddress}"></td>
-        <td th:text="${br.value.schedule}"></td>
-        <td th:text="${br.value.TypeOfService}"></td>
-        <td th:text="${br.value.comment}"></td>
-    </tr>
-</table>
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/142/007/original/headshot-of-smiling-young-man-with-beard-vector.jpg" alt="login" class="login-card-img">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <!--<div class="brand-wrapper">
+                            <img src="/assets/images/logo.svg" alt="logo" class="logo">
+                        </div>-->
+                        <p class="login-card-description">Detalls dels beneficiaris a càrrec</p>
+                        <div class="subheading mb-5" th:if="${#maps.isEmpty(benReq)}">Ningú ha contractat els teus serveis</div>
+                        <table th:unless="${#maps.isEmpty(benReq)}" class="table table-borderless">
+                            <tr>
+                                <td>Solicitant</td>
+                                <td>Direcció</td>
+                                <td>Horari</td>
+                                <td>Tipus</td>
+                                <td>Comentaris</td>
+                            </tr>
+                            <tr th:each ="br: ${benReq}">
+                                <td th:text="${br.key.name}"></td>
+                                <td th:text="${br.key.homeAddress}"></td>
+                                <td th:text="${br.value.schedule}"></td>
+                                <td th:text="${br.value.TypeOfService}"></td>
+                                <td th:text="${br.value.comment}"></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

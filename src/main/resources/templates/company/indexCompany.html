@@ -1,32 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/base}">
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{fragments/base}">
+
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/indexServices.css"
-          th:href="@{/css/indexServices.css}"/>
-    <title>Login</title>
-    <meta charset="UTF-8"/>
-    <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Majors a Casa</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.min.css" rel="stylesheet">
 
 </head>
-<body>
-<h2 class="text-center">MAJORS A CASA</h2>
-<div>
 
-    <form action="#" th:action="@{/company/list}" th:object="${user}"  method="post">
-        <input type="submit" value="ACCEDIR ALS AVIS" />
-    </form>
-</div>
-<div class="loggeduser" th:object="${session}">
-    <p th:if="*{user == null}">
-        No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
-    </p>
-    <p th:unless="*{user == null}">
-        <!--Autenticat com: <span th:text="${user}"></span>  </br> -->
-        <a href="/logout" th:href="@{/logout}">EIXIR DE LA SEUA SESSIÓ</a>
-    </p>
-</div>
+<body id="page-top">
+
+<!-- Navigation -->
+
+<!-- Header -->
+<header class="masthead-1 d-flex">
+    <div class="container text-center my-auto">
+        <h1 class="mb-1">Majors a Casa</h1>
+        <h3 class="mb-5">
+            <em>Sempre amb tu, des de sempre.</em>
+        </h3>
+        <form action="#" th:action="@{/company/list}" th:object="${user}">
+            <input type="submit" class="btn btn-primary btn-xxl js-scroll-trigger" value="GESTIONAR ELS BENEFICIARIS" />
+        </form>
+
+        <p><a class="btn btn-red btn-xl js-scroll-trigger"  th:object="${session}" href="/logout" th:href="@{/logout}">Eixir</a></p>
+
+
+
+
+    </div>
+    <div class="overlay"></div>
+</header>
+
+
+<!-- Footer -->
+<footer class="footer-1 text-center">
+    <div class="container">
+        <ul class="list-inline mb-5">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="#">
+                    <i class="icon-social-facebook"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="#">
+                    <i class="icon-social-instagram"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="#">
+                    <i class="icon-social-github"></i>
+                </a>
+            </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy; Majors a Casa 2020</p>
+    </div>
+</footer>
+
+
 </body>
+
 </html>
