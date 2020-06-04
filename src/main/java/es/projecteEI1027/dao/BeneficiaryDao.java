@@ -200,7 +200,7 @@ public class BeneficiaryDao {
 
     public Request servicioMismoTipo(String user,String tipo){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE typeOfService = ?  AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) ",
+            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE typeOfService = ?  AND dniBeneficiary = (SELECT dni FROM Beneficiary WHERE userBeneficiary = ?) AND requestState NOT LIKE 'rejected'",
                     new RequestRowMapper(), tipo, user);
         }
         catch(EmptyResultDataAccessException e) {

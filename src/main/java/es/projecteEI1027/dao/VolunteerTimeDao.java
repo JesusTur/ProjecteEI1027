@@ -163,6 +163,14 @@ public class VolunteerTimeDao {
         }
     }
 
+    public void deleteVol(String dniVol, String dniBen ) {
+        try {
+            jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer = ? AND dniBeneficiary = ? ", dniVol,dniBen);
+        }
+        catch(EmptyResultDataAccessException e) {
+        }
+    }
+
 
 
 }

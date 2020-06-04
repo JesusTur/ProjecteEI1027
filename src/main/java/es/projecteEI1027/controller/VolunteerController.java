@@ -130,6 +130,27 @@ public class VolunteerController {
         volunteerTimeDao.updateTime(volunteer.getDni(),LocalDateTime.parse(session.getAttribute("time").toString()),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
         return "/volunteer/listBeneficiariesVol";
     }
+    @RequestMapping(value="/remove/{dni}", method=RequestMethod.GET)
+    public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
+
+        Volunteer user = (Volunteer)session.getAttribute("user");
+        volunteerTimeDao.deleteVol(user.getDni(),dni);
+
+        /*Request request = new Request();
+        request.setId(id.incrementAndGet());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        //session.setAttribute("id",contractDao.getContractByCompany(cif));
+       /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        request.setRequestState(RequestState.valueOf("processing"));
+        request.setDateAccept(null);
+        request.setDateReject(null);
+        request.setComment();*/
+        //model.addAttribute("request", new Request());
+        return "volunteer/indexVolunteer";
+
+    }
 
 
 }

@@ -101,4 +101,11 @@ public class RequestDao {
             return new ArrayList<Request>();
         }
     }
+    public void rejectedService(String dni, String typeOfService ) {
+        try {
+            jdbcTemplate.update("UPDATE Request SET requestState = 'rejected' WHERE dniBeneficiary = ? AND typeOfService = ?", dni,typeOfService);
+        }
+        catch(EmptyResultDataAccessException e) {
+        }
+    }
 }

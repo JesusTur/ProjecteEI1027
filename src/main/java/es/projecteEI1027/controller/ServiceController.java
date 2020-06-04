@@ -178,4 +178,47 @@ public class ServiceController {
         model.addAttribute("tipo",session.getAttribute("tipo").toString());
         return "beneficiary/servicioSolicitado";
     }
+
+    @RequestMapping(value="/services/remove/{dni}", method=RequestMethod.GET)
+    public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
+
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        volunteerTimeDao.deleteVol(dni,user.getDni());
+
+        /*Request request = new Request();
+        request.setId(id.incrementAndGet());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        //session.setAttribute("id",contractDao.getContractByCompany(cif));
+       /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        request.setRequestState(RequestState.valueOf("processing"));
+        request.setDateAccept(null);
+        request.setDateReject(null);
+        request.setComment();*/
+        //model.addAttribute("request", new Request());
+        return "beneficiary/listServices";
+
+    }
+    @RequestMapping(value="/services/removeService/{typeOfService}", method=RequestMethod.GET)
+    public String processRemoveServiceSubmit(@PathVariable String typeOfService,HttpSession session, Model model) {
+
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        requestDao.rejectedService(user.getDni(),typeOfService);
+
+        /*Request request = new Request();
+        request.setId(id.incrementAndGet());
+        Beneficiary user = (Beneficiary)session.getAttribute("user");
+        request.setDniBeneficiary(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
+        request.setTypeOfService(session.getAttribute("tipo").toString());*/
+        //session.setAttribute("id",contractDao.getContractByCompany(cif));
+       /* request.setSchedule(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+        request.setRequestState(RequestState.valueOf("processing"));
+        request.setDateAccept(null);
+        request.setDateReject(null);
+        request.setComment();*/
+        //model.addAttribute("request", new Request());
+        return "beneficiary/indexServices";
+
+    }
 }
