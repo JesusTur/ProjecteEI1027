@@ -36,24 +36,14 @@ public class VolunteerController {
     }
     @RequestMapping(value="/add")
     public String addVolunteer(Model model, HttpSession session) {
-        if(session.getAttribute("user") == null){
-            model.addAttribute("user", new Volunteer());
-            return "beneficiary/login";}
-        if(! (session.getAttribute("user") instanceof Volunteer)){
-            return"redirect:/";
-        }
+
         model.addAttribute("volunteer", new Volunteer());
         return "volunteer/add";
     }
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult, HttpSession session, Model model) {
-        if(session.getAttribute("user") == null){
-            model.addAttribute("user", new Volunteer());
-            return "beneficiary/login";}
-        if(! (session.getAttribute("user") instanceof Volunteer)){
-            return"redirect:/";
-        }
+
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         volunteer.setAccepted(false);

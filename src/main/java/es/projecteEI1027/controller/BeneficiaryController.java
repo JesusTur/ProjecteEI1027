@@ -55,12 +55,7 @@ public class BeneficiaryController {
 
     @RequestMapping(value="/add")
     public String addBeneficiary(Model model, HttpSession session) {
-        if(session.getAttribute("user") == null){
-            model.addAttribute("user", new Beneficiary());
-            return "beneficiary/login";}
-        if(! (session.getAttribute("user") instanceof Beneficiary)){
-            return"redirect:/";
-        }
+
         model.addAttribute("beneficiary", new Beneficiary());
         return "beneficiary/add";
     }
@@ -68,12 +63,8 @@ public class BeneficiaryController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
                                    BindingResult bindingResult, HttpSession session, Model model) {
-        if(session.getAttribute("user") == null){
-            model.addAttribute("user", new Beneficiary());
-            return "beneficiary/login";}
-        if(! (session.getAttribute("user") instanceof Beneficiary)){
-            return"redirect:/";
-        }
+
+
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
