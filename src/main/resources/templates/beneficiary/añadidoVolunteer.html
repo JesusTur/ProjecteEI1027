@@ -51,7 +51,7 @@
             <h1 class="mb-0">Afegix els <span class="text-primary"> possibles horaris </span></h1>
             <h1 class="subheading mb-5">Temps disponible</h1>
 
-            <p class="subheading mb-5">Se ha afegit a: <td th:text="${nombreVolunteer}"></td> de <td th:text="${horasInit}"></td> a <td th:text="${horasFin}"></td></p>
+            <p class="subheading mb-5">Se ha afegit a: <td th:text="${nombreVolunteer}"></td> de <td th:text="${#strings.replace(horasInit,'T',' ')}"></td> a <td th:text="${#strings.replace(horasFin,'T',' ')}"></td></p>
 
             <form action="#" th:action="@{/services}" th:object="${user}"  method="post">
                 <input type="submit" class="btn btn-primary" role="button" value="Tornar">

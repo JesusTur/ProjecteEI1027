@@ -10,7 +10,7 @@
 <table>
     <td class="lead mb-5" th:text="${ben.name}"></td>
     <td class="lead mb-5" th:text="${ben.description}"></td>
-    <td class="lead mb-5" th:text="${ben.homeAddress}"></td>
+    <td class="lead mb-5" th:text="${#strings.replace(ben.homeAddress,'#',' ')}"></td>
     <td class="lead mb-5" th:text="${ben.phoneNumber}"></td>
     <td class="lead mb-5" th:text="${ben.email}"></td>
     <td class="lead mb-5" th:text="${#strings.replace(hourIn,'T',' ')}"></td>
