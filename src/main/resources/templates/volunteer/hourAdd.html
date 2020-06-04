@@ -80,37 +80,3 @@
 
 
 
-
-<!--
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/majorsACasa.css"
-          th:href="@{/css/majorsACasa.css}"/>
-    <title>Llista d'usuaris del sistema</title>
-    <meta charset="UTF-8"/>
-    &lt;!&ndash; Afegim una fulla d'estil (Bootstrap) &ndash;&gt;
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
-</head>
-<body>
-<p>Crea un horario</p>
-<form action="#" th:action="@{/volunteer/hourAdd}"
-      th:object="${volunteerTime}" method="post">
-    <table>
-        <tr>
-            <td><label>Tiempo inicio</label></td>
-            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{beginningTime}" required="" th:min="${fechaHoy}"/></td>
-        </tr>
-        <tr>
-            <td><label>Tiempo final</label></td>
-            <td><input type="datetime-local" pattern="yyyy-MM-dd'T'HH:mm" th:field="*{endingTime}" required="" th:min="${fechaHoy}"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Afegir" /></td>
-        </tr>
-    </table>
-</form>
-</body>
-</html>-->
