@@ -72,6 +72,11 @@
                                 </div>
 
                         </form>
+                        <div class="container-fluid p-0">
+                            <form action="#" th:action="@{/cas/tornarIndexComp}" th:object="${user}"  method="post">
+                                <input type="submit" class="btn btn-secondary" role="button" value="Tornar">
+                            </form>
+                        </div>
                         <nav class="login-card-footer-nav">
                             <a href="#!">Terms of use.</a>
                             <a href="#!">Privacy policy</a>

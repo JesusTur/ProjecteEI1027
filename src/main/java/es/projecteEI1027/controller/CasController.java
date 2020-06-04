@@ -160,4 +160,16 @@ public class CasController {
         model.addAttribute("requests", requests);
         return "cas/committe/pendingRequests";
     }
+    @RequestMapping(value = "/tornarIndexCom")
+    public String tornarIndexCom(){
+        return "cas/committe/indexCommitte";
+    }
+    @RequestMapping(value = "/tornarIndexComp")
+    public String tornarIndexComp(){
+        return "cas/company/registerCompany";
+    }
+    @RequestMapping(value = "/tornarIndexV")
+    public String tornarIndexV(){
+        return "cas/volunteer/indexCasVolunteer";
+    }
 }
