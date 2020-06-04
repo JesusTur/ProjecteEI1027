@@ -43,8 +43,8 @@
 
 
             <div class="subheading mb-5" th:if="${#lists.isEmpty(volunteers)}">No hi ha voluntaris</div>
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesActives)}">No hi ha servicis actius</div>
-            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesPending)}">No hi ha servicis pendents</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesActives)}">No hi ha serveis actius</div>
+            <div class="subheading mb-5" th:if="${#lists.isEmpty(servicesPending)}">No hi ha serveis pendents</div>
 
             <table th:unless="${#lists.isEmpty(volunteers)}" class="table table-dark table-striped">
                 <th class="subheading mb-5">Voluntaris:</th>
@@ -58,19 +58,19 @@
 
             <table th:unless="${#lists.isEmpty(servicesActives)}" class="table table-dark table-striped">
                 <tbody>
-                <th class="subheading mb-5">Serveis activus: </th>
+                <th class="subheading mb-5">Serveis actius: </th>
                 <tr th:each="service: ${servicesActives}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(service.typeOfService)}"></td>
-                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ya no vuic aquest servici</button></a></td>
+                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ja no vuic aquest servei</button></a></td>
                 </tr>
                 </tbody>
             </table>
             <table th:unless="${#lists.isEmpty(servicesPending)}" class="table table-dark table-striped">
                 <tbody>
-                <th class="subheading mb-5">Servicis pendents: </th>
+                <th class="subheading mb-5">Serveis pendents: </th>
                 <tr th:each="service: ${servicesPending}">
                     <td class="lead mb-5" th:text="${#strings.capitalize(service.typeOfService)}"></td>
-                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ya no vuic aquest servici</button></a></td>
+                    <td><a th:href="@{/services/removeService/{typeOfService}(typeOfService=${service.typeOfService})}"><button type="button" class="btn btn-danger">Ja no vuic aquest servei</button></a></td>
                 </tr>
                 </tbody>
             </table>

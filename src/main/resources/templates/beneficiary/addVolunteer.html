@@ -52,13 +52,13 @@
             <h1 class="subheading mb-5">Servei de cura personal</h1>
 
 
-            <table th:unless="${#lists.isEmpty(volunteerServices)}"  class="table table-borderless">
+            <table th:unless="${#lists.isEmpty(volunteerServices)}"  class="table table-dark table-striped">
 
                 <tbody>
                 <th class="subheading mb-5">Voluntaris per a solicitar: </th>
                 <tr th:each="volunteer: ${volunteerServices}">
-                    <td class="lead mb-5" th:text="${volunteer.name}"></td>
-                    <td><a th:href="@{/services/add/volunteerServices/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-primary  btn-xl js-scroll-trigger">Afegir voluntari</button></a></td>
+                    <td class="lead mb-5" th:text="${#strings.capitalize(volunteer.name)}"></td>
+                    <td><a th:href="@{/services/add/volunteerServices/{dni}(dni=${volunteer.dni})}"><button type="button" class="btn btn-success">Afegir voluntari</button></a></td>
                 </tr>
                 </tbody>
             </table>
