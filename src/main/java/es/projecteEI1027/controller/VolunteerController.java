@@ -120,6 +120,10 @@ public class VolunteerController {
         volunteerTime.setDniBeneficiary(null);
         volunteerTime.setAvailable(true);
         volunteerTimeDao.addVolunteerTime(volunteerTime);
+        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
+        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
+        model.addAttribute("mapa", mapa);
+        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
         return "/volunteer/listBeneficiariesVol";
     }
 
@@ -170,6 +174,10 @@ public class VolunteerController {
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         session.setAttribute("time",beginningTime);
         volunteerTimeDao.deleteVolunteerTime(volunteer.getDni(),LocalDateTime.parse(beginningTime));
+        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
+        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
+        model.addAttribute("mapa", mapa);
+        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
         return "/volunteer/listBeneficiariesVol";
     }
     @RequestMapping(value="/update", method=RequestMethod.POST)
@@ -186,6 +194,12 @@ public class VolunteerController {
         volunteerTime.setDniVolunteer(volunteer.getDni());
         volunteerTime.setDniBeneficiary(null);
         volunteerTimeDao.updateTime(volunteer.getDni(),LocalDateTime.parse(session.getAttribute("time").toString()),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
+
+        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
+        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
+        model.addAttribute("mapa", mapa);
+        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
+
         return "/volunteer/listBeneficiariesVol";
     }
     @RequestMapping(value="/remove/{dni}", method=RequestMethod.GET)
@@ -200,6 +214,10 @@ public class VolunteerController {
         Volunteer user = (Volunteer)session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         volunteerTimeDao.deleteVol(volunteer.getDni(),dni);
+        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
+        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
+        model.addAttribute("mapa", mapa);
+        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
@@ -213,7 +231,9 @@ public class VolunteerController {
         request.setDateReject(null);
         request.setComment();*/
         //model.addAttribute("request", new Request());
-        return "volunteer/indexVolunteer";
+//        return "volunteer/indexVolunteer";
+        return "/volunteer/listBeneficiariesVol";
+
 
     }
 
