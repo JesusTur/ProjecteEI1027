@@ -77,7 +77,17 @@ public class CasController {
 
     }
     @RequestMapping(value = "/addContract", method = RequestMethod.POST)
-    public String addContract(@ModelAttribute("contract") Contract contract, HttpSession session){
+    public String addContract(@ModelAttribute("contract") Contract contract, HttpSession session, Model model){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casManager"))) {
+            return"redirect:/";
+        }
         Company company = (Company) session.getAttribute("company");
         contract.setCif(company.getCif());
         contract.setTypeOfService(company.getServiceType());
@@ -90,13 +100,33 @@ public class CasController {
         return "cas/company/registerCompany.html";
     }
     @RequestMapping(value = "/acceptVolunteer")
-    public String acceptVolunteer(Model model){
+    public String acceptVolunteer(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casVolunteer"))) {
+            return"redirect:/";
+        }
         List<Volunteer> volunteers = volunteerDao.getUnacceptedVolunteers();
         model.addAttribute("volunteers", volunteers);
         return"cas/volunteer/acceptVolunteer";
     }
     @RequestMapping(value = "/acceptVolunteer/{dni}", method=RequestMethod.GET)
-    public String processAcceptVolunteerSubmit(@PathVariable String dni, Model model) {
+    public String processAcceptVolunteerSubmit(@PathVariable String dni, Model model, HttpSession session) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casVolunteer"))) {
+            return"redirect:/";
+        }
         Volunteer volunteer = volunteerDao.getVolunteer(dni);
         volunteer.setAccepted(true);
         volunteer.setAcceptationDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
@@ -105,7 +135,17 @@ public class CasController {
         return"cas/volunteer/indexCasVolunteer";
     }
     @RequestMapping(value = "/listRequests")
-    public String listRequest(Model model){
+    public String listRequest(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casCommitee"))) {
+            return"redirect:/";
+        }
         List<Request> req = requestDao.getPendentRequests();
         HashMap<Beneficiary, Request> requests = new HashMap<>();
         for(Request r : req){
@@ -116,7 +156,17 @@ public class CasController {
         return "cas/committe/pendingRequests";
     }
     @RequestMapping(value = "/denegar/{id}")
-    public String denegarServei(@PathVariable int id, Model model){
+    public String denegarServei(@PathVariable int id, Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casCommitee"))) {
+            return"redirect:/";
+        }
         Request request = requestDao.getRequest(id);
         request.setRequestState(RequestState.rejected);
         request.setDateReject(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
@@ -132,6 +182,16 @@ public class CasController {
     }
     @RequestMapping(value = "/mostrarCompanyia/{id}")
     public String  mostrarCompanyies(@PathVariable int id, Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casCommitee"))) {
+            return"redirect:/";
+        }
         Request request = requestDao.getRequest(id);
         List<Company> companies = companyDao.getCompaniesPerTipus(request.getTypeOfService());
         HashMap<Company, Contract> comcon = new HashMap<>();
@@ -145,6 +205,16 @@ public class CasController {
     }
     @RequestMapping(value ="/acceptarServei/{id}")
     public String acceptarServei(@PathVariable int id, Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new CAS());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof CAS)){
+            return"redirect:/";
+        }
+        CAS user = (CAS) session.getAttribute("user");
+        if(!(user.getUser().equals("casCommitee"))) {
+            return"redirect:/";
+        }
         Request request = (Request) session.getAttribute("request");
         request.setRequestState(RequestState.accepted);
         request.setContractid(id);

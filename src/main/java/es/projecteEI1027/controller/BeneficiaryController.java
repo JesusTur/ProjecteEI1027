@@ -42,20 +42,38 @@ public class BeneficiaryController {
     public void setCasDao(CASDao casDao){this.casDao=casDao;}
 
     @RequestMapping("/list")
-    public String listBeneficiaries(Model model) {
+    public String listBeneficiaries(Model model, HttpSession session) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         model.addAttribute("beneficiaries", beneficiaryDao.getBeneficiaries());
         return "beneficiary/list";
     }
 
     @RequestMapping(value="/add")
-    public String addBeneficiary(Model model) {
+    public String addBeneficiary(Model model, HttpSession session) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         model.addAttribute("beneficiary", new Beneficiary());
         return "beneficiary/add";
     }
 
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("beneficiary") Beneficiary beneficiary,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         beneficiaryDao.addBeneficiary(beneficiary);
@@ -63,7 +81,13 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/update/{dni}", method=RequestMethod.GET)
-    public String editBeneficiary(Model model, @PathVariable String dni) {
+    public String editBeneficiary(Model model, @PathVariable String dni, HttpSession session) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         model.addAttribute("beneficiary", beneficiaryDao.getBeneficiary(dni));
         return "beneficiary/update";
     }
@@ -71,7 +95,13 @@ public class BeneficiaryController {
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("beneficiary") Beneficiary beneficiary,
-            BindingResult bindingResult) {
+            BindingResult bindingResult, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         if (bindingResult.hasErrors())
             return "/beneficiary/update";
         beneficiaryDao.updateBeneficiary(beneficiary);
@@ -79,7 +109,13 @@ public class BeneficiaryController {
     }
 
     @RequestMapping(value="/delete/{dni}")
-    public String processDelete(@PathVariable String dni) {
+    public String processDelete(@PathVariable String dni, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         beneficiaryDao.deleteBeneficiary(dni);
         return "redirect:../list";
     }

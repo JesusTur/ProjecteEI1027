@@ -49,6 +49,9 @@ public class ServiceController {
                     "No existeix aquest usuari");
             return "beneficiary/login";
         }
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         List<Volunteer> listVolunteer= userDao.getVolunteerServicesUser(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
         List<Request> listServiceActives= userDao.getServicePerBen(user.getUser());
@@ -76,13 +79,25 @@ public class ServiceController {
 
     }
     @RequestMapping("/services/add")
-    public String login(Model model){
+    public String login(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         model.addAttribute("tipo", new String());
         return "beneficiary/services";
     }
     @RequestMapping(value="/services/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("tipo") String tipo,
                                    HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         //List<Company> listCompany= userDao.getCompanyPerTipus(tipo,user.getUser());
         //List<Volunteer> volunteerServices = userDao.getVolunteerPerBen(userDao.getBeneficiaryPerNom(user.getUser()).getDni());
@@ -105,6 +120,12 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/addVolunteer")
     public String processAddVolunteer(HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         List<Volunteer> volunteerServices;
         if(userDao.yaTiene(userDao.getBeneficiaryPerNom(user.getUser()).getDni())){
@@ -120,6 +141,12 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/add/companyServices/{cif}", method=RequestMethod.GET)
     public String processAddCServicesSubmit(@PathVariable String cif,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
@@ -138,6 +165,12 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/add/volunteerServices/{dni}", method=RequestMethod.GET)
     public String processAddVServicesSubmit(@PathVariable String dni,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
@@ -161,6 +194,12 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/addVolunteerTime", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerT") VolunteerTime volunteerTime, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         volunteerTime.setDniVolunteer(session.getAttribute("dniVolunteer").toString());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
@@ -178,6 +217,12 @@ public class ServiceController {
     @RequestMapping(value="/services/addRequest", method=RequestMethod.POST)
     public String processAddRequest(@ModelAttribute("request") Request request,
                                             HttpSession session,Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
         idRequest = new AtomicInteger(requestDao.getRequestid());
         request.setId(idRequest.incrementAndGet());
         Beneficiary user = (Beneficiary)session.getAttribute("user");
@@ -196,6 +241,12 @@ public class ServiceController {
 
     @RequestMapping(value="/services/remove/{dni}", method=RequestMethod.GET)
     public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
 
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         volunteerTimeDao.deleteVol(dni,userDao.getBeneficiaryPerNom(user.getUser()).getDni());
@@ -238,6 +289,12 @@ public class ServiceController {
     }
     @RequestMapping(value="/services/removeService/{typeOfService}", method=RequestMethod.GET)
     public String processRemoveServiceSubmit(@PathVariable String typeOfService,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Beneficiary());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Beneficiary)){
+            return"redirect:/";
+        }
 
         Beneficiary user = (Beneficiary)session.getAttribute("user");
         requestDao.rejectedService(userDao.getBeneficiaryPerNom(user.getUser()).getDni(),typeOfService);

@@ -35,13 +35,25 @@ public class VolunteerController {
         this.volunteerTimeDao = volunteerTimeDao;
     }
     @RequestMapping(value="/add")
-    public String addVolunteer(Model model) {
+    public String addVolunteer(Model model, HttpSession session) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         model.addAttribute("volunteer", new Volunteer());
         return "volunteer/add";
     }
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         if (bindingResult.hasErrors())
             return "beneficiary/add";
         volunteer.setAccepted(false);
@@ -51,17 +63,24 @@ public class VolunteerController {
     }
     @RequestMapping("/login")
     public String listServices(HttpSession session, Model model){
+
         if(session.getAttribute("user") == null){
             model.addAttribute("user", new Volunteer());
-            //model.addAttribute("companyServices", contractDao.getContracts());
-            return "beneficiary/login";
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
         }
-        //model.addAttribute("companyServices", contractDao.getContracts());
         return "volunteer/indexVolunteer";
     }
 
     @RequestMapping("/list")
     public String listBeneficiaries(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
@@ -71,7 +90,13 @@ public class VolunteerController {
         return "volunteer/listBeneficiariesVol";
     }
     @RequestMapping("/hourAdd")
-    public String addHour(Model model){
+    public String addHour(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         VolunteerTime volunteerTime = new VolunteerTime();
         LocalDateTime fechaHoy = LocalDateTime.now();
         String fecha = fechaHoy.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
@@ -82,6 +107,12 @@ public class VolunteerController {
 
     @RequestMapping(value="/hourAdd", method=RequestMethod.POST)
     public String processAddVolunteerTime(@ModelAttribute("volunteerTime") VolunteerTime volunteerTime, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
@@ -89,15 +120,17 @@ public class VolunteerController {
         volunteerTime.setDniBeneficiary(null);
         volunteerTime.setAvailable(true);
         volunteerTimeDao.addVolunteerTime(volunteerTime);
-        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
-        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
-        model.addAttribute("mapa", mapa);
-        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
         return "/volunteer/listBeneficiariesVol";
     }
 
     @RequestMapping("/modifiedHour")
     public String modifyHour(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         List<VolunteerTime> lista = volunteerTimeDao.getFreeTimeList(volunteer.getDni());
@@ -109,6 +142,12 @@ public class VolunteerController {
     }
     @RequestMapping(value="/modifyTimeNow/{beginningTime}", method=RequestMethod.GET)
     public String processmodifyVolunteerTime(@PathVariable String beginningTime, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         session.setAttribute("time",beginningTime);
@@ -121,42 +160,46 @@ public class VolunteerController {
     }
     @RequestMapping(value="/removeTimeNow/{beginningTime}", method=RequestMethod.GET)
     public String processremoveVolunteerTime(@PathVariable String beginningTime, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         session.setAttribute("time",beginningTime);
         volunteerTimeDao.deleteVolunteerTime(volunteer.getDni(),LocalDateTime.parse(beginningTime));
-        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
-        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
-        model.addAttribute("mapa", mapa);
-        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
         return "/volunteer/listBeneficiariesVol";
     }
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public String processUpdate(@ModelAttribute("volunteerTime") VolunteerTime volunteerTime, HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
         volunteerTime.setDate(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         Volunteer user = (Volunteer) session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         volunteerTime.setDniVolunteer(volunteer.getDni());
         volunteerTime.setDniBeneficiary(null);
         volunteerTimeDao.updateTime(volunteer.getDni(),LocalDateTime.parse(session.getAttribute("time").toString()),volunteerTime.getBeginningTime(),volunteerTime.getEndingTime());
-
-        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
-        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
-        model.addAttribute("mapa", mapa);
-        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
-
         return "/volunteer/listBeneficiariesVol";
     }
     @RequestMapping(value="/remove/{dni}", method=RequestMethod.GET)
     public String processRemoveSubmit(@PathVariable String dni,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
 
         Volunteer user = (Volunteer)session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());
         volunteerTimeDao.deleteVol(volunteer.getDni(),dni);
-        List<Beneficiary> assignedBeneficiaries = volunteerTimeDao.getRelatedBeneficiaries(volunteer.getDni());
-        Map<LocalDateTime,LocalDateTime> mapa = volunteerTimeDao.getVolunteerTime(volunteer.getDni());
-        model.addAttribute("mapa", mapa);
-        model.addAttribute("assignedBeneficiaries", assignedBeneficiaries);
 
         /*Request request = new Request();
         request.setId(id.incrementAndGet());
@@ -170,14 +213,18 @@ public class VolunteerController {
         request.setDateReject(null);
         request.setComment();*/
         //model.addAttribute("request", new Request());
-//        return "volunteer/indexVolunteer";
-        return "/volunteer/listBeneficiariesVol";
-
+        return "volunteer/indexVolunteer";
 
     }
 
     @RequestMapping(value="/veure/{dni}", method=RequestMethod.GET)
     public String processveureSubmit(@PathVariable String dni,HttpSession session, Model model) {
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Volunteer());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Volunteer)){
+            return"redirect:/";
+        }
 
         Volunteer user = (Volunteer)session.getAttribute("user");
         Volunteer volunteer = volunteerDao.getVolunteerPerUser(user.getUser());

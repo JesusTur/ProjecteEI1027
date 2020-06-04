@@ -39,6 +39,12 @@ public class CompanyController {
     }
     @RequestMapping("/list")
     public String listBeneficiaries(Model model, HttpSession session){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("user", new Company());
+            return "beneficiary/login";}
+        if(! (session.getAttribute("user") instanceof Company)){
+            return"redirect:/";
+        }
         Company user = (Company) session.getAttribute("user");
         Company company = companyDao.getCompanyPerUser(user.getUser());
         Integer contractId = contractDao.getContractId(company.getCif());
