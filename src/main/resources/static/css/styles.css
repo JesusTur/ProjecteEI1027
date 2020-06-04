@@ -257,6 +257,8 @@ select {
   text-transform: none;
 }
 
+
+
 [role=button] {
   cursor: pointer;
 }
@@ -286,6 +288,9 @@ button::-moz-focus-inner,
   padding: 0;
   border-style: none;
 }
+
+
+
 
 input[type=radio],
 input[type=checkbox] {

@@ -50,18 +50,17 @@
             <h1 class="mb-0">Sol·licitar <span class="text-primary">Serveis</span></h1>
 
             <p>
-            <div layout:fragment="content">
+            <div class="custom-select" layout:fragment="content">
             <form action="#" th:action="@{/services/add}"
                   th:object="${tipo}" method="post">
 
+                <select name="tipo">
 
-                <select name="tipo" class="dropdown dropright">
+                    <option value="catering">Catering</option>
 
-                    <option class="dropdown-item">catering</option>
+                    <option value="limpieza de hogar">Limpieza de hogar</option>
 
-                    <option class="dropdown-item">limpieza de hogar</option>
-
-                    <option class="dropdown-item">cuidado personal</option>
+                    <option value="cuidado personal">Cuidado personal</option>
 
                 </select>
                 <input type="submit" class="btn btn-primary  btn-xl js-scroll-trigger" value="Afegir Servei" />
